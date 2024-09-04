@@ -194,12 +194,24 @@ namespace Invoicing_System.Views.Monitoring
             {
                 functions.ConvertToDecimal(txtBillableType);
 
-                txtAgencyFee.Text = Math.Round(double.Parse(txtBillableType.Text) * 0.2, 2).ToString();
+                string qryintrate = "SELECT interest_rate FROM tblinterest";
+                var dtintrate = functions.SelectData(qryintrate, "intrate");
+
+                decimal intrate = Convert.ToDecimal(dtintrate.Rows[0]["interest_rate"]);
+                decimal billtype = Convert.ToDecimal(txtBillableType.Text);
+                decimal agencyFee = Math.Round(billtype * intrate, 2);
+
+                txtAgencyFee.Text = agencyFee.ToString();
                 functions.ConvertToDecimal(txtAgencyFee);
 
                 if(_vatactive == "1")
                 {
-                    txtVAT.Text = (double.Parse(txtAgencyFee.Text) * 0.12).ToString();
+                    string qryvatrate = "SELECT vat_rate FROM tblvat";
+                    var dtvatrate = functions.SelectData(qryvatrate, "vatrate");
+
+                    decimal vatrate = Convert.ToDecimal(dtvatrate.Rows[0]["vat_rate"]);
+
+                    txtVAT.Text = (agencyFee * vatrate).ToString();
                     functions.ConvertToDecimal(txtVAT);
                 }
             }

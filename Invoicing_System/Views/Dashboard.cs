@@ -2,21 +2,12 @@
 using Invoicing_System.Data;
 using System;
 using System.Windows.Forms;
-//using Microsoft.ReportingServices.ReportProcessing.OnDemandReportObjectModel;
-//using System.Collections.Generic;
-//using System.ComponentModel;
-//using System.Data;
-//using System.Drawing;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 
 namespace Invoicing_System
 {
     public partial class Dashboard : Form
     {
         public string user_username { get; set; }
-        //private Variables clsVariable;
 
         public Dashboard()
         {
