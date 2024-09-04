@@ -54,7 +54,12 @@ namespace Invoicing_System.Views
             //Convert Numbers to Words
             decimal totals = Convert.ToDecimal(row["toTals"]);
             decimal agencyfee = Convert.ToDecimal(row["agencyFee"]);
-            decimal conVerted = totals - (agencyfee*0.02m);
+
+            string qrywtaxrate = "SELECT wtax_rate FROM tblwtax";
+            var dtwtaxrate = functions.SelectData(qrywtaxrate, "wtaxrate");
+            decimal wtaxrate = Convert.ToDecimal(dtwtaxrate.Rows[0]["wtax_rate"]);
+
+            decimal conVerted = totals - (agencyfee* wtaxrate);
             rptVInvoice.LocalReport.SetParameters(new ReportParameter("NumericToWords", functions.ConvertCurrencyToWords(conVerted)));
 
 
