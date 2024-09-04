@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCustomer" targetNamespace="http://tempuri.org/DSCustomer.xsd" xmlns:mstns="http://tempuri.org/DSCustomer.xsd" xmlns="http://tempuri.org/DSCustomer.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCustomer" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="DSCustomer" msprop:Generator_DataSetName="DSCustomer">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtCustomers" msprop:Generator_RowEvHandlerName="dtCustomersRowChangeEventHandler" msprop:Generator_RowDeletedName="dtCustomersRowDeleted" msprop:Generator_RowDeletingName="dtCustomersRowDeleting" msprop:Generator_RowEvArgName="dtCustomersRowChangeEvent" msprop:Generator_TablePropName="dtCustomers" msprop:Generator_RowChangedName="dtCustomersRowChanged" msprop:Generator_RowChangingName="dtCustomersRowChanging" msprop:Generator_TableClassName="dtCustomersDataTable" msprop:Generator_RowClassName="dtCustomersRow" msprop:Generator_TableVarName="tabledtCustomers" msprop:Generator_UserTableName="dtCustomers">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="custID" msprop:Generator_ColumnPropNameInRow="custID" msprop:Generator_ColumnPropNameInTable="custIDColumn" msprop:Generator_ColumnVarNameInTable="columncustID" msprop:Generator_UserColumnName="custID" type="xs:string" minOccurs="0" />
+              <xs:element name="custName" msprop:Generator_ColumnPropNameInRow="custName" msprop:Generator_ColumnPropNameInTable="custNameColumn" msprop:Generator_ColumnVarNameInTable="columncustName" msprop:Generator_UserColumnName="custName" type="xs:string" minOccurs="0" />
+              <xs:element name="contactPerson" msprop:Generator_ColumnPropNameInRow="contactPerson" msprop:Generator_ColumnPropNameInTable="contactPersonColumn" msprop:Generator_ColumnVarNameInTable="columncontactPerson" msprop:Generator_UserColumnName="contactPerson" type="xs:string" minOccurs="0" />
+              <xs:element name="cpPosition" msprop:Generator_ColumnPropNameInRow="cpPosition" msprop:Generator_ColumnPropNameInTable="cpPositionColumn" msprop:Generator_ColumnVarNameInTable="columncpPosition" msprop:Generator_UserColumnName="cpPosition" type="xs:string" minOccurs="0" />
+              <xs:element name="emailAddress" msprop:Generator_ColumnPropNameInRow="emailAddress" msprop:Generator_ColumnPropNameInTable="emailAddressColumn" msprop:Generator_ColumnVarNameInTable="columnemailAddress" msprop:Generator_UserColumnName="emailAddress" type="xs:string" minOccurs="0" />
+              <xs:element name="custagencyFee" msprop:Generator_ColumnPropNameInRow="custagencyFee" msprop:Generator_ColumnPropNameInTable="custagencyFeeColumn" msprop:Generator_ColumnVarNameInTable="columncustagencyFee" msprop:Generator_UserColumnName="custagencyFee" type="xs:string" minOccurs="0" />
+              <xs:element name="isvatable" msprop:Generator_ColumnPropNameInRow="isvatable" msprop:Generator_ColumnPropNameInTable="isvatableColumn" msprop:Generator_ColumnVarNameInTable="columnisvatable" msprop:Generator_UserColumnName="isvatable" type="xs:string" minOccurs="0" />
+              <xs:element name="hasInterest" msprop:Generator_ColumnPropNameInRow="hasInterest" msprop:Generator_ColumnPropNameInTable="hasInterestColumn" msprop:Generator_ColumnVarNameInTable="columnhasInterest" msprop:Generator_UserColumnName="hasInterest" type="xs:string" minOccurs="0" />
+              <xs:element name="otherBillAmt" msprop:Generator_ColumnPropNameInRow="otherBillAmt" msprop:Generator_ColumnPropNameInTable="otherBillAmtColumn" msprop:Generator_ColumnVarNameInTable="columnotherBillAmt" msprop:Generator_UserColumnName="otherBillAmt" type="xs:string" minOccurs="0" />
+              <xs:element name="compID" msprop:Generator_ColumnPropNameInRow="compID" msprop:Generator_ColumnPropNameInTable="compIDColumn" msprop:Generator_ColumnVarNameInTable="columncompID" msprop:Generator_UserColumnName="compID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

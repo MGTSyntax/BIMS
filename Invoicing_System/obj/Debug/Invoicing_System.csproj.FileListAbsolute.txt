@@ -1,0 +1,233 @@
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.exe.config
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.exe
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.pdb
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.AssemblyReference.cache
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Dashboard.resources
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Properties.Resources.resources
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InvoiceMonitoring.resources
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.GenerateResource.cache
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.CoreCompileInputs.cache
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.exe
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.pdb
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.Monitoring.CreateInvoice.resources
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.dll
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.WinForms.dll
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.Wpf.dll
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.pdb
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.xml
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.WinForms.pdb
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.WinForms.xml
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.Wpf.pdb
+D:\Systems\Invoicing_System\Invoicing_System\bin\Debug\LiveCharts.Wpf.xml
+D:\Systems\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.CopyComplete
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.exe.config
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.exe
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.pdb
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\BouncyCastle.Crypto.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Google.Protobuf.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Hash.xxHash.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.Common.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.Design.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\MySql.Data.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Buffers.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Memory.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EnvDTE.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\stdole.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.MSXML.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\BouncyCastle.Crypto.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Google.Protobuf.pdb
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Google.Protobuf.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Hash.xxHash.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\MySql.Data.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Buffers.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Memory.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EnvDTE.xml
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.AssemblyReference.cache
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CompanyList.CompanyDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CustomerSetup.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CustomerList.CustomerDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Dashboard.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Properties.Resources.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmCompany.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmInvoices.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmLogin.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmPayments.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmReport.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmOtherSetup.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmUsers.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InterestList.PayAmountDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.Monitoring.InvoiceDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InvoiceList.ShippingDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.OtherSetupList.InterestRate.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.OtherSetupList.VATRate.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.TitleTemplateList.TitleTemplateDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.UserList.UserDetails.resources
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.GenerateResource.cache
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.CoreCompileInputs.cache
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.CopyComplete
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.exe
+D:\MGT Files\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.pdb
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.exe.config
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.exe
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Invoicing_System.pdb
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\BouncyCastle.Crypto.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Google.Protobuf.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.Streams.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Hash.xxHash.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.Common.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.Design.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\MySql.Data.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Buffers.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Memory.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EnvDTE.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\stdole.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.MSXML.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\BouncyCastle.Crypto.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Google.Protobuf.pdb
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Google.Protobuf.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Compression.LZ4.Streams.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\K4os.Hash.xxHash.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\MySql.Data.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Buffers.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Memory.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EnvDTE.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.AssemblyReference.cache
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CompanyList.CompanyDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CustomerList.CustomerFilter.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CustomerSetup.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.CustomerList.CustomerDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Dashboard.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Properties.Resources.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmCompany.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmInvoices.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmLogin.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmPayments.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InterestList.PaymentFilter.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.Reporting.frmCustomerList.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.Reporting.frmInvoiceList.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.Reporting.frmPaymentList.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmReport.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmOtherSetup.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmUsers.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InterestList.PayAmountDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.Monitoring.InvoiceDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InvoiceList.InvoiceFilter.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.InvoiceList.ShippingDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.OtherSetupList.InterestRate.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.OtherSetupList.VATRate.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.TitleTemplateList.TitleTemplateDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.UserList.UserDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.UserList.UserRequest.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.GenerateResource.cache
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.csproj.CoreCompileInputs.cache
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.exe
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.pdb
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmAnalytics.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicin.60ACFB42.Up2Date
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.OtherSetupList.WTaxRate.resources
