@@ -120,5 +120,15 @@ namespace Invoicing_System
             frmLogin.Show();
             this.Dispose();
         }
+
+        private void btnUploadBillings_Click(object sender, EventArgs e)
+        {
+            pnlMainView.Controls.Clear();
+            frmUploadBillings frmUploadBillings = new frmUploadBillings();
+            frmUploadBillings.TopLevel = false;
+            pnlMainView.Controls.Add(frmUploadBillings);
+            frmUploadBillings.BringToFront();
+            frmUploadBillings.Show();
+        }
     }
 }

@@ -246,3 +246,14 @@ D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.IO.Pipelines.xml
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Numerics.Vectors.xml
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Threading.Tasks.Extensions.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmUploadBillings.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EPPlus.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EPPlus.Interfaces.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EPPlus.System.Drawing.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.ComponentModel.Annotations.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Drawing.Common.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\EPPlus.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Drawing.Common.pdb
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Drawing.Common.xml

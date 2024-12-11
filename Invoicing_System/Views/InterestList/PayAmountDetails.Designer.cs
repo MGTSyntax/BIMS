@@ -58,6 +58,8 @@
             this.gbBalance = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txttotalBal = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBank = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errPPayAmt)).BeginInit();
@@ -109,7 +111,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label2.Location = new System.Drawing.Point(34, 69);
+            this.label2.Location = new System.Drawing.Point(34, 60);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 15);
@@ -119,7 +121,7 @@
             // txtBalancePay
             // 
             this.txtBalancePay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBalancePay.Location = new System.Drawing.Point(139, 66);
+            this.txtBalancePay.Location = new System.Drawing.Point(139, 57);
             this.txtBalancePay.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtBalancePay.Name = "txtBalancePay";
             this.txtBalancePay.Size = new System.Drawing.Size(269, 23);
@@ -145,7 +147,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(30, 34);
+            this.label1.Location = new System.Drawing.Point(30, 33);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(58, 15);
@@ -156,7 +158,7 @@
             // 
             this.txtCustomer.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCustomer.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustomer.Location = new System.Drawing.Point(33, 60);
+            this.txtCustomer.Location = new System.Drawing.Point(33, 59);
             this.txtCustomer.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCustomer.Multiline = true;
             this.txtCustomer.Name = "txtCustomer";
@@ -171,7 +173,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label13.Location = new System.Drawing.Point(30, 112);
+            this.label13.Location = new System.Drawing.Point(30, 111);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(93, 15);
@@ -182,7 +184,7 @@
             // 
             this.txtInvoiceNum.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInvoiceNum.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtInvoiceNum.Location = new System.Drawing.Point(134, 109);
+            this.txtInvoiceNum.Location = new System.Drawing.Point(134, 108);
             this.txtInvoiceNum.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtInvoiceNum.Multiline = true;
             this.txtInvoiceNum.Name = "txtInvoiceNum";
@@ -200,7 +202,7 @@
             this.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPay.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPay.ForeColor = System.Drawing.Color.White;
-            this.btnPay.Location = new System.Drawing.Point(320, 205);
+            this.btnPay.Location = new System.Drawing.Point(320, 206);
             this.btnPay.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(88, 33);
@@ -215,7 +217,7 @@
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label16.Location = new System.Drawing.Point(34, 34);
+            this.label16.Location = new System.Drawing.Point(34, 31);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(88, 15);
@@ -227,7 +229,7 @@
             this.dtpPaymentDate.CustomFormat = "yyyy/MM/dd";
             this.dtpPaymentDate.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpPaymentDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpPaymentDate.Location = new System.Drawing.Point(139, 31);
+            this.dtpPaymentDate.Location = new System.Drawing.Point(139, 28);
             this.dtpPaymentDate.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.dtpPaymentDate.Name = "dtpPaymentDate";
             this.dtpPaymentDate.Size = new System.Drawing.Size(269, 23);
@@ -239,7 +241,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(34, 105);
+            this.label3.Location = new System.Drawing.Point(34, 90);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(84, 15);
@@ -249,7 +251,7 @@
             // txtORN
             // 
             this.txtORN.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtORN.Location = new System.Drawing.Point(139, 102);
+            this.txtORN.Location = new System.Drawing.Point(139, 87);
             this.txtORN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtORN.Name = "txtORN";
             this.txtORN.Size = new System.Drawing.Size(269, 23);
@@ -260,7 +262,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label4.Location = new System.Drawing.Point(34, 141);
+            this.label4.Location = new System.Drawing.Point(34, 120);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(83, 15);
@@ -270,7 +272,7 @@
             // txtARN
             // 
             this.txtARN.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtARN.Location = new System.Drawing.Point(139, 138);
+            this.txtARN.Location = new System.Drawing.Point(139, 117);
             this.txtARN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtARN.Name = "txtARN";
             this.txtARN.Size = new System.Drawing.Size(269, 23);
@@ -281,7 +283,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label5.Location = new System.Drawing.Point(34, 177);
+            this.label5.Location = new System.Drawing.Point(34, 178);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 15);
@@ -291,7 +293,7 @@
             // txtCheckN
             // 
             this.txtCheckN.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCheckN.Location = new System.Drawing.Point(139, 174);
+            this.txtCheckN.Location = new System.Drawing.Point(139, 175);
             this.txtCheckN.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtCheckN.Name = "txtCheckN";
             this.txtCheckN.Size = new System.Drawing.Size(269, 23);
@@ -302,7 +304,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label6.Location = new System.Drawing.Point(30, 178);
+            this.label6.Location = new System.Drawing.Point(30, 177);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(47, 15);
@@ -313,7 +315,7 @@
             // 
             this.txtInterest.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtInterest.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtInterest.Location = new System.Drawing.Point(134, 175);
+            this.txtInterest.Location = new System.Drawing.Point(134, 174);
             this.txtInterest.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtInterest.Multiline = true;
             this.txtInterest.Name = "txtInterest";
@@ -332,7 +334,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label7.Location = new System.Drawing.Point(30, 145);
+            this.label7.Location = new System.Drawing.Point(30, 144);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(90, 15);
@@ -343,7 +345,7 @@
             // 
             this.txtBalance.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtBalance.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
-            this.txtBalance.Location = new System.Drawing.Point(134, 142);
+            this.txtBalance.Location = new System.Drawing.Point(134, 141);
             this.txtBalance.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtBalance.Multiline = true;
             this.txtBalance.Name = "txtBalance";
@@ -355,6 +357,8 @@
             // 
             // gbPayment
             // 
+            this.gbPayment.Controls.Add(this.label8);
+            this.gbPayment.Controls.Add(this.txtBank);
             this.gbPayment.Controls.Add(this.btnPay);
             this.gbPayment.Controls.Add(this.dtpPaymentDate);
             this.gbPayment.Controls.Add(this.label16);
@@ -398,7 +402,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(30, 211);
+            this.label9.Location = new System.Drawing.Point(30, 210);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(77, 15);
@@ -410,7 +414,7 @@
             this.txttotalBal.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txttotalBal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.txttotalBal.ForeColor = System.Drawing.Color.Red;
-            this.txttotalBal.Location = new System.Drawing.Point(134, 208);
+            this.txttotalBal.Location = new System.Drawing.Point(134, 207);
             this.txttotalBal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txttotalBal.Multiline = true;
             this.txttotalBal.Name = "txttotalBal";
@@ -419,6 +423,27 @@
             this.txttotalBal.TabIndex = 5;
             this.txttotalBal.Text = "0";
             this.txttotalBal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(34, 149);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 15);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Bank :";
+            // 
+            // txtBank
+            // 
+            this.txtBank.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBank.Location = new System.Drawing.Point(139, 146);
+            this.txtBank.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtBank.Name = "txtBank";
+            this.txtBank.Size = new System.Drawing.Size(269, 23);
+            this.txtBank.TabIndex = 54;
             // 
             // PayAmountDetails
             // 
@@ -477,5 +502,7 @@
         private System.Windows.Forms.GroupBox gbBalance;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txttotalBal;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox txtBank;
     }
 }

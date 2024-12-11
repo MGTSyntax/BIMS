@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -30,12 +31,12 @@ namespace Invoicing_System.Data
         // Check Controls for Numeric Value Only
         public bool isNumeric(IEnumerable<Control> control, ErrorProvider errorProvider)
         {
-            //Regex contents = new Regex(@"^\d+(\.\d+)?$");
-            Regex contents = new Regex(@"^(?:\d{1,3}(?:,\d{3})*|\d+)(?:\.\d+)?$");
+            // Regex contents = new Regex(@"^(?:\d{1,3}(?:,\d{3})*|\d+)(?:\.\d+)?$");
 
             foreach (var ctrl in control)
             {
-                if (!contents.IsMatch(ctrl.Text))
+                // if (!contents.IsMatch(ctrl.Text))
+                if (!decimal.TryParse(ctrl.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out _))
                 {
                     errorProvider.SetError(ctrl, "Numbers Only!");
                     return false;

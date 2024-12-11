@@ -65,6 +65,7 @@ namespace Invoicing_System.Views.InvoiceList
             {
                 DateTime shipDate = dtpDateShipped.Value.Date;
                 DateTime dueDate = shipDate.AddDays(30);
+
                 //DateTime currentDate = DateTime.Today.Date;
                 //TimeSpan aging = currentDate.Subtract(shipDate);
                 //int totalDaysAging = aging.Days;
@@ -81,6 +82,7 @@ namespace Invoicing_System.Views.InvoiceList
                 //    }
                 //}
                 //var invoiceAge = totalDaysAging < 0 ? 0 : totalDaysAging;
+
                 string addInterest = "INSERT INTO interest_monitoring(invoiceNum,customerID,shippingDate," +
                             "dueDate,balanceAmt,aging,interestAmount,compID,isVoid,isPaid) " +
                             "VALUES('" + txtInvoiceNum.Text + "'," +

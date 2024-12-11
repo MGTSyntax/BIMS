@@ -170,7 +170,6 @@ namespace Invoicing_System.Views
                         else MessageBox.Show("Cannot void empty Invoice No..", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     case "colPrint":
-                        //frmReport frmReport = new frmReport();
                         frmReport = new frmReport(this);
                         frmReport.PreviewInvoice("SELECT invoicesid,(reimbursement+nonDeductible) as reimbursement,agencyFee,vat," +
                             "otherBillable,custName,titleTemplate,billingPeriod_from,billingPeriod_to," +

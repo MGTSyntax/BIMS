@@ -13,10 +13,10 @@ namespace Invoicing_System.Views
     {
         Functions functions = new Functions();
         private Dashboard dashboard;
-        private UserRequest userRequest;
-        private UserDetails userDetails;
-        private string localServerPath;
-        private string localExePath;
+        //private UserRequest userRequest;
+        //private UserDetails userDetails;
+        //private string localServerPath;
+        //private string localExePath;
 
         public frmLogin()
         {

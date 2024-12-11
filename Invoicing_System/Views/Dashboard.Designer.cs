@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnUploadBillings = new System.Windows.Forms.Button();
             this.btnMainUsers = new System.Windows.Forms.Button();
             this.btnMainCompany = new System.Windows.Forms.Button();
             this.btnMainTitle = new System.Windows.Forms.Button();
@@ -55,6 +56,7 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.panel1.Controls.Add(this.btnMainUsers);
+            this.panel1.Controls.Add(this.btnUploadBillings);
             this.panel1.Controls.Add(this.btnMainCompany);
             this.panel1.Controls.Add(this.btnMainTitle);
             this.panel1.Controls.Add(this.btnMainPayments);
@@ -70,6 +72,30 @@
             this.panel1.Size = new System.Drawing.Size(214, 754);
             this.panel1.TabIndex = 0;
             // 
+            // btnUploadBillings
+            // 
+            this.btnUploadBillings.BackColor = System.Drawing.Color.Transparent;
+            this.btnUploadBillings.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUploadBillings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUploadBillings.FlatAppearance.BorderSize = 0;
+            this.btnUploadBillings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnUploadBillings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUploadBillings.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUploadBillings.ForeColor = System.Drawing.Color.White;
+            this.btnUploadBillings.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadBillings.Image")));
+            this.btnUploadBillings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUploadBillings.Location = new System.Drawing.Point(0, 500);
+            this.btnUploadBillings.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUploadBillings.Name = "btnUploadBillings";
+            this.btnUploadBillings.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnUploadBillings.Size = new System.Drawing.Size(214, 50);
+            this.btnUploadBillings.TabIndex = 7;
+            this.btnUploadBillings.Text = "   Upload Billings";
+            this.btnUploadBillings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnUploadBillings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnUploadBillings.UseVisualStyleBackColor = false;
+            this.btnUploadBillings.Click += new System.EventHandler(this.btnUploadBillings_Click);
+            // 
             // btnMainUsers
             // 
             this.btnMainUsers.BackColor = System.Drawing.Color.Transparent;
@@ -83,7 +109,7 @@
             this.btnMainUsers.ForeColor = System.Drawing.Color.White;
             this.btnMainUsers.Image = ((System.Drawing.Image)(resources.GetObject("btnMainUsers.Image")));
             this.btnMainUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMainUsers.Location = new System.Drawing.Point(0, 500);
+            this.btnMainUsers.Location = new System.Drawing.Point(0, 550);
             this.btnMainUsers.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainUsers.Name = "btnMainUsers";
             this.btnMainUsers.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
@@ -113,7 +139,7 @@
             this.btnMainCompany.Name = "btnMainCompany";
             this.btnMainCompany.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainCompany.Size = new System.Drawing.Size(214, 50);
-            this.btnMainCompany.TabIndex = 7;
+            this.btnMainCompany.TabIndex = 6;
             this.btnMainCompany.Text = "   Company";
             this.btnMainCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainCompany.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -137,7 +163,7 @@
             this.btnMainTitle.Name = "btnMainTitle";
             this.btnMainTitle.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainTitle.Size = new System.Drawing.Size(214, 50);
-            this.btnMainTitle.TabIndex = 6;
+            this.btnMainTitle.TabIndex = 5;
             this.btnMainTitle.Text = "   Rates";
             this.btnMainTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainTitle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -161,7 +187,7 @@
             this.btnMainPayments.Name = "btnMainPayments";
             this.btnMainPayments.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainPayments.Size = new System.Drawing.Size(214, 50);
-            this.btnMainPayments.TabIndex = 9;
+            this.btnMainPayments.TabIndex = 4;
             this.btnMainPayments.Text = "   Payments";
             this.btnMainPayments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainPayments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -206,7 +232,7 @@
             this.btnMainExit.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainExit.Name = "btnMainExit";
             this.btnMainExit.Size = new System.Drawing.Size(214, 44);
-            this.btnMainExit.TabIndex = 4;
+            this.btnMainExit.TabIndex = 9;
             this.btnMainExit.Text = " EXIT";
             this.btnMainExit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnMainExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -407,6 +433,7 @@
         private System.Windows.Forms.Button btnMainCompany;
         private System.Windows.Forms.Button btnMainPayments;
         private System.Windows.Forms.Button btnSignout;
+        private System.Windows.Forms.Button btnUploadBillings;
     }
 }
 

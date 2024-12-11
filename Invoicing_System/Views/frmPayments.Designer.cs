@@ -89,6 +89,9 @@
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.btnEnterPayment = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.lblBank = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl2.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -105,6 +108,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInterest)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -119,7 +123,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(970, 466);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1082, 540);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tabControl2
@@ -127,10 +131,10 @@
             this.tabControl2.Controls.Add(this.tabPage2);
             this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl2.ItemSize = new System.Drawing.Size(67, 25);
-            this.tabControl2.Location = new System.Drawing.Point(779, 3);
+            this.tabControl2.Location = new System.Drawing.Point(868, 3);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(188, 460);
+            this.tabControl2.Size = new System.Drawing.Size(211, 534);
             this.tabControl2.TabIndex = 4;
             // 
             // tabPage2
@@ -141,7 +145,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(180, 427);
+            this.tabPage2.Size = new System.Drawing.Size(203, 501);
             this.tabPage2.TabIndex = 0;
             this.tabPage2.Text = "Payment History";
             // 
@@ -188,7 +192,7 @@
             this.dgvPaymentHistory.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvPaymentHistory.RowTemplate.Height = 27;
             this.dgvPaymentHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPaymentHistory.Size = new System.Drawing.Size(174, 194);
+            this.dgvPaymentHistory.Size = new System.Drawing.Size(197, 240);
             this.dgvPaymentHistory.TabIndex = 2;
             this.dgvPaymentHistory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPaymentHistory_CellClick);
             // 
@@ -225,9 +229,9 @@
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.panel10);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel2.Location = new System.Drawing.Point(3, 197);
+            this.panel2.Location = new System.Drawing.Point(3, 243);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(174, 227);
+            this.panel2.Size = new System.Drawing.Size(197, 255);
             this.panel2.TabIndex = 3;
             // 
             // panel10
@@ -236,11 +240,12 @@
             this.panel10.Controls.Add(this.panel33);
             this.panel10.Controls.Add(this.panel13);
             this.panel10.Controls.Add(this.panel12);
+            this.panel10.Controls.Add(this.panel3);
             this.panel10.Controls.Add(this.panel11);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(174, 227);
+            this.panel10.Size = new System.Drawing.Size(197, 255);
             this.panel10.TabIndex = 3;
             // 
             // panel4
@@ -251,7 +256,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel4.Location = new System.Drawing.Point(0, 36);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(174, 36);
+            this.panel4.Size = new System.Drawing.Size(197, 36);
             this.panel4.TabIndex = 2;
             // 
             // lblbalance
@@ -283,7 +288,7 @@
             this.panel33.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel33.Location = new System.Drawing.Point(0, 0);
             this.panel33.Name = "panel33";
-            this.panel33.Size = new System.Drawing.Size(174, 36);
+            this.panel33.Size = new System.Drawing.Size(197, 36);
             this.panel33.TabIndex = 4;
             // 
             // lblpay
@@ -313,9 +318,9 @@
             this.panel13.Controls.Add(this.lblORN);
             this.panel13.Controls.Add(this.label11);
             this.panel13.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel13.Location = new System.Drawing.Point(0, 92);
+            this.panel13.Location = new System.Drawing.Point(0, 75);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(174, 45);
+            this.panel13.Size = new System.Drawing.Size(197, 45);
             this.panel13.TabIndex = 5;
             // 
             // lblORN
@@ -325,7 +330,7 @@
             this.lblORN.ForeColor = System.Drawing.Color.Brown;
             this.lblORN.Location = new System.Drawing.Point(0, 15);
             this.lblORN.Name = "lblORN";
-            this.lblORN.Size = new System.Drawing.Size(174, 30);
+            this.lblORN.Size = new System.Drawing.Size(197, 30);
             this.lblORN.TabIndex = 3;
             this.lblORN.Text = "No payment details";
             this.lblORN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -335,7 +340,7 @@
             this.label11.Dock = System.Windows.Forms.DockStyle.Top;
             this.label11.Location = new System.Drawing.Point(0, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(174, 15);
+            this.label11.Size = new System.Drawing.Size(197, 15);
             this.label11.TabIndex = 2;
             this.label11.Text = "OR No. :";
             // 
@@ -345,9 +350,9 @@
             this.panel12.Controls.Add(this.lblARN);
             this.panel12.Controls.Add(this.label9);
             this.panel12.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel12.Location = new System.Drawing.Point(0, 137);
+            this.panel12.Location = new System.Drawing.Point(0, 120);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(174, 45);
+            this.panel12.Size = new System.Drawing.Size(197, 45);
             this.panel12.TabIndex = 4;
             // 
             // lblARN
@@ -357,7 +362,7 @@
             this.lblARN.ForeColor = System.Drawing.Color.Brown;
             this.lblARN.Location = new System.Drawing.Point(0, 15);
             this.lblARN.Name = "lblARN";
-            this.lblARN.Size = new System.Drawing.Size(174, 30);
+            this.lblARN.Size = new System.Drawing.Size(197, 30);
             this.lblARN.TabIndex = 3;
             this.lblARN.Text = "No payment details";
             this.lblARN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -367,7 +372,7 @@
             this.label9.Dock = System.Windows.Forms.DockStyle.Top;
             this.label9.Location = new System.Drawing.Point(0, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(174, 15);
+            this.label9.Size = new System.Drawing.Size(197, 15);
             this.label9.TabIndex = 2;
             this.label9.Text = "AR No. :";
             // 
@@ -377,9 +382,9 @@
             this.panel11.Controls.Add(this.lblCHKN);
             this.panel11.Controls.Add(this.label6);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 182);
+            this.panel11.Location = new System.Drawing.Point(0, 210);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(174, 45);
+            this.panel11.Size = new System.Drawing.Size(197, 45);
             this.panel11.TabIndex = 0;
             // 
             // lblCHKN
@@ -389,7 +394,7 @@
             this.lblCHKN.ForeColor = System.Drawing.Color.Brown;
             this.lblCHKN.Location = new System.Drawing.Point(0, 15);
             this.lblCHKN.Name = "lblCHKN";
-            this.lblCHKN.Size = new System.Drawing.Size(174, 30);
+            this.lblCHKN.Size = new System.Drawing.Size(197, 30);
             this.lblCHKN.TabIndex = 3;
             this.lblCHKN.Text = "No payment details";
             this.lblCHKN.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -399,7 +404,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Top;
             this.label6.Location = new System.Drawing.Point(0, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(174, 15);
+            this.label6.Size = new System.Drawing.Size(197, 15);
             this.label6.TabIndex = 2;
             this.label6.Text = "Check No. :";
             // 
@@ -411,7 +416,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(770, 460);
+            this.tabControl1.Size = new System.Drawing.Size(859, 534);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -422,7 +427,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(762, 427);
+            this.tabPage1.Size = new System.Drawing.Size(851, 501);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Interest Monitoring";
             // 
@@ -477,7 +482,7 @@
             this.dgvInterest.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvInterest.RowTemplate.Height = 27;
             this.dgvInterest.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInterest.Size = new System.Drawing.Size(756, 383);
+            this.dgvInterest.Size = new System.Drawing.Size(845, 457);
             this.dgvInterest.TabIndex = 1;
             this.dgvInterest.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInterest_CellContentClick);
             // 
@@ -597,7 +602,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(756, 38);
+            this.panel1.Size = new System.Drawing.Size(845, 38);
             this.panel1.TabIndex = 0;
             // 
             // btnRefresh
@@ -650,7 +655,7 @@
             this.pbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbClose.Image = ((System.Drawing.Image)(resources.GetObject("pbClose.Image")));
-            this.pbClose.Location = new System.Drawing.Point(725, 7);
+            this.pbClose.Location = new System.Drawing.Point(814, 7);
             this.pbClose.Name = "pbClose";
             this.pbClose.Size = new System.Drawing.Size(25, 24);
             this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -682,11 +687,43 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.RosyBrown;
+            this.panel3.Controls.Add(this.lblBank);
+            this.panel3.Controls.Add(this.label4);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 165);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(197, 45);
+            this.panel3.TabIndex = 5;
+            // 
+            // lblBank
+            // 
+            this.lblBank.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblBank.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBank.ForeColor = System.Drawing.Color.Brown;
+            this.lblBank.Location = new System.Drawing.Point(0, 15);
+            this.lblBank.Name = "lblBank";
+            this.lblBank.Size = new System.Drawing.Size(197, 30);
+            this.lblBank.TabIndex = 5;
+            this.lblBank.Text = "No Bank details";
+            this.lblBank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label4.Location = new System.Drawing.Point(0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(197, 15);
+            this.label4.TabIndex = 4;
+            this.label4.Text = "Bank :";
+            // 
             // frmPayments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(970, 466);
+            this.ClientSize = new System.Drawing.Size(1082, 540);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
@@ -714,6 +751,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvInterest)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -765,5 +803,8 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblbalance;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label lblBank;
+        private System.Windows.Forms.Label label4;
     }
 }

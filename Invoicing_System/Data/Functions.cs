@@ -13,6 +13,11 @@ using System.Text.RegularExpressions;
 using Invoicing_System.Reports;
 using Microsoft.Reporting.WinForms;
 using System.Runtime.Remoting.Lifetime;
+using System.IO;
+using OfficeOpenXml;
+using Google.Protobuf.WellKnownTypes;
+using static OfficeOpenXml.ExcelErrorValue;
+
 namespace Invoicing_System.Data
 {
     public class Functions : Variables
@@ -118,9 +123,9 @@ namespace Invoicing_System.Data
 
         public void ConvertToDecimal(Control control)
         {
-            decimal value = decimal.Parse(control.Text);
-            decimal roundedValue = Math.Round(value, 2);
-            control.Text = roundedValue.ToString("N");
+            decimal number = decimal.Parse(control.Text);
+            string formattedNumber = number.ToString("N2");
+            control.Text = formattedNumber;
         } // End of ConvertToDecimal
 
         public void PopulateDataGridView(DataGridView dgv, string query)
@@ -382,6 +387,36 @@ namespace Invoicing_System.Data
             finally { con.Close(); }
 
             return retVal;
+        }
+
+        public void ReadExcelFile(string filePath, DataGridView dgv)
+        {
+            using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+            {
+                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
+
+                // Validate worksheet dimensions
+                if (worksheet.Dimension == null) throw new Exception("The Excel file is empty or has no readable data.");
+
+                // Start reading from row 2 (A2) 
+                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                {
+                    DataGridViewRow dgvRow = new DataGridViewRow();
+                    dgvRow.CreateCells(dgv);
+
+                    for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+                    {
+                        var cellValue = worksheet.Cells[row, col].Text.Trim();
+
+                        if (string.Equals(cellValue, "Yes", StringComparison.OrdinalIgnoreCase)) cellValue = "True";
+                        else if (string.Equals(cellValue, "No", StringComparison.OrdinalIgnoreCase)) cellValue = "False";
+
+                        dgvRow.Cells[col - 1].Value = cellValue;
+                    }
+
+                    dgv.Rows.Add(dgvRow);
+                }
+            }
         }
     }
 }

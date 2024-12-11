@@ -76,9 +76,9 @@ namespace Invoicing_System.Views.InterestList
             if (isStringValid && isNumbersValid)
             {
                 string addPayment = "INSERT INTO tblpayment(p_invoiceNum,p_invoiceBalPay,p_datePaid,p_customer,p_orNum," +
-                    "p_arNum,p_checkNum) VALUES('" + txtInvoiceNum.Text + "','" + txtBalancePay.Text.Replace(",", "") + "'," +
+                    "p_arNum,p_bank,p_checkNum) VALUES('" + txtInvoiceNum.Text + "','" + txtBalancePay.Text.Replace(",", "") + "'," +
                     "'" + dtpPaymentDate.Value.ToString("yyyy-MM-dd") + "','" + txtCustID.Text + "'," +
-                    "'" + txtORN.Text + "','" + txtARN.Text + "','" + txtCheckN.Text + "')";
+                    "'" + txtORN.Text + "','" + txtARN.Text + "','" + txtBank.Text + "','" + txtCheckN.Text + "')";
                 functions.SaveData(addPayment);
                 MessageBox.Show("Payment for Invoice no. " + txtInvoiceNum.Text + " successfully made!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 

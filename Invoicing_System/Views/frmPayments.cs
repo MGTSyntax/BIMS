@@ -231,6 +231,7 @@ namespace Invoicing_System.Views
                 "IFNULL(c.p_invoiceBalPay,0) AS payment," +
                 "c.p_orNum AS orno," +
                 "c.p_arNum AS arno," +
+                "c.p_bank AS bank," +
                 "c.p_checkNum AS checkno," +
                 "a.compID," +
                 "a.isPaid " +
@@ -260,7 +261,7 @@ namespace Invoicing_System.Views
                     string pID = selectedRow.Cells["colp_id"].Value.ToString();
 
                     // Payment Details
-                    qryPaymentDetails = "SELECT p_orNum,p_arNum,p_checkNum FROM tblpayment WHERE p_id = '" + pID + "'";
+                    qryPaymentDetails = "SELECT p_orNum,p_arNum,p_bank,p_checkNum FROM tblpayment WHERE p_id = '" + pID + "'";
                     var dtqryPaymentDetails = functions.SelectData(qryPaymentDetails, "qryPaymentDetails");
                     if (dtqryPaymentDetails.Rows.Count > 0)
                     {
@@ -268,7 +269,8 @@ namespace Invoicing_System.Views
                         {
                             lblORN.Text = dr[0].ToString();
                             lblARN.Text = dr[1].ToString();
-                            lblCHKN.Text = dr[2].ToString();
+                            lblBank.Text = dr[2].ToString();
+                            lblCHKN.Text = dr[3].ToString();
                         }
                     }
                     else

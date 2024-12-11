@@ -17,6 +17,7 @@ namespace Invoicing_System.Views.Monitoring
         public string FormCode { get; set; }
         public int InvID { get; set; }
         private string _vatactive;
+        private double zeroout = 0.00;
 
         public InvoiceDetails(frmInvoices frmI)
         {
@@ -55,7 +56,7 @@ namespace Invoicing_System.Views.Monitoring
                     this.Dispose();
                 }
             }
-            else if(FormCode == "UPD")
+            else if (FormCode == "UPD")
             {
                 if (isStringValid && isNumbersValid && isDateRangeValid && isInvNumNotExists())
                 {
@@ -117,7 +118,9 @@ namespace Invoicing_System.Views.Monitoring
         private IEnumerable<Control> GetControlsToValidateNumbers()
         {
             yield return txtBillableType;
+            yield return txtNonDeductible;
             yield return txtOtherBillables;
+            yield return txtDiscount;
 
         } // End of GetControlsToValidateNumbers
 
@@ -159,6 +162,7 @@ namespace Invoicing_System.Views.Monitoring
                     txtNonDeductible.Text = dr[10].ToString();
                     txtpreparedBy.Text = dr[11].ToString();
                     functions.ConvertToDecimal(txtNonDeductible);
+                    functions.ConvertToDecimal(txtDiscount);
                 }
                 string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + txtInvoiceNo.Text + "'";
                 var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
@@ -176,56 +180,18 @@ namespace Invoicing_System.Views.Monitoring
 
         private void cmbDetachment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //Reset();
             txtDetID.Text = cmbDetachment.SelectedValue.ToString();
-        }
 
-        private void txtBillableType_Leave(object sender, EventArgs e)
-        {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
+            if (txtDetID.Text == "0")
             {
-                txtBillableType.SelectAll();
-                txtBillableType.Focus();
-                txtAgencyFee.Text = "0.00";
-                txtVAT.Text = "0.00";
+                Reset();
             }
-            else
-            {
-                functions.ConvertToDecimal(txtBillableType);
-
-                string qryintrate = "SELECT interest_rate FROM tblinterest";
-                var dtintrate = functions.SelectData(qryintrate, "intrate");
-
-                decimal intrate = Convert.ToDecimal(dtintrate.Rows[0]["interest_rate"]);
-                decimal billtype = Convert.ToDecimal(txtBillableType.Text);
-                decimal agencyFee = Math.Round(billtype * intrate, 2);
-
-                txtAgencyFee.Text = agencyFee.ToString();
-                functions.ConvertToDecimal(txtAgencyFee);
-
-                if(_vatactive == "1")
-                {
-                    string qryvatrate = "SELECT vat_rate FROM tblvat";
-                    var dtvatrate = functions.SelectData(qryvatrate, "vatrate");
-
-                    decimal vatrate = Convert.ToDecimal(dtvatrate.Rows[0]["vat_rate"]);
-
-                    txtVAT.Text = (agencyFee * vatrate).ToString();
-                    functions.ConvertToDecimal(txtVAT);
-                }
-            }
+            else errorProvider.Clear();
         }
 
         private void txtOtherBillables_Leave(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
-            {
-                txtOtherBillables.SelectAll();
-                txtOtherBillables.Focus();
-            }
-            else functions.ConvertToDecimal(txtOtherBillables);
+            functions.ConvertToDecimal(txtOtherBillables);
         }
 
         private void chkbSpecifyTT_CheckedChanged(object sender, EventArgs e)
@@ -299,11 +265,12 @@ namespace Invoicing_System.Views.Monitoring
 
         private void Reset()
         {
-            txtBillableType.Text = "0.00";
-            txtNonDeductible.Text = "0.00";
-            txtAgencyFee.Text = "0.00";
-            txtVAT.Text = "0.00";
-            txtOtherBillables.Text = "0.00";
+            txtBillableType.Text = zeroout.ToString();
+            txtNonDeductible.Text = zeroout.ToString();
+            txtAgencyFee.Text = zeroout.ToString();
+            txtVAT.Text = zeroout.ToString();
+            txtOtherBillables.Text = zeroout.ToString();
+            txtDiscount.Text = zeroout.ToString();
             bpFrom.Value = DateTime.Now;
             bpTo.Value = DateTime.Now;
             txtInvoiceNo.Clear();
@@ -312,15 +279,170 @@ namespace Invoicing_System.Views.Monitoring
             txtpreparedBy.Text = Variables.user_unameValue;
         }
 
-        private void txtNonDeductible_Leave(object sender, EventArgs e)
-        {
-            functions.ConvertToDecimal(txtNonDeductible);
-        }
-
         private void txtNonDeductible_Click(object sender, EventArgs e)
         {
             txtNonDeductible.SelectAll();
             txtNonDeductible.Focus();
+        }
+
+        private void txtBillableType_TextChanged(object sender, EventArgs e)
+        {
+            if (cmbDetachment.Text != "Select an option")
+            {
+                bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+
+                if (!isValid)
+                {
+                    txtBillableType.SelectAll();
+                    txtBillableType.Focus();
+                    txtAgencyFee.Text = zeroout.ToString();
+                    txtVAT.Text = zeroout.ToString();
+                    txtTotal.Text = zeroout.ToString();
+                    txtDiscount.Text = zeroout.ToString();
+                }
+                else
+                {
+                    CalculateTotal();
+                }
+            }
+            else
+            {
+                errorProvider.SetError(cmbDetachment, "Please select detachment.");
+                Reset();
+            }
+        }
+
+        private void CalculateTotal()
+        {
+            decimal reimbursement = TryParseDecimal(txtBillableType.Text);
+            decimal otherbillable = TryParseDecimal(txtOtherBillables.Text);
+            decimal discount = TryParseDecimal(txtDiscount.Text);
+            decimal vatAmount = 0;
+            decimal agencyFee = 0;
+
+            decimal TryParseDecimal(string input)
+            {
+                return decimal.TryParse(input, out decimal result) ? result : 0;
+            }
+
+            // Fetch agency fee rate from database
+            string qryAFrate = functions.GetRecordString("SELECT custagencyFee FROM customerstable WHERE custID = '" + txtDetID.Text + "'");
+            if (!string.IsNullOrWhiteSpace(qryAFrate) && decimal.TryParse(qryAFrate, out decimal parsedAgencyFeeRate))
+            {
+                // Calculate agency fee
+                agencyFee = reimbursement * parsedAgencyFeeRate;
+                txtAgencyFee.Text = agencyFee.ToString("N");
+            }
+
+            if (_vatactive == "1")
+            {
+                // Fetch vat rate from database
+                string qryVATrate = functions.GetRecordString("SELECT vat_rate FROM tblvat");
+                decimal vatrate = Convert.ToDecimal(qryVATrate);
+
+                // Calculate VAT
+                vatAmount = agencyFee * vatrate;
+            }
+            txtVAT.Text = vatAmount.ToString("N");
+
+            // Calculate total ((Reimbursement + VAT + Agency Fee + Other Billable) - Discount)
+            decimal total = (reimbursement + vatAmount + agencyFee + otherbillable) - discount;
+
+            // Display the total
+            txtTotal.Text = total.ToString("N");
+        }
+
+        private void txtBillableType_Leave(object sender, EventArgs e)
+        {
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            if (!isValid)
+            {
+                txtBillableType.SelectAll();
+                txtBillableType.Focus();
+                txtAgencyFee.Text = zeroout.ToString();
+                txtVAT.Text = zeroout.ToString();
+                txtTotal.Text = zeroout.ToString();
+                txtDiscount.Text = zeroout.ToString();
+            }
+            else
+            {
+                functions.ConvertToDecimal(txtBillableType);
+            }
+        }
+
+        private void txtNonDeductible_Leave(object sender, EventArgs e)
+        {
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            if (!isValid)
+            {
+                txtNonDeductible.SelectAll();
+                txtNonDeductible.Focus();
+                //txtTotal.Text = zeroout.ToString();
+            }
+            else
+            {
+                functions.ConvertToDecimal(txtNonDeductible);
+            }
+        }
+
+        private void txtOtherBillables_TextChanged(object sender, EventArgs e)
+        {
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            if (!isValid)
+            {
+                txtOtherBillables.SelectAll();
+                txtOtherBillables.Focus();
+                //txtTotal.Text = zeroout.ToString();
+            }
+            else
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void txtDiscount_Leave(object sender, EventArgs e)
+        {
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            if (!isValid)
+            {
+                txtNonDeductible.SelectAll();
+                txtNonDeductible.Focus();
+                //txtTotal.Text = zeroout.ToString();
+            }
+            else
+            {
+                functions.ConvertToDecimal(txtDiscount);
+            }
+        }
+
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            if (!isValid)
+            {
+                txtDiscount.SelectAll();
+                txtDiscount.Focus();
+                //txtTotal.Text = zeroout.ToString();
+            }
+            else
+            {
+                CalculateTotal();
+            }
+        }
+
+        private void txtNonDeductible_TextChanged(object sender, EventArgs e)
+        {
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            if (!isValid)
+            {
+                txtNonDeductible.SelectAll();
+                txtNonDeductible.Focus();
+                //txtTotal.Text = zeroout.ToString();
+            }
+            else
+            {
+                CalculateTotal();
+            }
         }
     }
 }
