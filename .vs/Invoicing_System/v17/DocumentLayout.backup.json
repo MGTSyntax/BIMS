@@ -46,8 +46,7 @@
               "RelativeToolTip": "Invoicing_System\\Data\\Validations.cs",
               "ViewState": "AgIAABIAAAAAAAAAAAAjwCkAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-02T08:44:02.256Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-12-02T08:44:02.256Z"
             },
             {
               "$type": "Document",
@@ -57,7 +56,7 @@
               "RelativeDocumentMoniker": "Invoicing_System\\Views\\InvoiceList\\InvoiceDetails.cs",
               "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\InvoiceList\\InvoiceDetails.cs",
               "RelativeToolTip": "Invoicing_System\\Views\\InvoiceList\\InvoiceDetails.cs",
-              "ViewState": "AgIAAEUBAAAAAAAAAAAjwFwBAABYAAAAAAAAAA==",
+              "ViewState": "AgIAAH4BAAAAAAAAAAAjwKYBAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-02T08:21:46.808Z",
               "EditorCaption": ""
@@ -84,8 +83,7 @@
               "RelativeToolTip": "Invoicing_System\\Data\\Functions.cs",
               "ViewState": "AgIAAAoAAAAAAAAAAAAjwH0AAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-08T01:59:43.258Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-08T01:59:43.258Z"
             }
           ]
         }

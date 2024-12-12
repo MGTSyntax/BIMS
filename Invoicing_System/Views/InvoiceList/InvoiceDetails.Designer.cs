@@ -81,27 +81,27 @@
             this.txtTotal = new System.Windows.Forms.TextBox();
             this.label26 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txttsVATin = new System.Windows.Forms.TextBox();
             this.label32 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtlessVAT = new System.Windows.Forms.TextBox();
             this.label31 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtnetofVAT = new System.Windows.Forms.TextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.label35 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtaddVAT = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.txtamtDue = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.txtlessWTax = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label41 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.txtgrandTotal = new System.Windows.Forms.TextBox();
             this.label43 = new System.Windows.Forms.Label();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.txttotalamtDue = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
@@ -512,6 +512,7 @@
             this.txtDiscount.Name = "txtDiscount";
             this.txtDiscount.Size = new System.Drawing.Size(313, 23);
             this.txtDiscount.TabIndex = 53;
+            this.txtDiscount.Click += new System.EventHandler(this.txtDiscount_Click);
             this.txtDiscount.TextChanged += new System.EventHandler(this.txtDiscount_TextChanged);
             this.txtDiscount.Leave += new System.EventHandler(this.txtDiscount_Leave);
             // 
@@ -626,9 +627,9 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Silver;
-            this.panel2.Location = new System.Drawing.Point(489, 102);
+            this.panel2.Location = new System.Drawing.Point(489, 53);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(2, 321);
+            this.panel2.Size = new System.Drawing.Size(2, 440);
             this.panel2.TabIndex = 54;
             // 
             // label25
@@ -668,28 +669,28 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(511, 149);
+            this.label29.Location = new System.Drawing.Point(511, 134);
             this.label29.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label29.Name = "label29";
             this.label29.Size = new System.Drawing.Size(145, 15);
             this.label29.TabIndex = 63;
             this.label29.Text = "Total Sales (VAT Inclusive)";
             // 
-            // textBox2
+            // txttsVATin
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(681, 146);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(228, 23);
-            this.textBox2.TabIndex = 59;
+            this.txttsVATin.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttsVATin.Location = new System.Drawing.Point(681, 131);
+            this.txttsVATin.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txttsVATin.Name = "txttsVATin";
+            this.txttsVATin.ReadOnly = true;
+            this.txttsVATin.Size = new System.Drawing.Size(228, 23);
+            this.txttsVATin.TabIndex = 59;
             // 
             // label32
             // 
             this.label32.AutoSize = true;
             this.label32.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(662, 149);
+            this.label32.Location = new System.Drawing.Point(662, 134);
             this.label32.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label32.Name = "label32";
             this.label32.Size = new System.Drawing.Size(10, 15);
@@ -700,28 +701,28 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(511, 178);
+            this.label30.Location = new System.Drawing.Point(511, 163);
             this.label30.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(56, 15);
+            this.label30.Size = new System.Drawing.Size(72, 15);
             this.label30.TabIndex = 66;
-            this.label30.Text = "Less: VAT";
+            this.label30.Text = "Less: VAT (-)";
             // 
-            // textBox1
+            // txtlessVAT
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(681, 175);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(228, 23);
-            this.textBox1.TabIndex = 65;
+            this.txtlessVAT.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlessVAT.Location = new System.Drawing.Point(681, 160);
+            this.txtlessVAT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtlessVAT.Name = "txtlessVAT";
+            this.txtlessVAT.ReadOnly = true;
+            this.txtlessVAT.Size = new System.Drawing.Size(228, 23);
+            this.txtlessVAT.TabIndex = 65;
             // 
             // label31
             // 
             this.label31.AutoSize = true;
             this.label31.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(662, 178);
+            this.label31.Location = new System.Drawing.Point(662, 163);
             this.label31.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label31.Name = "label31";
             this.label31.Size = new System.Drawing.Size(10, 15);
@@ -732,28 +733,28 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(511, 207);
+            this.label33.Location = new System.Drawing.Point(511, 192);
             this.label33.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label33.Name = "label33";
             this.label33.Size = new System.Drawing.Size(114, 15);
             this.label33.TabIndex = 69;
             this.label33.Text = "Amount: Net of VAT";
             // 
-            // textBox3
+            // txtnetofVAT
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(681, 204);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(228, 23);
-            this.textBox3.TabIndex = 68;
+            this.txtnetofVAT.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtnetofVAT.Location = new System.Drawing.Point(681, 189);
+            this.txtnetofVAT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtnetofVAT.Name = "txtnetofVAT";
+            this.txtnetofVAT.ReadOnly = true;
+            this.txtnetofVAT.Size = new System.Drawing.Size(228, 23);
+            this.txtnetofVAT.TabIndex = 68;
             // 
             // label34
             // 
             this.label34.AutoSize = true;
             this.label34.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(662, 207);
+            this.label34.Location = new System.Drawing.Point(662, 192);
             this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(10, 15);
@@ -764,28 +765,28 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(511, 299);
+            this.label35.Location = new System.Drawing.Point(511, 284);
             this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(81, 15);
             this.label35.TabIndex = 78;
             this.label35.Text = "Add: 12% VAT";
             // 
-            // textBox4
+            // txtaddVAT
             // 
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(681, 296);
-            this.textBox4.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(228, 23);
-            this.textBox4.TabIndex = 77;
+            this.txtaddVAT.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtaddVAT.Location = new System.Drawing.Point(681, 281);
+            this.txtaddVAT.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtaddVAT.Name = "txtaddVAT";
+            this.txtaddVAT.ReadOnly = true;
+            this.txtaddVAT.Size = new System.Drawing.Size(228, 23);
+            this.txtaddVAT.TabIndex = 77;
             // 
             // label36
             // 
             this.label36.AutoSize = true;
             this.label36.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(662, 299);
+            this.label36.Location = new System.Drawing.Point(662, 284);
             this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label36.Name = "label36";
             this.label36.Size = new System.Drawing.Size(10, 15);
@@ -796,28 +797,28 @@
             // 
             this.label37.AutoSize = true;
             this.label37.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(511, 268);
+            this.label37.Location = new System.Drawing.Point(511, 253);
             this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label37.Name = "label37";
             this.label37.Size = new System.Drawing.Size(76, 15);
             this.label37.TabIndex = 75;
             this.label37.Text = "Amount Due";
             // 
-            // textBox5
+            // txtamtDue
             // 
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox5.Location = new System.Drawing.Point(681, 265);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(228, 23);
-            this.textBox5.TabIndex = 74;
+            this.txtamtDue.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtamtDue.Location = new System.Drawing.Point(681, 250);
+            this.txtamtDue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtamtDue.Name = "txtamtDue";
+            this.txtamtDue.ReadOnly = true;
+            this.txtamtDue.Size = new System.Drawing.Size(228, 23);
+            this.txtamtDue.TabIndex = 74;
             // 
             // label38
             // 
             this.label38.AutoSize = true;
             this.label38.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.Location = new System.Drawing.Point(662, 268);
+            this.label38.Location = new System.Drawing.Point(662, 253);
             this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label38.Name = "label38";
             this.label38.Size = new System.Drawing.Size(10, 15);
@@ -828,28 +829,28 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(511, 237);
+            this.label39.Location = new System.Drawing.Point(511, 222);
             this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label39.Name = "label39";
             this.label39.Size = new System.Drawing.Size(123, 15);
             this.label39.TabIndex = 72;
             this.label39.Text = "Less: Withholding Tax";
             // 
-            // textBox6
+            // txtlessWTax
             // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(681, 234);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(228, 23);
-            this.textBox6.TabIndex = 71;
+            this.txtlessWTax.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlessWTax.Location = new System.Drawing.Point(681, 219);
+            this.txtlessWTax.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtlessWTax.Name = "txtlessWTax";
+            this.txtlessWTax.ReadOnly = true;
+            this.txtlessWTax.Size = new System.Drawing.Size(228, 23);
+            this.txtlessWTax.TabIndex = 71;
             // 
             // label40
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(662, 237);
+            this.label40.Location = new System.Drawing.Point(662, 222);
             this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(10, 15);
@@ -861,44 +862,44 @@
             this.label41.AutoSize = true;
             this.label41.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label41.ForeColor = System.Drawing.Color.Red;
-            this.label41.Location = new System.Drawing.Point(794, 394);
+            this.label41.Location = new System.Drawing.Point(794, 379);
             this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(115, 21);
             this.label41.TabIndex = 84;
             this.label41.Text = "GRAND TOTAL";
             // 
-            // textBox7
+            // txtgrandTotal
             // 
-            this.textBox7.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox7.Location = new System.Drawing.Point(681, 418);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(228, 23);
-            this.textBox7.TabIndex = 83;
+            this.txtgrandTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtgrandTotal.Location = new System.Drawing.Point(681, 403);
+            this.txtgrandTotal.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtgrandTotal.Name = "txtgrandTotal";
+            this.txtgrandTotal.ReadOnly = true;
+            this.txtgrandTotal.Size = new System.Drawing.Size(228, 27);
+            this.txtgrandTotal.TabIndex = 83;
             // 
             // label43
             // 
             this.label43.AutoSize = true;
             this.label43.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label43.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label43.Location = new System.Drawing.Point(775, 336);
+            this.label43.Location = new System.Drawing.Point(775, 321);
             this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(134, 17);
             this.label43.TabIndex = 81;
             this.label43.Text = "TOTAL AMOUNT DUE";
             // 
-            // textBox8
+            // txttotalamtDue
             // 
-            this.textBox8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox8.Location = new System.Drawing.Point(681, 356);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(228, 23);
-            this.textBox8.TabIndex = 80;
+            this.txttotalamtDue.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txttotalamtDue.Location = new System.Drawing.Point(681, 341);
+            this.txttotalamtDue.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txttotalamtDue.Name = "txttotalamtDue";
+            this.txttotalamtDue.ReadOnly = true;
+            this.txttotalamtDue.Size = new System.Drawing.Size(228, 25);
+            this.txttotalamtDue.TabIndex = 80;
             // 
             // InvoiceDetails
             // 
@@ -907,26 +908,26 @@
             this.ClientSize = new System.Drawing.Size(934, 511);
             this.ControlBox = false;
             this.Controls.Add(this.label41);
-            this.Controls.Add(this.textBox7);
+            this.Controls.Add(this.txtgrandTotal);
             this.Controls.Add(this.label43);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.txttotalamtDue);
             this.Controls.Add(this.label35);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.txtaddVAT);
             this.Controls.Add(this.label36);
             this.Controls.Add(this.label37);
-            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.txtamtDue);
             this.Controls.Add(this.label38);
             this.Controls.Add(this.label39);
-            this.Controls.Add(this.textBox6);
+            this.Controls.Add(this.txtlessWTax);
             this.Controls.Add(this.label40);
             this.Controls.Add(this.label33);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.txtnetofVAT);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.label30);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtlessVAT);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label29);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.txttsVATin);
             this.Controls.Add(this.label32);
             this.Controls.Add(this.label25);
             this.Controls.Add(this.txtTotal);
@@ -1044,26 +1045,26 @@
         private System.Windows.Forms.TextBox txtTotal;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.Label label29;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txttsVATin;
         private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtlessVAT;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtnetofVAT;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtaddVAT;
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox txtamtDue;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox txtlessWTax;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox txtgrandTotal;
         private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox txttotalamtDue;
     }
 }
