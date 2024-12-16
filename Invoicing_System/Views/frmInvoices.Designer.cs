@@ -29,8 +29,11 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,37 +42,27 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInvoices));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmInvoices));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvInvoices = new System.Windows.Forms.DataGridView();
-            this.colInvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBPFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBPTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colReimbursement = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colnondeductible = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAgencyFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colVAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOtherBillable = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colcomp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colisPaid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colprinted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnFilter = new System.Windows.Forms.Button();
             this.bntExport = new System.Windows.Forms.Button();
             this.btnShipDate = new System.Windows.Forms.Button();
             this.btnNewInvoice = new System.Windows.Forms.Button();
+            this.pbClose = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lbltotalDisc = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lbltotalofTotals = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
@@ -93,16 +86,32 @@
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colInvoiceID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInvoiceNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCustomer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBPFrom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBPTo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colReimbursement = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colnondeductible = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAgencyFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colVAT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOtherBillable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDiscount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWTax = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colGrandT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colcomp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colisPaid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colprinted = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colPrint = new System.Windows.Forms.DataGridViewImageColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewImageColumn();
             this.colVoid = new System.Windows.Forms.DataGridViewImageColumn();
-            this.pbClose = new System.Windows.Forms.PictureBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoices)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -158,7 +167,10 @@
             this.colAgencyFee,
             this.colVAT,
             this.colOtherBillable,
+            this.colDiscount,
             this.colTotal,
+            this.colWTax,
+            this.colGrandT,
             this.colcomp,
             this.colisPaid,
             this.colprinted,
@@ -166,14 +178,14 @@
             this.colEdit,
             this.colVoid});
             this.dgvInvoices.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInvoices.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInvoices.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgvInvoices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInvoices.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvInvoices.EnableHeadersVisualStyles = false;
@@ -183,141 +195,13 @@
             this.dgvInvoices.Name = "dgvInvoices";
             this.dgvInvoices.RowHeadersVisible = false;
             this.dgvInvoices.RowHeadersWidth = 62;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.dgvInvoices.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.dgvInvoices.RowsDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvInvoices.RowTemplate.Height = 27;
             this.dgvInvoices.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInvoices.Size = new System.Drawing.Size(1321, 536);
             this.dgvInvoices.TabIndex = 1;
             this.dgvInvoices.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInvoices_CellContentClick);
-            // 
-            // colInvoiceID
-            // 
-            this.colInvoiceID.HeaderText = "InvoiceID";
-            this.colInvoiceID.MinimumWidth = 8;
-            this.colInvoiceID.Name = "colInvoiceID";
-            this.colInvoiceID.Visible = false;
-            this.colInvoiceID.Width = 150;
-            // 
-            // colInvoiceNo
-            // 
-            this.colInvoiceNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colInvoiceNo.HeaderText = "Invoice No.";
-            this.colInvoiceNo.MinimumWidth = 8;
-            this.colInvoiceNo.Name = "colInvoiceNo";
-            this.colInvoiceNo.Width = 84;
-            // 
-            // colCustomer
-            // 
-            this.colCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCustomer.HeaderText = "Customer";
-            this.colCustomer.MinimumWidth = 8;
-            this.colCustomer.Name = "colCustomer";
-            // 
-            // colBPFrom
-            // 
-            this.colBPFrom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colBPFrom.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colBPFrom.HeaderText = "Period From";
-            this.colBPFrom.MinimumWidth = 8;
-            this.colBPFrom.Name = "colBPFrom";
-            this.colBPFrom.Width = 87;
-            // 
-            // colBPTo
-            // 
-            this.colBPTo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle3.Format = "d";
-            this.colBPTo.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colBPTo.HeaderText = "Period To";
-            this.colBPTo.MinimumWidth = 8;
-            this.colBPTo.Name = "colBPTo";
-            this.colBPTo.Width = 74;
-            // 
-            // colReimbursement
-            // 
-            this.colReimbursement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = "0";
-            this.colReimbursement.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colReimbursement.HeaderText = "Reimbursement";
-            this.colReimbursement.MinimumWidth = 8;
-            this.colReimbursement.Name = "colReimbursement";
-            // 
-            // colnondeductible
-            // 
-            this.colnondeductible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Format = "N2";
-            dataGridViewCellStyle5.NullValue = "0";
-            this.colnondeductible.DefaultCellStyle = dataGridViewCellStyle5;
-            this.colnondeductible.HeaderText = "Non-Deductible";
-            this.colnondeductible.MinimumWidth = 8;
-            this.colnondeductible.Name = "colnondeductible";
-            // 
-            // colAgencyFee
-            // 
-            this.colAgencyFee.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = "0";
-            this.colAgencyFee.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colAgencyFee.HeaderText = "Agency Fee";
-            this.colAgencyFee.MinimumWidth = 8;
-            this.colAgencyFee.Name = "colAgencyFee";
-            // 
-            // colVAT
-            // 
-            this.colVAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = "0";
-            this.colVAT.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colVAT.HeaderText = "VAT";
-            this.colVAT.MinimumWidth = 8;
-            this.colVAT.Name = "colVAT";
-            // 
-            // colOtherBillable
-            // 
-            this.colOtherBillable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = "0";
-            this.colOtherBillable.DefaultCellStyle = dataGridViewCellStyle8;
-            this.colOtherBillable.HeaderText = "Other Billable";
-            this.colOtherBillable.MinimumWidth = 8;
-            this.colOtherBillable.Name = "colOtherBillable";
-            // 
-            // colTotal
-            // 
-            this.colTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle9.Format = "N2";
-            dataGridViewCellStyle9.NullValue = "0";
-            this.colTotal.DefaultCellStyle = dataGridViewCellStyle9;
-            this.colTotal.HeaderText = "Total Amount";
-            this.colTotal.MinimumWidth = 8;
-            this.colTotal.Name = "colTotal";
-            // 
-            // colcomp
-            // 
-            this.colcomp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colcomp.HeaderText = "Company";
-            this.colcomp.Name = "colcomp";
-            this.colcomp.Width = 81;
-            // 
-            // colisPaid
-            // 
-            this.colisPaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colisPaid.HeaderText = "Paid";
-            this.colisPaid.Name = "colisPaid";
-            this.colisPaid.Width = 34;
-            // 
-            // colprinted
-            // 
-            this.colprinted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colprinted.HeaderText = "Printed";
-            this.colprinted.MinimumWidth = 8;
-            this.colprinted.Name = "colprinted";
-            this.colprinted.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colprinted.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colprinted.Width = 68;
             // 
             // panel1
             // 
@@ -408,9 +292,25 @@
             this.btnNewInvoice.UseVisualStyleBackColor = false;
             this.btnNewInvoice.Click += new System.EventHandler(this.btnNewInvoice_Click);
             // 
+            // pbClose
+            // 
+            this.pbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbClose.Image = ((System.Drawing.Image)(resources.GetObject("pbClose.Image")));
+            this.pbClose.Location = new System.Drawing.Point(1292, 7);
+            this.pbClose.Name = "pbClose";
+            this.pbClose.Size = new System.Drawing.Size(25, 24);
+            this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbClose.TabIndex = 0;
+            this.pbClose.TabStop = false;
+            this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
+            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.Controls.Add(this.lbltotalDisc);
+            this.panel2.Controls.Add(this.label10);
+            this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.lbltotalofTotals);
             this.panel2.Controls.Add(this.label17);
             this.panel2.Controls.Add(this.label18);
@@ -437,10 +337,36 @@
             this.panel2.Size = new System.Drawing.Size(1321, 24);
             this.panel2.TabIndex = 2;
             // 
+            // lbltotalDisc
+            // 
+            this.lbltotalDisc.AutoSize = true;
+            this.lbltotalDisc.Location = new System.Drawing.Point(776, 5);
+            this.lbltotalDisc.Name = "lbltotalDisc";
+            this.lbltotalDisc.Size = new System.Drawing.Size(21, 15);
+            this.lbltotalDisc.TabIndex = 22;
+            this.lbltotalDisc.Text = "00";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(754, 5);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(19, 15);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "D:";
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.DimGray;
+            this.label3.Location = new System.Drawing.Point(882, 3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(2, 18);
+            this.label3.TabIndex = 20;
+            // 
             // lbltotalofTotals
             // 
             this.lbltotalofTotals.AutoSize = true;
-            this.lbltotalofTotals.Location = new System.Drawing.Point(836, 5);
+            this.lbltotalofTotals.Location = new System.Drawing.Point(971, 5);
             this.lbltotalofTotals.Name = "lbltotalofTotals";
             this.lbltotalofTotals.Size = new System.Drawing.Size(21, 15);
             this.lbltotalofTotals.TabIndex = 19;
@@ -449,7 +375,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(754, 5);
+            this.label17.Location = new System.Drawing.Point(889, 5);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(83, 15);
             this.label17.TabIndex = 18;
@@ -614,54 +540,204 @@
             // dataGridViewImageColumn1
             // 
             this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle15.NullValue")));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White;
-            this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle18.NullValue")));
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.White;
+            this.dataGridViewImageColumn1.DefaultCellStyle = dataGridViewCellStyle18;
             this.dataGridViewImageColumn1.HeaderText = "";
             this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
             this.dataGridViewImageColumn1.MinimumWidth = 8;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn1.Width = 17;
             // 
             // dataGridViewImageColumn2
             // 
             this.dataGridViewImageColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle16.NullValue")));
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.Color.White;
-            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle19.NullValue")));
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.White;
+            this.dataGridViewImageColumn2.DefaultCellStyle = dataGridViewCellStyle19;
             this.dataGridViewImageColumn2.HeaderText = "";
             this.dataGridViewImageColumn2.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn2.Image")));
             this.dataGridViewImageColumn2.MinimumWidth = 8;
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn2.Width = 17;
             // 
             // dataGridViewImageColumn3
             // 
             this.dataGridViewImageColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle17.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle17.NullValue")));
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.White;
-            this.dataGridViewImageColumn3.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle20.NullValue")));
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.White;
+            this.dataGridViewImageColumn3.DefaultCellStyle = dataGridViewCellStyle20;
             this.dataGridViewImageColumn3.HeaderText = "";
             this.dataGridViewImageColumn3.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn3.Image")));
             this.dataGridViewImageColumn3.MinimumWidth = 8;
             this.dataGridViewImageColumn3.Name = "dataGridViewImageColumn3";
             this.dataGridViewImageColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewImageColumn3.Width = 17;
+            // 
+            // colInvoiceID
+            // 
+            this.colInvoiceID.HeaderText = "InvoiceID";
+            this.colInvoiceID.MinimumWidth = 8;
+            this.colInvoiceID.Name = "colInvoiceID";
+            this.colInvoiceID.Visible = false;
+            this.colInvoiceID.Width = 150;
+            // 
+            // colInvoiceNo
+            // 
+            this.colInvoiceNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colInvoiceNo.HeaderText = "Invoice No.";
+            this.colInvoiceNo.MinimumWidth = 8;
+            this.colInvoiceNo.Name = "colInvoiceNo";
+            this.colInvoiceNo.Width = 84;
+            // 
+            // colCustomer
+            // 
+            this.colCustomer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCustomer.HeaderText = "Customer";
+            this.colCustomer.MinimumWidth = 8;
+            this.colCustomer.Name = "colCustomer";
+            // 
+            // colBPFrom
+            // 
+            this.colBPFrom.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colBPFrom.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colBPFrom.HeaderText = "Period From";
+            this.colBPFrom.MinimumWidth = 8;
+            this.colBPFrom.Name = "colBPFrom";
+            this.colBPFrom.Width = 87;
+            // 
+            // colBPTo
+            // 
+            this.colBPTo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle3.Format = "d";
+            this.colBPTo.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colBPTo.HeaderText = "Period To";
+            this.colBPTo.MinimumWidth = 8;
+            this.colBPTo.Name = "colBPTo";
+            this.colBPTo.Width = 74;
+            // 
+            // colReimbursement
+            // 
+            this.colReimbursement.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle4.Format = "N2";
+            dataGridViewCellStyle4.NullValue = "0";
+            this.colReimbursement.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colReimbursement.HeaderText = "Reimbursement";
+            this.colReimbursement.MinimumWidth = 8;
+            this.colReimbursement.Name = "colReimbursement";
+            // 
+            // colnondeductible
+            // 
+            this.colnondeductible.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle5.Format = "N2";
+            dataGridViewCellStyle5.NullValue = "0";
+            this.colnondeductible.DefaultCellStyle = dataGridViewCellStyle5;
+            this.colnondeductible.HeaderText = "Non-Deductible";
+            this.colnondeductible.MinimumWidth = 8;
+            this.colnondeductible.Name = "colnondeductible";
+            // 
+            // colAgencyFee
+            // 
+            this.colAgencyFee.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.Format = "N2";
+            dataGridViewCellStyle6.NullValue = "0";
+            this.colAgencyFee.DefaultCellStyle = dataGridViewCellStyle6;
+            this.colAgencyFee.HeaderText = "Agency Fee";
+            this.colAgencyFee.MinimumWidth = 8;
+            this.colAgencyFee.Name = "colAgencyFee";
+            // 
+            // colVAT
+            // 
+            this.colVAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = "0";
+            this.colVAT.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colVAT.HeaderText = "VAT";
+            this.colVAT.MinimumWidth = 8;
+            this.colVAT.Name = "colVAT";
+            // 
+            // colOtherBillable
+            // 
+            this.colOtherBillable.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle8.Format = "N2";
+            dataGridViewCellStyle8.NullValue = "0";
+            this.colOtherBillable.DefaultCellStyle = dataGridViewCellStyle8;
+            this.colOtherBillable.HeaderText = "Other Billable";
+            this.colOtherBillable.MinimumWidth = 8;
+            this.colOtherBillable.Name = "colOtherBillable";
+            // 
+            // colDiscount
+            // 
+            this.colDiscount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle9.Format = "N2";
+            this.colDiscount.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colDiscount.HeaderText = "Discount";
+            this.colDiscount.MinimumWidth = 8;
+            this.colDiscount.Name = "colDiscount";
+            // 
+            // colTotal
+            // 
+            this.colTotal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle10.Format = "N2";
+            dataGridViewCellStyle10.NullValue = "0";
+            this.colTotal.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colTotal.HeaderText = "Total Amount";
+            this.colTotal.MinimumWidth = 8;
+            this.colTotal.Name = "colTotal";
+            // 
+            // colWTax
+            // 
+            this.colWTax.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle11.Format = "N2";
+            this.colWTax.DefaultCellStyle = dataGridViewCellStyle11;
+            this.colWTax.HeaderText = "W Tax";
+            this.colWTax.Name = "colWTax";
+            // 
+            // colGrandT
+            // 
+            this.colGrandT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle12.Format = "N2";
+            this.colGrandT.DefaultCellStyle = dataGridViewCellStyle12;
+            this.colGrandT.HeaderText = "Grand Total";
+            this.colGrandT.Name = "colGrandT";
+            // 
+            // colcomp
+            // 
+            this.colcomp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colcomp.HeaderText = "Company";
+            this.colcomp.Name = "colcomp";
+            this.colcomp.Width = 81;
+            // 
+            // colisPaid
+            // 
+            this.colisPaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colisPaid.HeaderText = "Paid";
+            this.colisPaid.Name = "colisPaid";
+            this.colisPaid.Width = 34;
+            // 
+            // colprinted
+            // 
+            this.colprinted.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colprinted.HeaderText = "Printed";
+            this.colprinted.MinimumWidth = 8;
+            this.colprinted.Name = "colprinted";
+            this.colprinted.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colprinted.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colprinted.Width = 68;
             // 
             // colPrint
             // 
             this.colPrint.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle10.NullValue")));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.White;
-            this.colPrint.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle13.NullValue")));
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.White;
+            this.colPrint.DefaultCellStyle = dataGridViewCellStyle13;
             this.colPrint.HeaderText = "";
             this.colPrint.Image = ((System.Drawing.Image)(resources.GetObject("colPrint.Image")));
             this.colPrint.MinimumWidth = 8;
@@ -672,10 +748,10 @@
             // colEdit
             // 
             this.colEdit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle11.NullValue")));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            this.colEdit.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle14.NullValue")));
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
+            this.colEdit.DefaultCellStyle = dataGridViewCellStyle14;
             this.colEdit.HeaderText = "";
             this.colEdit.Image = ((System.Drawing.Image)(resources.GetObject("colEdit.Image")));
             this.colEdit.MinimumWidth = 8;
@@ -687,10 +763,10 @@
             // colVoid
             // 
             this.colVoid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle12.NullValue")));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.White;
-            this.colVoid.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.NullValue = ((object)(resources.GetObject("dataGridViewCellStyle15.NullValue")));
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.White;
+            this.colVoid.DefaultCellStyle = dataGridViewCellStyle15;
             this.colVoid.HeaderText = "";
             this.colVoid.Image = global::Invoicing_System.Properties.Resources.voidfile;
             this.colVoid.MinimumWidth = 8;
@@ -698,19 +774,6 @@
             this.colVoid.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colVoid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colVoid.Width = 17;
-            // 
-            // pbClose
-            // 
-            this.pbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pbClose.Image = ((System.Drawing.Image)(resources.GetObject("pbClose.Image")));
-            this.pbClose.Location = new System.Drawing.Point(1292, 7);
-            this.pbClose.Name = "pbClose";
-            this.pbClose.Size = new System.Drawing.Size(25, 24);
-            this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbClose.TabIndex = 0;
-            this.pbClose.TabStop = false;
-            this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
             // 
             // frmInvoices
             // 
@@ -730,9 +793,9 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoices)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbClose)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -773,6 +836,9 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lbltotalDisc;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInvoiceID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInvoiceNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCustomer;
@@ -783,7 +849,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAgencyFee;
         private System.Windows.Forms.DataGridViewTextBoxColumn colVAT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOtherBillable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDiscount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colWTax;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colGrandT;
         private System.Windows.Forms.DataGridViewTextBoxColumn colcomp;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colisPaid;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colprinted;

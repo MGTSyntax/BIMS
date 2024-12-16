@@ -64,10 +64,13 @@ namespace Invoicing_System.Views
         public void PopInvDGV(string queryFilters)
         {
             string qryInvoices = "SELECT a.invoicesid,a.invoiceNumber,b.custName,a.billingPeriod_from," +
-                "a.billingPeriod_to,a.reimbursement,a.nonDeductible,a.agencyFee,a.vat,a.otherBillable," +
+                "a.billingPeriod_to,a.reimbursement,a.nonDeductible,a.agencyFee,a.vat,a.otherBillable,a.discount," +
                 "(a.reimbursement+a.nonDeductible+a.agencyFee+a.vat+a.otherBillable) as totalamt," +
+                "ROUND(a.agencyFee * wt.wtax_rate) as wht," +
+                "ROUND((a.reimbursement + a.nonDeductible + a.agencyFee + a.vat + a.otherBillable + a.discount) - (a.agencyFee * wt.wtax_rate),2) as grandtotal," +
                 "UPPER(a.compID) as company,a.isPaid,a.printStatus FROM invoice_monitoring a " +
-                "LEFT JOIN customerstable b ON a.customerID = b.custID";
+                "LEFT JOIN customerstable b ON a.customerID = b.custID " +
+                "LEFT JOIN (SELECT wtax_rate FROM tblwtax WHERE wtaxID = '1') wt ON 1 = 1";
             functions.PopulateDataGridView(dgvInvoices, qryInvoices + " " + queryFilters);
             lastperformedQuery = qryInvoices + " " + queryFilters;
         }
@@ -97,8 +100,12 @@ namespace Invoicing_System.Views
                 .Sum(row => decimal.TryParse(row.Cells[9].Value?.ToString(), out decimal amount) ? amount : 0);
             lbltotalOBill.Text = totalOB.ToString("N2");
 
-            decimal totalTAmt = dgvInvoices.Rows.Cast<DataGridViewRow>().Where(row => !row.IsNewRow && row.Visible && row.Cells[10].Visible)
+            decimal totalDisc = dgvInvoices.Rows.Cast<DataGridViewRow>().Where(row => !row.IsNewRow && row.Visible && row.Cells[10].Visible)
                 .Sum(row => decimal.TryParse(row.Cells[10].Value?.ToString(), out decimal amount) ? amount : 0);
+            lbltotalDisc.Text = totalDisc.ToString("N2");
+
+            decimal totalTAmt = dgvInvoices.Rows.Cast<DataGridViewRow>().Where(row => !row.IsNewRow && row.Visible && row.Cells[11].Visible)
+                .Sum(row => decimal.TryParse(row.Cells[11].Value?.ToString(), out decimal amount) ? amount : 0);
             lbltotalofTotals.Text = totalTAmt.ToString("N2");
         }
 

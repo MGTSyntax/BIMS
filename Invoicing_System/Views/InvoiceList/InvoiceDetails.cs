@@ -37,12 +37,13 @@ namespace Invoicing_System.Views.Monitoring
                 {
                     string createInvoice = "INSERT INTO invoice_monitoring(reimbursement,agencyFee,vat,otherBillable,customerID," +
                         "titleTemplate,billingPeriod_from,billingPeriod_to,invoiceNumber,notes,compID,nonDeductible,preparedBy," +
-                        "isVoid,printStatus,isPaid) " +
+                        "isVoid,printStatus,isPaid,discount) " +
                         "VALUES('" + txtBillableType.Text.Replace(",", "") + "','" + txtAgencyFee.Text.Replace(",", "") + "','" + txtVAT.Text.Replace(",", "") + "'," +
                         "'" + txtOtherBillables.Text.Replace(",", "") + "','" + txtDetID.Text + "','" + txtInvoiceFor.Text + "'," +
                         "'" + bpFrom.Value.ToString("yyyy-MM-dd") + "','" + bpTo.Value.ToString("yyyy-MM-dd") + "'," +
                         "'" + txtInvoiceNo.Text + "','" + txtNotes.Text + "','" + txtcompID.Text + "'," +
-                        "'" + txtNonDeductible.Text.Replace(",", "") + "','" + txtpreparedBy.Text + "','0','0','0')";
+                        "'" + txtNonDeductible.Text.Replace(",", "") + "','" + txtpreparedBy.Text + "'," +
+                        "'0','0','0', '" + txtDiscount.Text.Replace(",", "") + "')";
                     functions.SaveData(createInvoice);
 
                     frmInvoices.PopulateInvoices();
@@ -398,6 +399,11 @@ namespace Invoicing_System.Views.Monitoring
             else
             {
                 functions.ConvertToDecimal(txtDiscount);
+                
+                if (decimal.TryParse(txtDiscount.Text, out var value))
+                {
+                    txtDiscount.Text = (-Math.Abs(value)).ToString();
+                }
             }
         }
 
@@ -452,7 +458,7 @@ namespace Invoicing_System.Views.Monitoring
             txtVAT.Text = vatAmount.ToString("N");
 
             // Calculate and Display total ((Reimbursement + VAT + Agency Fee + Other Billable) - Discount)
-            decimal total = (reimbursement + vatAmount + agencyFee + otherbillable) - discount;
+            decimal total = reimbursement + vatAmount + agencyFee + otherbillable + discount;
             txtTotal.Text = total.ToString("N");
 
             // Calculate and Display the total sales
