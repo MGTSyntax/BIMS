@@ -67,7 +67,7 @@ namespace Invoicing_System.Views.CustomerList
         private void PopulateControlsToUpdate()
         {
             string query = "SELECT custName,contactPerson,cpPosition,custagencyFee,isvatable,otherBillAmt," +
-                "companyAddress,emailAddress,titleid,hasInterest,b.companyName FROM customerstable a " +
+                "companyAddress,emailAddress,titleid,hasInterest,b.companyName,tin,telno FROM customerstable a " +
                 "LEFT JOIN tblcompanies b ON a.compID = b.companyID WHERE custID = '" + CustID.ToString() + "'";
             var.dt = functions.SelectData(query, "customerstable");
             if (var.dt.Rows.Count > 0)
@@ -85,6 +85,8 @@ namespace Invoicing_System.Views.CustomerList
                     cbTT.Text = dr[8].ToString();
                     chkInterest.Checked = dr[9].ToString() == "1" ? true : false;
                     cmbComp.Text = dr[10].ToString();
+                    txtTIN.Text = dr[11].ToString();
+                    txtTelNo.Text = dr[12].ToString();
                 }
             }
         } // End of PopulateControlsToUpdate
@@ -102,11 +104,12 @@ namespace Invoicing_System.Views.CustomerList
                 {
                     string addCustomer = "INSERT INTO customerstable(custName,contactPerson,cpPosition," +
                         "custagencyFee,isvatable,otherBillAmt,companyAddress,emailAddress,titleid," +
-                        "hasInterest,isDeleted,compID) " +
+                        "hasInterest,isDeleted,compID,tin,telno) " +
                         "VALUES('" + txtDetachmentName.Text + "','" + txtContactPerson.Text + "'," +
                         "'" + txtPosition.Text + "','" + txtAgencyFeeRate.Text + "','" + isVATValue + "'," +
                         "'" + txtFBAmt.Text + "','" + txtCompanyAddress.Text + "','" + txtEmailAddress.Text + "'," +
-                        "'" + cbTT.Text + "','" + isInterestValue + "','0','" + txtcompID.Text + "')";
+                        "'" + cbTT.Text + "','" + isInterestValue + "','0','" + txtcompID.Text + "'," +
+                        ",'" + txtTIN.Text + "','" + txtTelNo.Text + "')";
                     functions.SaveData(addCustomer);
 
                     customerSetup.PopulateCustomers();
@@ -135,7 +138,9 @@ namespace Invoicing_System.Views.CustomerList
                         "emailAddress = '" + txtEmailAddress.Text + "'," +
                         "titleid = '" + cbTT.Text + "'," +
                         "hasInterest = '" + isInterestValue + "'," +
-                        "compID = '" + txtcompID.Text + "' " +
+                        "compID = '" + txtcompID.Text + "'," +
+                        "tin = '" + txtTIN.Text + "'," +
+                        "telno = '" + txtTelNo.Text + "' " +
                         "WHERE custID = '" + CustID.ToString() + "'";
                     functions.SaveData(updateCustomer);
 
@@ -166,6 +171,8 @@ namespace Invoicing_System.Views.CustomerList
         {
             yield return txtAgencyFeeRate;
             yield return txtFBAmt;
+            yield return txtTIN;
+            yield return txtTelNo;
 
         } // End of GetControlsToValidateNumbers
 

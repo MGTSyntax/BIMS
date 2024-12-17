@@ -35,6 +35,8 @@
               <xs:element name="notedBy" msprop:Generator_ColumnPropNameInTable="notedByColumn" msprop:Generator_ColumnPropNameInRow="notedBy" msprop:Generator_UserColumnName="notedBy" msprop:Generator_ColumnVarNameInTable="columnnotedBy" type="xs:string" minOccurs="0" />
               <xs:element name="company" msprop:Generator_ColumnPropNameInTable="companyColumn" msprop:Generator_ColumnPropNameInRow="company" msprop:Generator_UserColumnName="company" msprop:Generator_ColumnVarNameInTable="columncompany" type="xs:string" minOccurs="0" />
               <xs:element name="nonDeductible" msprop:Generator_ColumnPropNameInTable="nonDeductibleColumn" msprop:Generator_ColumnPropNameInRow="nonDeductible" msprop:Generator_UserColumnName="nonDeductible" msprop:Generator_ColumnVarNameInTable="columnnonDeductible" type="xs:double" minOccurs="0" />
+              <xs:element name="tin" msprop:Generator_ColumnPropNameInRow="tin" msprop:Generator_ColumnPropNameInTable="tinColumn" msprop:Generator_ColumnVarNameInTable="columntin" msprop:Generator_UserColumnName="tin" type="xs:string" minOccurs="0" />
+              <xs:element name="telno" msprop:Generator_ColumnPropNameInRow="telno" msprop:Generator_ColumnPropNameInTable="telnoColumn" msprop:Generator_ColumnVarNameInTable="columntelno" msprop:Generator_UserColumnName="telno" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

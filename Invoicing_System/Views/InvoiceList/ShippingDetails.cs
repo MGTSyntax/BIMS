@@ -35,7 +35,7 @@ namespace Invoicing_System.Views.InvoiceList
         private void PopulateControlsToUpdate()
         {
             string qryCustomerID = "SELECT a.customerID,b.custName,a.invoiceNumber," +
-                "(reimbursement+nonDeductible+agencyFee+vat+otherBillable) as toTals FROM invoice_monitoring a " +
+                "(reimbursement+nonDeductible+agencyFee+vat+otherBillable+discount) as toTals FROM invoice_monitoring a " +
                 "LEFT JOIN customerstable b ON a.customerID = b.custID WHERE invoicesid = '" + InvID.ToString() + "'";
             var dtqryCustomerID = functions.SelectData(qryCustomerID, "qryCustomerID");
             if (dtqryCustomerID.Rows.Count > 0)

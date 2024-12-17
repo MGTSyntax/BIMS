@@ -319,6 +319,10 @@ namespace Invoicing_System.Reports {
             
             private global::System.Data.DataColumn columnnonDeductible;
             
+            private global::System.Data.DataColumn columntin;
+            
+            private global::System.Data.DataColumn columntelno;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtInvoicesDataTable() {
@@ -514,6 +518,22 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn tinColumn {
+                get {
+                    return this.columntin;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn telnoColumn {
+                get {
+                    return this.columntelno;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -569,7 +589,9 @@ namespace Invoicing_System.Reports {
                         string approveBy, 
                         string notedBy, 
                         string company, 
-                        double nonDeductible) {
+                        double nonDeductible, 
+                        string tin, 
+                        string telno) {
                 dtInvoicesRow rowdtInvoicesRow = ((dtInvoicesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         invoicesid,
@@ -591,7 +613,9 @@ namespace Invoicing_System.Reports {
                         approveBy,
                         notedBy,
                         company,
-                        nonDeductible};
+                        nonDeductible,
+                        tin,
+                        telno};
                 rowdtInvoicesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtInvoicesRow);
                 return rowdtInvoicesRow;
@@ -634,6 +658,8 @@ namespace Invoicing_System.Reports {
                 this.columnnotedBy = base.Columns["notedBy"];
                 this.columncompany = base.Columns["company"];
                 this.columnnonDeductible = base.Columns["nonDeductible"];
+                this.columntin = base.Columns["tin"];
+                this.columntelno = base.Columns["telno"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -679,6 +705,10 @@ namespace Invoicing_System.Reports {
                 base.Columns.Add(this.columncompany);
                 this.columnnonDeductible = new global::System.Data.DataColumn("nonDeductible", typeof(double), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnonDeductible);
+                this.columntin = new global::System.Data.DataColumn("tin", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntin);
+                this.columntelno = new global::System.Data.DataColumn("telno", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columntelno);
                 this.columnreimbursement.DefaultValue = ((double)(0D));
                 this.columnagencyFee.DefaultValue = ((double)(0D));
                 this.columnvat.DefaultValue = ((double)(0D));
@@ -1145,6 +1175,38 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string tin {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtInvoices.tinColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'tin\' in table \'dtInvoices\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtInvoices.tinColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string telno {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtInvoices.telnoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'telno\' in table \'dtInvoices\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtInvoices.telnoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsinvoicesidNull() {
                 return this.IsNull(this.tabledtInvoices.invoicesidColumn);
             }
@@ -1381,6 +1443,30 @@ namespace Invoicing_System.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetnonDeductibleNull() {
                 this[this.tabledtInvoices.nonDeductibleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IstinNull() {
+                return this.IsNull(this.tabledtInvoices.tinColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SettinNull() {
+                this[this.tabledtInvoices.tinColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IstelnoNull() {
+                return this.IsNull(this.tabledtInvoices.telnoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SettelnoNull() {
+                this[this.tabledtInvoices.telnoColumn] = global::System.Convert.DBNull;
             }
         }
         

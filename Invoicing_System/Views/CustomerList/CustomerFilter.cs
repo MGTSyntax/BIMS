@@ -75,7 +75,7 @@ namespace Invoicing_System.Views.CustomerList
             {
                 string filterCust = string.Empty;
                 string qryCust = "SELECT custID,custName,contactPerson,cpPosition,emailAddress,custagencyFee, " +
-                "isvatable,hasInterest,otherBillAmt,UPPER(compID) as compID FROM customerstable";
+                "isvatable,hasInterest,otherBillAmt,UPPER(compID) as compID,tin,telno FROM customerstable";
                 filterCust = "WHERE isDeleted = 0 AND compID IN (" + Variables.User_CompAccess + ") ";
                 if (chkCompany.Checked && cbCompany.SelectedIndex != 0) filterCust += "AND compID = '" + cbCompany.Text + "'";
                 if (chkDet.Checked && cbDet.SelectedIndex != 0) filterCust += "AND custID = '" + cbDet.SelectedValue?.ToString() + "'";

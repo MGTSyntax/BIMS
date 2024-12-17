@@ -181,7 +181,8 @@ namespace Invoicing_System.Views
                         frmReport.PreviewInvoice("SELECT invoicesid,(reimbursement+nonDeductible) as reimbursement,agencyFee,vat," +
                             "otherBillable,custName,titleTemplate,billingPeriod_from,billingPeriod_to," +
                             "invoiceNumber,notes,companyAddress,contactPerson,cpPosition," +
-                            "(reimbursement+agencyFee+vat+otherBillable) as toTals,preparedBy,approveBy,notedBy " +
+                            "(reimbursement+agencyFee+vat+otherBillable) as toTals, " +
+                            "preparedBy,approveBy,notedBy,tin,telno " +
                             "FROM invoice_monitoring a INNER JOIN customerstable b ON b.custID = a.customerID " +
                             "INNER JOIN tblcompanies c ON c.companyID = b.compID " +
                             "WHERE invoicesid = '" + dgvInvId + "'");
@@ -192,7 +193,6 @@ namespace Invoicing_System.Views
             }
             catch (Exception)
             {
-
                 throw;
             }
         }

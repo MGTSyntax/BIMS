@@ -51,7 +51,7 @@ namespace Invoicing_System.Views
         public void PopulateCustomers()
         {
             qryCustomers = "SELECT custID,custName,contactPerson,cpPosition,emailAddress,custagencyFee, " +
-                "isvatable,hasInterest,otherBillAmt,UPPER(compID) as compID FROM customerstable";
+                "isvatable,hasInterest,otherBillAmt,UPPER(compID) as compID,tin,telno FROM customerstable";
 
             string qryFilter = "WHERE isDeleted = 0 AND compID IN (" + useraccess + ") ORDER BY custName";
             PopCustDGV(qryCustomers, qryFilter);
@@ -113,7 +113,6 @@ namespace Invoicing_System.Views
                                 // Save history for logs
                                 functions.SaveData("CALL SP_history('" + Variables.user_unameValue + "','customerstable_h'," +
                                     "'customerstable','custID','" + custID + "')");
-
                             }
                         }
                         break;
@@ -121,7 +120,6 @@ namespace Invoicing_System.Views
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
