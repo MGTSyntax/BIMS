@@ -114,9 +114,9 @@ namespace Invoicing_System.Views
             try
             {
                 string colName = dgvInvoices.Columns[e.ColumnIndex].Name;
-                string dgvInvNo = dgvInvoices.Rows[e.RowIndex].Cells[1].Value.ToString();
                 string dgvInvId = dgvInvoices.Rows[e.RowIndex].Cells[0].Value.ToString();
-                string isPaid = dgvInvoices.Rows[e.RowIndex].Cells[12].Value.ToString();
+                string dgvInvNo = dgvInvoices.Rows[e.RowIndex].Cells[1].Value.ToString();
+                string isPaid = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
                 switch (colName)
                 {
                     case "colEdit":
@@ -202,7 +202,7 @@ namespace Invoicing_System.Views
             DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
             string invID = selectedRow.Cells[0].Value.ToString();
             string invNo = selectedRow.Cells[1].Value.ToString();
-            string isPaid = selectedRow.Cells[12].Value.ToString();
+            string isPaid = selectedRow.Cells[16].Value.ToString();
 
             if (isPaid == "False")
             {

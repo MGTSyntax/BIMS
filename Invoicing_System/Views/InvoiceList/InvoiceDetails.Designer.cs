@@ -519,7 +519,7 @@
             // txtDetID
             // 
             this.txtDetID.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDetID.Location = new System.Drawing.Point(13, 524);
+            this.txtDetID.Location = new System.Drawing.Point(13, 523);
             this.txtDetID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDetID.Name = "txtDetID";
             this.txtDetID.ReadOnly = true;

@@ -139,8 +139,10 @@ namespace Invoicing_System.Views.Monitoring
         private void PopulateControlsToUpdate()
         {
             string query = "SELECT a.reimbursement,a.agencyFee,a.vat,a.otherBillable,b.custName,a.titleTemplate," +
-                "a.billingPeriod_from,a.billingPeriod_to,a.invoiceNumber,a.notes,a.nonDeductible,preparedBy FROM invoice_monitoring a " +
-                "LEFT JOIN customerstable b ON a.customerID = b.custID WHERE invoicesid = '" + InvID.ToString() + "'";
+                "a.billingPeriod_from,a.billingPeriod_to,a.invoiceNumber,a.notes,a.nonDeductible,preparedBy,a.discount " +
+                "FROM invoice_monitoring a INNER JOIN customerstable b ON a.customerID = b.custID " +
+                "WHERE invoicesid = '" + InvID.ToString() + "'";
+
             var.dt = functions.SelectData(query, "invoice_monitoring");
             if (var.dt.Rows.Count > 0)
             {
@@ -148,23 +150,68 @@ namespace Invoicing_System.Views.Monitoring
                 {
                     txtBillableType.Text = dr[0].ToString();
                     functions.ConvertToDecimal(txtBillableType);
+
                     txtAgencyFee.Text = dr[1].ToString();
                     functions.ConvertToDecimal(txtAgencyFee);
+
                     txtVAT.Text = dr[2].ToString();
                     functions.ConvertToDecimal(txtVAT);
+
                     txtOtherBillables.Text = dr[3].ToString();
                     functions.ConvertToDecimal(txtOtherBillables);
+
                     cmbDetachment.Text = dr[4].ToString();
+
                     txtInvoiceFor.Text = dr[5].ToString();
+
                     bpFrom.Value = (DateTime)dr[6];
+
                     bpTo.Value = (DateTime)dr[7];
+
                     txtInvoiceNo.Text = dr[8].ToString();
+
                     txtNotes.Text = dr[9].ToString();
+
                     txtNonDeductible.Text = dr[10].ToString();
-                    txtpreparedBy.Text = dr[11].ToString();
                     functions.ConvertToDecimal(txtNonDeductible);
+
+                    txtpreparedBy.Text = dr[11].ToString();
+
+                    txtDiscount.Text = dr[12].ToString();
                     functions.ConvertToDecimal(txtDiscount);
+
+                    // Calculate and Display the total sales
+                    decimal totalSales = Convert.ToDecimal(txtAgencyFee.Text) + Convert.ToDecimal(txtVAT.Text);
+                    txttsVATin.Text = totalSales.ToString("N");
+
+                    // Display less: VAT
+                    txtlessVAT.Text = (-Math.Abs(Convert.ToDecimal(txtVAT.Text))).ToString("N");
+
+                    // Display net of VAT
+                    txtnetofVAT.Text = Convert.ToDecimal(txtAgencyFee.Text).ToString("N");
+
+                    // Fetch, calculate and display less: Withholding Tax
+                    string qrywTaxRate = functions.GetRecordString("SELECT wtax_rate FROM tblwtax");
+                    decimal wTaxRate = Convert.ToDecimal(qrywTaxRate);
+                    decimal wTax = Convert.ToDecimal(txtAgencyFee.Text) * wTaxRate;
+                    txtlessWTax.Text = (-Math.Abs(wTax)).ToString("N");
+
+                    // Calculate and display amount due
+                    decimal amtDue = Convert.ToDecimal(txtAgencyFee.Text) - wTax;
+                    txtamtDue.Text = amtDue.ToString("N");
+
+                    // Display add: 12% VAT
+                    txtaddVAT.Text = Convert.ToDecimal(txtVAT.Text).ToString("N");
+
+                    // Calculate and display total amount due
+                    decimal totalAmtDue = amtDue + Convert.ToDecimal(txtVAT.Text);
+                    txttotalamtDue.Text = totalAmtDue.ToString("N");
+
+                    // Calculate and display grand total
+                    decimal grandTotal = Convert.ToDecimal(txtTotal.Text) - wTax;
+                    txtgrandTotal.Text = grandTotal.ToString("N");
                 }
+
                 string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + txtInvoiceNo.Text + "'";
                 var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
                 if (dtqryinvoiceNum.Rows.Count > 0)
@@ -238,23 +285,22 @@ namespace Invoicing_System.Views.Monitoring
 
         private void InvoiceDetails_Load(object sender, EventArgs e)
         {
-            Reset();
-
             PopulateDetachment();
             if (FormCode == "UPD")
             {
                 PopulateControlsToUpdate();
             }
+            else Reset();
         }
 
         private void Reset()
         {
-            txtBillableType.Text = zeroout.ToString();
-            txtNonDeductible.Text = zeroout.ToString();
-            txtAgencyFee.Text = zeroout.ToString();
-            txtVAT.Text = zeroout.ToString();
-            txtOtherBillables.Text = zeroout.ToString();
-            txtDiscount.Text = zeroout.ToString();
+            txtBillableType.Text = zeroout.ToString("F2");
+            txtNonDeductible.Text = zeroout.ToString("F2");
+            txtAgencyFee.Text = zeroout.ToString("F2");
+            txtVAT.Text = zeroout.ToString("F2");
+            txtOtherBillables.Text = zeroout.ToString("F2");
+            txtDiscount.Text = zeroout.ToString("F2");
             bpFrom.Value = DateTime.Now;
             bpTo.Value = DateTime.Now;
             txtInvoiceNo.Clear();
@@ -267,6 +313,11 @@ namespace Invoicing_System.Views.Monitoring
         {
             txtBillableType.SelectAll();
             txtBillableType.Focus();
+            if (cmbDetachment.Text == "Select an option")
+            {
+                errorProvider.SetError(cmbDetachment, "Please select detachment.");
+                Reset();
+            }
         }
 
         private void txtBillableType_Leave(object sender, EventArgs e)
@@ -289,28 +340,20 @@ namespace Invoicing_System.Views.Monitoring
 
         private void txtBillableType_TextChanged(object sender, EventArgs e)
         {
-            if (cmbDetachment.Text != "Select an option")
-            {
-                bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
 
-                if (!isValid)
-                {
-                    txtBillableType.SelectAll();
-                    txtBillableType.Focus();
-                    txtAgencyFee.Text = zeroout.ToString();
-                    txtVAT.Text = zeroout.ToString();
-                    txtTotal.Text = zeroout.ToString();
-                    txtDiscount.Text = zeroout.ToString();
-                }
-                else
-                {
-                    CalculateTotal();
-                }
+            if (!isValid)
+            {
+                txtBillableType.SelectAll();
+                txtBillableType.Focus();
+                txtAgencyFee.Text = zeroout.ToString();
+                txtVAT.Text = zeroout.ToString();
+                txtTotal.Text = zeroout.ToString();
+                txtDiscount.Text = zeroout.ToString();
             }
             else
             {
-                errorProvider.SetError(cmbDetachment, "Please select detachment.");
-                Reset();
+                CalculateTotal();
             }
         }
 
