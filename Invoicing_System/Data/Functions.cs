@@ -418,5 +418,15 @@ namespace Invoicing_System.Data
                 }
             }
         }
+
+        // Populate MIB Companies
+        public void PopulateMIBCompanies(ComboBox cbox, TextBox tbox)
+        {
+            string TTquery = "SELECT companyID,companyName FROM tblcompanies WHERE isActive=1 ORDER by companyID";
+            string TTdisplayMember = "companyName";
+            string TTvalueMember = "companyID";
+            PopulateComboboxFromDb(cbox, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
+            tbox.Text = cbox.SelectedValue.ToString();
+        } // End of Populate Title Template
     }
 }

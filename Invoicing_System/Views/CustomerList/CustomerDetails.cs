@@ -37,7 +37,7 @@ namespace Invoicing_System.Views.CustomerList
             txtFBAmt.Text = "0.00";
 
             PopulateTitleTemplate();
-            PopulateMIBCompanies();
+            functions.PopulateMIBCompanies(cmbComp, txtcompID);
             if (FormCode == "UPD")
             {
                 PopulateControlsToUpdate();
@@ -54,15 +54,15 @@ namespace Invoicing_System.Views.CustomerList
             lblTT.Text = cbTT.SelectedValue.ToString();
         } // End of Populate Title Template
 
-        // Populate MIB Companies
-        private void PopulateMIBCompanies()
-        {
-            string TTquery = "SELECT companyID,companyName FROM tblcompanies WHERE isActive=1 ORDER by companyID";
-            string TTdisplayMember = "companyName";
-            string TTvalueMember = "companyID";
-            functions.PopulateComboboxFromDb(cmbComp, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
-            txtcompID.Text = cmbComp.SelectedValue.ToString();
-        } // End of Populate Title Template
+        //// Populate MIB Companies
+        //private void PopulateMIBCompanies()
+        //{
+        //    string TTquery = "SELECT companyID,companyName FROM tblcompanies WHERE isActive=1 ORDER by companyID";
+        //    string TTdisplayMember = "companyName";
+        //    string TTvalueMember = "companyID";
+        //    functions.PopulateComboboxFromDb(cmbComp, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
+        //    txtcompID.Text = cmbComp.SelectedValue.ToString();
+        //} // End of Populate Title Template
 
         private void PopulateControlsToUpdate()
         {

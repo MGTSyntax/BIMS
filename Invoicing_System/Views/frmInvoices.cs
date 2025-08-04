@@ -116,17 +116,18 @@ namespace Invoicing_System.Views
                 string colName = dgvInvoices.Columns[e.ColumnIndex].Name;
                 string dgvInvId = dgvInvoices.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string dgvInvNo = dgvInvoices.Rows[e.RowIndex].Cells[1].Value.ToString();
-                string isPaid = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
+                //string isPaid = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
+                string isPrinted = dgvInvoices.Rows[e.RowIndex].Cells[17].Value.ToString();
                 switch (colName)
                 {
                     case "colEdit":
-                        if (isPaid == "False")
+                        if (isPrinted == "False")
                         {
                             createInvoice = new InvoiceDetails(this);
                             createInvoice.InvID = int.Parse(dgvInvId);
                             createInvoice.FormCode = "UPD";
                             createInvoice.ShowDialog();
-                        } else MessageBox.Show("You cannot modify paid invoice.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        } else MessageBox.Show("You cannot modify printed invoice.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                         break;
                     case "colVoid":
                         if (!string.IsNullOrEmpty(dgvInvNo))

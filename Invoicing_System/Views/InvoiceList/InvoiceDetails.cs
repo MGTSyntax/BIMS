@@ -129,7 +129,7 @@ namespace Invoicing_System.Views.Monitoring
         private void PopulateDetachment()
         {
             string Detquery = "SELECT custID, custName FROM customerstable WHERE isDeleted=0 " +
-                "AND compID IN (" + Variables.User_CompAccess + ") ORDER by custName";
+                "AND compID IN (" + Variables.User_CompAccess + ") AND compID = '" + txtcompID.Text + "' ORDER by custName";
             string DetdisplayMember = "custName";
             string DetvalueMember = "custID";
             functions.PopulateComboboxFromDb(cmbDetachment, Detquery, DetdisplayMember, DetvalueMember, "Select an option", "0");
@@ -285,7 +285,7 @@ namespace Invoicing_System.Views.Monitoring
 
         private void InvoiceDetails_Load(object sender, EventArgs e)
         {
-            PopulateDetachment();
+            functions.PopulateMIBCompanies(cbComp, txtcompID);
             if (FormCode == "UPD")
             {
                 PopulateControlsToUpdate();
@@ -534,6 +534,12 @@ namespace Invoicing_System.Views.Monitoring
             // Calculate and display grand total
             decimal grandTotal = total - wTax;
             txtgrandTotal.Text = grandTotal.ToString("N");
+        }
+
+        private void cbComp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtcompID.Text = cbComp.SelectedValue.ToString();
+            PopulateDetachment();
         }
     }
 }
