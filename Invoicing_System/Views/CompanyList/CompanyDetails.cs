@@ -44,7 +44,7 @@ namespace Invoicing_System.Views.CompanyList
                         "approveBy,notedBy) " +
                         "VALUES('" + txtCompCode.Text + "','" + txtCompanyDesc.Text + "'," +
                         "'" + isActive + "','" + txtApprovedBy.Text + "'," +
-                        "'" + txtNotedBy.Text + "')";
+                        "'" + txtNotedBy.Text + "','" + txtInvNoSeries.Text + "' )";
                     functions.SaveData(addCompany);
 
                     _frmCompany.PopulateCompanies();
@@ -66,7 +66,8 @@ namespace Invoicing_System.Views.CompanyList
                         "companyName = '" + txtCompanyDesc.Text + "'," +
                         "isActive = '" + isActive + "'," +
                         "approveBy = '" + txtApprovedBy.Text + "'," +
-                        "notedBy = '" + txtNotedBy.Text + "' " +
+                        "notedBy = '" + txtNotedBy.Text + "'," +
+                        "invNumSeries = '" + txtInvNoSeries.Text + "' " +
                         "WHERE id = '" + CompID + "'";
                     functions.SaveData(updateCustomer);
 
@@ -113,6 +114,7 @@ namespace Invoicing_System.Views.CompanyList
                     chkisActive.Checked = dr[3].ToString() == "1" ? true : false;
                     txtApprovedBy.Text = dr[4].ToString();
                     txtNotedBy.Text = dr[5].ToString();
+                    txtInvNoSeries.Text = dr[6].ToString();
                 }
             }
         } // End of PopulateControlsToUpdate

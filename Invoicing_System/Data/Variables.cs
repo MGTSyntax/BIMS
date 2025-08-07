@@ -64,5 +64,17 @@ namespace Invoicing_System.Data
 
         public string Text { get; set; }
         public int Value { get; set; }
+
+        public class Company
+        {
+            public string CompanyID { get; set; }
+            public string CompanyName { get; set; }
+            public int InvoiceNoSeries { get; set; }
+
+            public override string ToString()
+            {
+                return CompanyName;
+            }
+        }
     }
 }

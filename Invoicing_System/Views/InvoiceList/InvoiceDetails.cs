@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Data;
+using MySql.Data.MySqlClient;
 
 namespace Invoicing_System.Views.Monitoring
 {
@@ -35,77 +36,160 @@ namespace Invoicing_System.Views.Monitoring
             {
                 if (isStringValid && isNumbersValid && isDateRangeValid && isInvNumNotExists())
                 {
-                    string createInvoice = "INSERT INTO invoice_monitoring(reimbursement,agencyFee,vat,otherBillable,customerID," +
-                        "titleTemplate,billingPeriod_from,billingPeriod_to,invoiceNumber,notes,compID,nonDeductible,preparedBy," +
-                        "isVoid,printStatus,isPaid,discount) " +
-                        "VALUES('" + txtBillableType.Text.Replace(",", "") + "','" + txtAgencyFee.Text.Replace(",", "") + "','" + txtVAT.Text.Replace(",", "") + "'," +
-                        "'" + txtOtherBillables.Text.Replace(",", "") + "','" + txtDetID.Text + "','" + txtInvoiceFor.Text + "'," +
-                        "'" + bpFrom.Value.ToString("yyyy-MM-dd") + "','" + bpTo.Value.ToString("yyyy-MM-dd") + "'," +
-                        "'" + txtInvoiceNo.Text + "','" + txtNotes.Text + "','" + txtcompID.Text + "'," +
-                        "'" + txtNonDeductible.Text.Replace(",", "") + "','" + txtpreparedBy.Text + "'," +
-                        "'0','0','0', '" + txtDiscount.Text.Replace(",", "") + "')";
-                    functions.SaveData(createInvoice);
+                    string createInvoice = @"
+                        INSERT INTO invoice_monitoring(reimbursement, agencyFee, vat, otherBillable, customerID, 
+                            titleTemplate, billingPeriod_from, billingPeriod_to, invoiceNumber, 
+                            notes, compID, nonDeductible, preparedBy, 
+                            isVoid, printStatus, isPaid, discount
+                        ) VALUES (
+                            @reimbursement, @agencyFee, @vat, @otherBillable, @customerID, 
+                            @titleTemplate, @billingPeriod_from, @billingPeriod_to, @invoiceNumber, 
+                            @notes, @compID, @nonDeductible, @preparedBy, 
+                            0, 0, 0, @discount
+                        );
+                    ";
+
+                    var parameters = new Dictionary<string, object>
+                    {
+                        {"@reimbursement", txtBillableType.Text.Replace(",", "") },
+                        {"@agencyFee", txtAgencyFee.Text.Replace(",", "") },
+                        {"@vat", txtVAT.Text.Replace(",", "") },
+                        {"@otherBillable", txtOtherBillables.Text.Replace(",", "") },
+                        {"@customerID", txtDetID.Text },
+                        {"@titleTemplate", txtInvoiceFor.Text },
+                        {"@billingPeriod_from", bpFrom.Value.ToString("yyyy-MM-dd") },
+                        {"@billingPeriod_to", bpTo.Value.ToString("yyyy-MM-dd") },
+                        {"@invoiceNumber", txtInvoiceNo.Text },
+                        {"@notes", txtNotes.Text },
+                        {"@compID", txtcompID.Text },
+                        {"@nonDeductible", txtNonDeductible.Text.Replace(",", "") },
+                        {"@preparedBy", txtpreparedBy.Text },
+                        {"@discount", txtDiscount.Text.Replace(",", "") }
+                    };
+
+                    functions.ParamSaveData(createInvoice, parameters);
+                    IncrementInvoiceSeries(txtcompID.Text);
 
                     frmInvoices.PopulateInvoices();
                     frmInvoices.PopTotals();
                     MessageBox.Show("Invoice Successfully Saved!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Save history for logs
-                    functions.SaveData("CALL SP_history('" + Variables.user_unameValue + "','invoice_monitoring_h'," +
-                        "'invoice_monitoring','invoicesid',(SELECT MAX(invoicesid) FROM invoice_monitoring))");
+                    logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
 
                     this.Dispose();
+
                 }
             }
             else if (FormCode == "UPD")
             {
                 if (isStringValid && isNumbersValid && isDateRangeValid && isInvNumNotExists())
                 {
-                    string updateInvoice = "UPDATE invoice_monitoring SET " +
-                        "reimbursement = '" + txtBillableType.Text.Replace(",", "") + "'," +
-                        "agencyFee = '" + txtAgencyFee.Text.Replace(",", "") + "'," +
-                        "vat = '" + txtVAT.Text.Replace(",", "") + "'," +
-                        "otherBillable = '" + txtOtherBillables.Text.Replace(",", "") + "'," +
-                        "customerID = '" + txtDetID.Text + "'," +
-                        "titleTemplate = '" + txtInvoiceFor.Text + "'," +
-                        "billingPeriod_from = '" + bpFrom.Value.ToString("yyyy-MM-dd") + "'," +
-                        "billingPeriod_to = '" + bpTo.Value.ToString("yyyy-MM-dd") + "'," +
-                        "invoiceNumber = '" + txtInvoiceNo.Text + "'," +
-                        "notes = '" + txtNotes.Text + "'," +
-                        "nonDeductible = '" + txtNonDeductible.Text.Replace(",", "") + "'," +
-                        "preparedBy = '" + txtpreparedBy.Text + "' " +
-                        "WHERE invoicesid = '" + InvID.ToString() + "'";
-                    functions.SaveData(updateInvoice);
+                    string updateInvoice = @"UPDATE invoice_monitoring SET
+                        reimbursement = @reimbursement, agencyFee = @agencyFee, vat = @vat, 
+                        otherBillable = @otherBillable, customerID = @customerID, titleTemplate = @titleTemplate, 
+                        billingPeriod_from = @billingPeriod_from, billingPeriod_to = @billingPeriod_to, 
+                        invoiceNumber = @invoiceNumber, notes = @notes, nonDeductible = @nonDeductible,
+                        preparedBy = @preparedBy WHERE invoicesid = @invoicesid
+                    ";
 
-                    MessageBox.Show("Invoice Successfully Updated!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var parameters = new Dictionary<string, object>
+                    {
+                        { "@reimbursement", txtBillableType.Text.Replace(",", "") },
+                        { "@agencyFee", txtAgencyFee.Text.Replace(",", "") },
+                        { "@vat", txtVAT.Text.Replace(",", "") },
+                        { "@otherBillable", txtOtherBillables.Text.Replace(",", "") },
+                        { "@customerID", txtDetID.Text },
+                        { "@titleTemplate", txtInvoiceFor.Text },
+                        { "@billingPeriod_from", bpFrom.Value.ToString("yyyy-MM-dd") },
+                        { "@billingPeriod_to", bpTo.Value.ToString("yyyy-MM-dd") },
+                        { "@invoiceNumber", txtInvoiceNo.Text },
+                        { "@notes", txtNotes.Text },
+                        { "@nonDeductible", txtNonDeductible.Text.Replace(",", "") },
+                        { "@preparedBy", txtpreparedBy.Text },
+                        { "@invoicesid", InvID }
+                    };
+
+                    functions.ParamSaveData(updateInvoice, parameters);
+
                     frmInvoices.PopulateInvoices();
                     frmInvoices.PopTotals();
+                    MessageBox.Show("Invoice Successfully Updated!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Save history for logs
-                    functions.SaveData("CALL SP_history('" + Variables.user_unameValue + "','invoice_monitoring_h'," +
-                        "'invoice_monitoring','invoicesid','" + InvID.ToString() + "')");
+                    logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
 
                     this.Dispose();
                 }
             }
         }
 
+        // Lock Increment Invoice Series
+        public void IncrementInvoiceSeries(string compID)
+        {
+            string updateQuery = @"
+                UPDATE tblcompanies
+                SET invNumSeries  = invNumSeries + 1
+                WHERE companyID = @compID
+            ";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "@compID", compID }
+            };
+
+            functions.ParamSaveData(updateQuery, parameters);
+        }
+
+        // Check for Exisiting Invoice Number
         public bool isInvNumNotExists()
         {
-            string chkInvNoIfExists = "SELECT * FROM invoice_monitoring WHERE invoicesid <> '" + InvID.ToString() + "' " +
-                "AND invoiceNumber = '" + txtInvoiceNo.Text + "' AND isVoid = 0";
+            string query = @"
+                SELECT COUNT(*)
+                FROM invoice_monitoring
+                WHERE invoicesid <> @invoicesid
+                    AND invoiceNumber = @invoiceNumber 
+                    AND isVoid = 0
+            ";
 
-            if (!string.IsNullOrEmpty(txtInvoiceNo.Text) || !string.IsNullOrWhiteSpace(txtInvoiceNo.Text))
+            var parameters = new Dictionary<string, object>
             {
-                var.dt = functions.SelectData(chkInvNoIfExists, "chkInvNoIfExists");
-                if (var.dt.Rows.Count > 0)
-                {
-                    errorProvider.SetError(txtInvoiceNo, "This Invoice No. exists!");
-                    return false;
-                }
+                { "@invoicesid", InvID },
+                { "@invoiceNumber", txtInvoiceNo.Text.Trim() }
+            };
+
+            DataTable dt = functions.ParamSelectData(query, "checkInvoice", parameters);
+
+            int count = Convert.ToInt32(dt.Rows[0][0]);
+            if (count > 0)
+            {
+                errorProvider.SetError(txtInvoiceNo, "This Invoice No. exists!");
+                return false;
             }
+
             errorProvider.SetError(txtInvoiceNo, null);
             return true;
+        }
+
+        // Logging Method
+        public void logEvent(string historyTable, string queryTable, string queryTableId)
+        {
+            // Save history for logs
+            string logQuery = $@"
+                CALL SP_history(@username, 
+                    `{historyTable}`, 
+                    `{queryTable}`, 
+                    `{queryTableId}`, 
+                    (SELECT MAX(`{queryTableId}`) FROM `{queryTable}`)
+                );
+            ";
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "@username", Variables.user_unameValue }
+            };
+
+            functions.ParamSaveData(logQuery, parameters);
         }
 
         // Get Controls to Validate String Value
@@ -285,7 +369,7 @@ namespace Invoicing_System.Views.Monitoring
 
         private void InvoiceDetails_Load(object sender, EventArgs e)
         {
-            functions.PopulateMIBCompanies(cbComp, txtcompID);
+            functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo);
             if (FormCode == "UPD")
             {
                 PopulateControlsToUpdate();

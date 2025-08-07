@@ -361,6 +361,7 @@
             this.txtInvoiceNo.Location = new System.Drawing.Point(176, 92);
             this.txtInvoiceNo.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
+            this.txtInvoiceNo.ReadOnly = true;
             this.txtInvoiceNo.Size = new System.Drawing.Size(313, 23);
             this.txtInvoiceNo.TabIndex = 22;
             // 

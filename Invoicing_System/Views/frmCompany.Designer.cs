@@ -35,18 +35,19 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvCompanies = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnNewCompany = new System.Windows.Forms.Button();
+            this.pbClose = new System.Windows.Forms.PictureBox();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.colid = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colcompanyID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colcompanyName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStatus = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colapproveBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colnotedBy = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colInvNoSeries = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEditComp = new System.Windows.Forms.DataGridViewImageColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnNewCompany = new System.Windows.Forms.Button();
-            this.pbClose = new System.Windows.Forms.PictureBox();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCompanies)).BeginInit();
@@ -103,6 +104,7 @@
             this.colStatus,
             this.colapproveBy,
             this.colnotedBy,
+            this.colInvNoSeries,
             this.colEditComp});
             this.dgvCompanies.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -128,57 +130,6 @@
             this.dgvCompanies.Size = new System.Drawing.Size(954, 389);
             this.dgvCompanies.TabIndex = 1;
             this.dgvCompanies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCompanies_CellContentClick);
-            // 
-            // colid
-            // 
-            this.colid.HeaderText = "ID";
-            this.colid.Name = "colid";
-            this.colid.Visible = false;
-            // 
-            // colcompanyID
-            // 
-            this.colcompanyID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colcompanyID.HeaderText = "Code";
-            this.colcompanyID.Name = "colcompanyID";
-            this.colcompanyID.Width = 57;
-            // 
-            // colcompanyName
-            // 
-            this.colcompanyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colcompanyName.HeaderText = "Company Description";
-            this.colcompanyName.Name = "colcompanyName";
-            // 
-            // colStatus
-            // 
-            this.colStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colStatus.HeaderText = "Status";
-            this.colStatus.Name = "colStatus";
-            this.colStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colStatus.Width = 63;
-            // 
-            // colapproveBy
-            // 
-            this.colapproveBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.colapproveBy.HeaderText = "Approved By";
-            this.colapproveBy.Name = "colapproveBy";
-            this.colapproveBy.Width = 90;
-            // 
-            // colnotedBy
-            // 
-            this.colnotedBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.colnotedBy.HeaderText = "Noted By";
-            this.colnotedBy.Name = "colnotedBy";
-            this.colnotedBy.Width = 73;
-            // 
-            // colEditComp
-            // 
-            this.colEditComp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colEditComp.HeaderText = "";
-            this.colEditComp.Image = ((System.Drawing.Image)(resources.GetObject("colEditComp.Image")));
-            this.colEditComp.Name = "colEditComp";
-            this.colEditComp.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colEditComp.Width = 5;
             // 
             // panel1
             // 
@@ -237,6 +188,64 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // colid
+            // 
+            this.colid.HeaderText = "ID";
+            this.colid.Name = "colid";
+            this.colid.Visible = false;
+            // 
+            // colcompanyID
+            // 
+            this.colcompanyID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colcompanyID.HeaderText = "Code";
+            this.colcompanyID.Name = "colcompanyID";
+            this.colcompanyID.Width = 57;
+            // 
+            // colcompanyName
+            // 
+            this.colcompanyName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colcompanyName.HeaderText = "Company Description";
+            this.colcompanyName.Name = "colcompanyName";
+            // 
+            // colStatus
+            // 
+            this.colStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colStatus.HeaderText = "Status";
+            this.colStatus.Name = "colStatus";
+            this.colStatus.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colStatus.Width = 63;
+            // 
+            // colapproveBy
+            // 
+            this.colapproveBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.colapproveBy.HeaderText = "Approved By";
+            this.colapproveBy.Name = "colapproveBy";
+            this.colapproveBy.Width = 90;
+            // 
+            // colnotedBy
+            // 
+            this.colnotedBy.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.colnotedBy.HeaderText = "Noted By";
+            this.colnotedBy.Name = "colnotedBy";
+            this.colnotedBy.Width = 73;
+            // 
+            // colInvNoSeries
+            // 
+            this.colInvNoSeries.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colInvNoSeries.HeaderText = "Invoice No. Series";
+            this.colInvNoSeries.Name = "colInvNoSeries";
+            this.colInvNoSeries.Width = 86;
+            // 
+            // colEditComp
+            // 
+            this.colEditComp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colEditComp.HeaderText = "";
+            this.colEditComp.Image = ((System.Drawing.Image)(resources.GetObject("colEditComp.Image")));
+            this.colEditComp.Name = "colEditComp";
+            this.colEditComp.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colEditComp.Width = 5;
+            // 
             // frmCompany
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -276,6 +285,7 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn colStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn colapproveBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn colnotedBy;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colInvNoSeries;
         private System.Windows.Forms.DataGridViewImageColumn colEditComp;
     }
 }

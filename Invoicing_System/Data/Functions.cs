@@ -22,44 +22,104 @@ namespace Invoicing_System.Data
 {
     public class Functions : Variables
     {
-        public void SaveData(string str)
+        public void SaveData(string query)
         {
             try
             {
-                using (cmd = new MySqlCommand(str, con))
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                using (cmd = new MySqlCommand(query, localCon))
                 {
-                    con.Open();
+                    localCon.Open();
                     cmd.ExecuteNonQuery();
                 }
-                con.Close();
             }
             catch (Exception ex)
             {
-                con.Close();
-                //Log.Error("Problem in saving data", ex);
                 MessageBox.Show("Problem in Saving data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 throw;
             }
         } // End of SaveData
 
-        public DataTable SelectData(string query, string dtds)
+        public void ParamSaveData(string query, Dictionary<string, object> parameters, MySqlConnection connection = null, MySqlTransaction transaction = null)
         {
             try
             {
-                con.Open();
-                ds = new DataSet();
-                da = new MySqlDataAdapter(query, con);
-                da.Fill(ds, dtds);
-                con.Close();
-                return ds.Tables[dtds];
+                bool useExternalConnection = connection != null;
+
+                using (MySqlConnection localCon = useExternalConnection ? connection : new MySqlConnection(AppDbCon))
+                {
+                    using (MySqlCommand cmd =  new MySqlCommand(query, localCon))
+                    {
+                        if (transaction != null)
+                            cmd.Transaction = transaction;
+
+                        foreach (var param in parameters)
+                        {
+                            cmd.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+
+                        if (!useExternalConnection)
+                            localCon.Open();
+
+                        cmd.ExecuteNonQuery();
+
+                        if (!useExternalConnection)
+                            localCon.Close();
+                    }
+                }
             }
             catch (Exception ex)
             {
-                con.Close();
+                MessageBox.Show("Problem in Saving data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
+            }
+        }
+
+        public DataTable SelectData(string query, string tableName)
+        {
+            try
+            {
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                using (MySqlDataAdapter da = new MySqlDataAdapter(query, localCon))
+                {
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, tableName);
+                    return ds.Tables[tableName];
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show("Problem in Getting Data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 throw;
             }
         } // End of SelectData
+
+        public DataTable ParamSelectData(string query, string tableName, Dictionary<string, object> parameters = null)
+        {
+            try
+            {
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                using (MySqlDataAdapter da = new MySqlDataAdapter(query, localCon))
+                {
+                    if (parameters != null)
+                    {
+                        foreach (var param in parameters)
+                        {
+                            da.SelectCommand.Parameters.AddWithValue(param.Key, param.Value);
+                        }
+                    }
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds, tableName);
+                    return ds.Tables[tableName];
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problem in getting data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
+            }
+        }
 
         public DataTable SelectDataParameters(string query, string dtds, Dictionary<string, object> parameters = null)
         {
@@ -94,12 +154,15 @@ namespace Invoicing_System.Data
         {
             try
             {
-                con.Open();
-                cmd = new MySqlCommand(qry, con);
-                da = new MySqlDataAdapter(cmd);
                 dt = new DataTable();
-                da.Fill(dt);
-                con.Close();
+
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                using (cmd = new MySqlCommand(qry, localCon))
+                using (da = new MySqlDataAdapter(cmd))
+                {
+                    localCon.Open();
+                    da.Fill(dt);
+                }
 
                 // Creating index 0
                 DataRow dr = dt.NewRow();
@@ -115,7 +178,6 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                con.Close();
                 MessageBox.Show("Problem in Loading data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 throw;
             }
@@ -183,7 +245,7 @@ namespace Invoicing_System.Data
         {
             listview.Items.Clear();
             con.Open();
-            cmd = new MySqlCommand(query,con);
+            cmd = new MySqlCommand(query, con);
             using (dr = cmd.ExecuteReader())
             {
                 while (dr.Read())
@@ -420,13 +482,71 @@ namespace Invoicing_System.Data
         }
 
         // Populate MIB Companies
-        public void PopulateMIBCompanies(ComboBox cbox, TextBox tbox)
+        //public void PopulateMIBCompanies(ComboBox cbox, TextBox tbox)
+        //{
+        //    string TTquery = "SELECT companyID,companyName FROM tblcompanies WHERE isActive=1 ORDER by companyID";
+        //    string TTdisplayMember = "companyName";
+        //    string TTvalueMember = "companyID";
+        //    PopulateComboboxFromDb(cbox, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
+        //    tbox.Text = cbox.SelectedValue.ToString();
+        //}
+        public void PopulateMIBCompanies(ComboBox cbox, TextBox companyIdBox, TextBox invoiceSeriesBox)
         {
-            string TTquery = "SELECT companyID,companyName FROM tblcompanies WHERE isActive=1 ORDER by companyID";
-            string TTdisplayMember = "companyName";
-            string TTvalueMember = "companyID";
-            PopulateComboboxFromDb(cbox, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
-            tbox.Text = cbox.SelectedValue.ToString();
-        } // End of Populate Title Template
+            try
+            {
+                string TTquery = "SELECT companyID, companyName, invNumSeries FROM tblcompanies WHERE isActive=1 ORDER by companyID";
+
+                List<Company> companies = new List<Company>();
+
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                {
+                    using (cmd = new MySqlCommand(TTquery, localCon))
+                    {
+                        localCon.Open();
+                        using (dr = cmd.ExecuteReader())
+                        {
+                            while (dr.Read())
+                            {
+                                companies.Add(new Company()
+                                {
+                                    CompanyID = dr.GetString(0),
+                                    CompanyName = dr.GetString(1),
+                                    InvoiceNoSeries = dr.GetInt32(2)
+                                });
+                            }
+                        }
+                    }
+
+                }
+
+                cbox.DataSource = companies;
+                cbox.DisplayMember = nameof(Company.CompanyName);
+                cbox.ValueMember = nameof(Company.CompanyID);
+
+                // Auto-fill textboxes with initial selection
+                if (cbox.SelectedItem is Company selected)
+                {
+                    companyIdBox.Text = selected.CompanyID;
+                    invoiceSeriesBox.Text = selected.InvoiceNoSeries.ToString();
+                }
+
+                // Update on selection change
+                cbox.SelectedIndexChanged += (s, e) =>
+                {
+                    if (cbox.SelectedItem is Company selectedCompany)
+                    {
+                        companyIdBox.Text = selectedCompany.CompanyID;
+                        invoiceSeriesBox.Text = selectedCompany.InvoiceNoSeries.ToString();
+                    }
+                };
+            }
+            catch (Exception ex)
+            {
+                con.Close();
+                MessageBox.Show("Problem in Loading data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                throw;
+            }
+        }
+        // End of Populate Title Template
     }
 }

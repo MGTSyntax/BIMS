@@ -44,6 +44,8 @@
             this.txtNotedBy = new System.Windows.Forms.TextBox();
             this.btnSaveCompany = new System.Windows.Forms.Button();
             this.companyEP = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtInvNoSeries = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyEP)).BeginInit();
@@ -192,7 +194,7 @@
             this.btnSaveCompany.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveCompany.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveCompany.ForeColor = System.Drawing.Color.White;
-            this.btnSaveCompany.Location = new System.Drawing.Point(198, 279);
+            this.btnSaveCompany.Location = new System.Drawing.Point(198, 332);
             this.btnSaveCompany.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.btnSaveCompany.Name = "btnSaveCompany";
             this.btnSaveCompany.Size = new System.Drawing.Size(95, 28);
@@ -206,12 +208,35 @@
             // 
             this.companyEP.ContainerControl = this;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.label4.Location = new System.Drawing.Point(16, 281);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 15);
+            this.label4.TabIndex = 76;
+            this.label4.Text = "Invoice No. Series";
+            // 
+            // txtInvNoSeries
+            // 
+            this.txtInvNoSeries.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            this.txtInvNoSeries.Location = new System.Drawing.Point(19, 299);
+            this.txtInvNoSeries.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtInvNoSeries.Name = "txtInvNoSeries";
+            this.txtInvNoSeries.Size = new System.Drawing.Size(274, 23);
+            this.txtInvNoSeries.TabIndex = 75;
+            // 
             // CompanyDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(310, 324);
+            this.ClientSize = new System.Drawing.Size(310, 378);
             this.ControlBox = false;
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.txtInvNoSeries);
             this.Controls.Add(this.btnSaveCompany);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNotedBy);
@@ -252,5 +277,7 @@
         private System.Windows.Forms.TextBox txtNotedBy;
         private System.Windows.Forms.Button btnSaveCompany;
         private System.Windows.Forms.ErrorProvider companyEP;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtInvNoSeries;
     }
 }

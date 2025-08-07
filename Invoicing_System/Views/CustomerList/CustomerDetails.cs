@@ -37,7 +37,7 @@ namespace Invoicing_System.Views.CustomerList
             txtFBAmt.Text = "0.00";
 
             PopulateTitleTemplate();
-            functions.PopulateMIBCompanies(cmbComp, txtcompID);
+            functions.PopulateMIBCompanies(cmbComp, txtcompID, null);
             if (FormCode == "UPD")
             {
                 PopulateControlsToUpdate();
