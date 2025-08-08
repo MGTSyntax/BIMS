@@ -19,6 +19,7 @@ namespace Invoicing_System.Views.Monitoring
         public int InvID { get; set; }
         private string _vatactive;
         private double zeroout = 0.00;
+        private string existingDetachmentId = "0";
 
         public InvoiceDetails(frmInvoices frmI)
         {
@@ -210,14 +211,18 @@ namespace Invoicing_System.Views.Monitoring
         }
 
         // Populate Detachment
-        private void PopulateDetachment()
+        private void PopulateDetachment(string selectedId = "0")
         {
             string Detquery = "SELECT custID, custName FROM customerstable WHERE isDeleted=0 " +
                 "AND compID IN (" + Variables.User_CompAccess + ") AND compID = '" + txtcompID.Text + "' ORDER by custName";
             string DetdisplayMember = "custName";
             string DetvalueMember = "custID";
+
             functions.PopulateComboboxFromDb(cmbDetachment, Detquery, DetdisplayMember, DetvalueMember, "Select an option", "0");
-            txtDetID.Text = cmbDetachment.SelectedValue.ToString();
+
+            // Only set selection if provided (for update mode)
+            cmbDetachment.SelectedValue = selectedId;
+            //txtDetID.Text = cmbDetachment.SelectedValue.ToString();
         }
 
         private void PopulateControlsToUpdate()
@@ -312,13 +317,13 @@ namespace Invoicing_System.Views.Monitoring
 
         private void cmbDetachment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtDetID.Text = cmbDetachment.SelectedValue.ToString();
+            if (cmbDetachment.SelectedValue != null)
+                txtDetID.Text = cmbDetachment.SelectedValue.ToString();
 
             if (txtDetID.Text == "0")
-            {
                 Reset();
-            }
-            else errorProvider.Clear();
+            else
+                errorProvider.Clear();
         }
 
         private void chkbSpecifyTT_CheckedChanged(object sender, EventArgs e)
@@ -369,12 +374,16 @@ namespace Invoicing_System.Views.Monitoring
 
         private void InvoiceDetails_Load(object sender, EventArgs e)
         {
-            functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo);
             if (FormCode == "UPD")
             {
+                functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo, isUpdateMode: true);
                 PopulateControlsToUpdate();
             }
-            else Reset();
+            else
+            {
+                functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo);
+                Reset();
+            }
         }
 
         private void Reset()
@@ -623,7 +632,11 @@ namespace Invoicing_System.Views.Monitoring
         private void cbComp_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtcompID.Text = cbComp.SelectedValue.ToString();
-            PopulateDetachment();
+
+            if (FormCode == "UPD")
+                PopulateDetachment(existingDetachmentId);
+            else
+                PopulateDetachment();
         }
     }
 }

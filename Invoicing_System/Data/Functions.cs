@@ -490,7 +490,7 @@ namespace Invoicing_System.Data
         //    PopulateComboboxFromDb(cbox, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
         //    tbox.Text = cbox.SelectedValue.ToString();
         //}
-        public void PopulateMIBCompanies(ComboBox cbox, TextBox companyIdBox, TextBox invoiceSeriesBox)
+        public void PopulateMIBCompanies(ComboBox cbox, TextBox companyIdBox, TextBox invoiceSeriesBox, bool isUpdateMode = false)
         {
             try
             {
@@ -523,22 +523,25 @@ namespace Invoicing_System.Data
                 cbox.DisplayMember = nameof(Company.CompanyName);
                 cbox.ValueMember = nameof(Company.CompanyID);
 
-                // Auto-fill textboxes with initial selection
-                if (cbox.SelectedItem is Company selected)
+                if (!isUpdateMode)
                 {
-                    companyIdBox.Text = selected.CompanyID;
-                    invoiceSeriesBox.Text = selected.InvoiceNoSeries.ToString();
-                }
-
-                // Update on selection change
-                cbox.SelectedIndexChanged += (s, e) =>
-                {
-                    if (cbox.SelectedItem is Company selectedCompany)
+                    // Auto-fill textboxes with initial selection
+                    if (cbox.SelectedItem is Company selected)
                     {
-                        companyIdBox.Text = selectedCompany.CompanyID;
-                        invoiceSeriesBox.Text = selectedCompany.InvoiceNoSeries.ToString();
+                        companyIdBox.Text = selected.CompanyID;
+                        invoiceSeriesBox.Text = selected.InvoiceNoSeries.ToString();
                     }
-                };
+
+                    // Update on selection change
+                    cbox.SelectedIndexChanged += (s, e) =>
+                    {
+                        if (cbox.SelectedItem is Company selectedCompany)
+                        {
+                            companyIdBox.Text = selectedCompany.CompanyID;
+                            invoiceSeriesBox.Text = selectedCompany.InvoiceNoSeries.ToString();
+                        }
+                    };
+                }
             }
             catch (Exception ex)
             {

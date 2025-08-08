@@ -141,6 +141,9 @@
             // dgvInvoices
             // 
             this.dgvInvoices.AllowUserToAddRows = false;
+            this.dgvInvoices.AllowUserToDeleteRows = false;
+            this.dgvInvoices.AllowUserToResizeColumns = false;
+            this.dgvInvoices.AllowUserToResizeRows = false;
             this.dgvInvoices.BackgroundColor = System.Drawing.Color.White;
             this.dgvInvoices.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvInvoices.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
@@ -193,6 +196,7 @@
             this.dgvInvoices.Location = new System.Drawing.Point(3, 41);
             this.dgvInvoices.MultiSelect = false;
             this.dgvInvoices.Name = "dgvInvoices";
+            this.dgvInvoices.ReadOnly = true;
             this.dgvInvoices.RowHeadersVisible = false;
             this.dgvInvoices.RowHeadersWidth = 62;
             dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
@@ -583,6 +587,7 @@
             this.colInvoiceID.HeaderText = "InvoiceID";
             this.colInvoiceID.MinimumWidth = 8;
             this.colInvoiceID.Name = "colInvoiceID";
+            this.colInvoiceID.ReadOnly = true;
             this.colInvoiceID.Visible = false;
             this.colInvoiceID.Width = 150;
             // 
@@ -592,6 +597,7 @@
             this.colInvoiceNo.HeaderText = "Invoice No.";
             this.colInvoiceNo.MinimumWidth = 8;
             this.colInvoiceNo.Name = "colInvoiceNo";
+            this.colInvoiceNo.ReadOnly = true;
             this.colInvoiceNo.Width = 84;
             // 
             // colCustomer
@@ -600,6 +606,7 @@
             this.colCustomer.HeaderText = "Customer";
             this.colCustomer.MinimumWidth = 8;
             this.colCustomer.Name = "colCustomer";
+            this.colCustomer.ReadOnly = true;
             // 
             // colBPFrom
             // 
@@ -610,6 +617,7 @@
             this.colBPFrom.HeaderText = "Period From";
             this.colBPFrom.MinimumWidth = 8;
             this.colBPFrom.Name = "colBPFrom";
+            this.colBPFrom.ReadOnly = true;
             this.colBPFrom.Width = 87;
             // 
             // colBPTo
@@ -620,6 +628,7 @@
             this.colBPTo.HeaderText = "Period To";
             this.colBPTo.MinimumWidth = 8;
             this.colBPTo.Name = "colBPTo";
+            this.colBPTo.ReadOnly = true;
             this.colBPTo.Width = 74;
             // 
             // colReimbursement
@@ -631,6 +640,7 @@
             this.colReimbursement.HeaderText = "Reimbursement";
             this.colReimbursement.MinimumWidth = 8;
             this.colReimbursement.Name = "colReimbursement";
+            this.colReimbursement.ReadOnly = true;
             // 
             // colnondeductible
             // 
@@ -641,6 +651,7 @@
             this.colnondeductible.HeaderText = "Non-Deductible";
             this.colnondeductible.MinimumWidth = 8;
             this.colnondeductible.Name = "colnondeductible";
+            this.colnondeductible.ReadOnly = true;
             // 
             // colAgencyFee
             // 
@@ -651,6 +662,7 @@
             this.colAgencyFee.HeaderText = "Agency Fee";
             this.colAgencyFee.MinimumWidth = 8;
             this.colAgencyFee.Name = "colAgencyFee";
+            this.colAgencyFee.ReadOnly = true;
             // 
             // colVAT
             // 
@@ -661,6 +673,7 @@
             this.colVAT.HeaderText = "VAT";
             this.colVAT.MinimumWidth = 8;
             this.colVAT.Name = "colVAT";
+            this.colVAT.ReadOnly = true;
             // 
             // colOtherBillable
             // 
@@ -671,6 +684,7 @@
             this.colOtherBillable.HeaderText = "Other Billable";
             this.colOtherBillable.MinimumWidth = 8;
             this.colOtherBillable.Name = "colOtherBillable";
+            this.colOtherBillable.ReadOnly = true;
             // 
             // colDiscount
             // 
@@ -680,6 +694,7 @@
             this.colDiscount.HeaderText = "Discount";
             this.colDiscount.MinimumWidth = 8;
             this.colDiscount.Name = "colDiscount";
+            this.colDiscount.ReadOnly = true;
             // 
             // colTotal
             // 
@@ -690,6 +705,7 @@
             this.colTotal.HeaderText = "Total Amount";
             this.colTotal.MinimumWidth = 8;
             this.colTotal.Name = "colTotal";
+            this.colTotal.ReadOnly = true;
             // 
             // colWTax
             // 
@@ -698,6 +714,7 @@
             this.colWTax.DefaultCellStyle = dataGridViewCellStyle11;
             this.colWTax.HeaderText = "W Tax";
             this.colWTax.Name = "colWTax";
+            this.colWTax.ReadOnly = true;
             // 
             // colGrandT
             // 
@@ -706,12 +723,14 @@
             this.colGrandT.DefaultCellStyle = dataGridViewCellStyle12;
             this.colGrandT.HeaderText = "Grand Total";
             this.colGrandT.Name = "colGrandT";
+            this.colGrandT.ReadOnly = true;
             // 
             // colcomp
             // 
             this.colcomp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.colcomp.HeaderText = "Company";
             this.colcomp.Name = "colcomp";
+            this.colcomp.ReadOnly = true;
             this.colcomp.Width = 81;
             // 
             // colisPaid
@@ -719,7 +738,10 @@
             this.colisPaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
             this.colisPaid.HeaderText = "Paid";
             this.colisPaid.Name = "colisPaid";
-            this.colisPaid.Width = 34;
+            this.colisPaid.ReadOnly = true;
+            this.colisPaid.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colisPaid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colisPaid.Width = 53;
             // 
             // colprinted
             // 
@@ -727,8 +749,9 @@
             this.colprinted.HeaderText = "Printed";
             this.colprinted.MinimumWidth = 8;
             this.colprinted.Name = "colprinted";
-            this.colprinted.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colprinted.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colprinted.ReadOnly = true;
+            this.colprinted.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colprinted.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colprinted.Width = 68;
             // 
             // colPrint
@@ -742,6 +765,7 @@
             this.colPrint.Image = ((System.Drawing.Image)(resources.GetObject("colPrint.Image")));
             this.colPrint.MinimumWidth = 8;
             this.colPrint.Name = "colPrint";
+            this.colPrint.ReadOnly = true;
             this.colPrint.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colPrint.Width = 17;
             // 
@@ -756,6 +780,7 @@
             this.colEdit.Image = ((System.Drawing.Image)(resources.GetObject("colEdit.Image")));
             this.colEdit.MinimumWidth = 8;
             this.colEdit.Name = "colEdit";
+            this.colEdit.ReadOnly = true;
             this.colEdit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colEdit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colEdit.Width = 17;
@@ -771,6 +796,7 @@
             this.colVoid.Image = global::Invoicing_System.Properties.Resources.voidfile;
             this.colVoid.MinimumWidth = 8;
             this.colVoid.Name = "colVoid";
+            this.colVoid.ReadOnly = true;
             this.colVoid.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colVoid.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colVoid.Width = 17;

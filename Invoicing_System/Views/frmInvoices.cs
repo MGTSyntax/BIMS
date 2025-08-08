@@ -111,13 +111,15 @@ namespace Invoicing_System.Views
 
         private void dgvInvoices_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             try
             {
                 string colName = dgvInvoices.Columns[e.ColumnIndex].Name;
                 string dgvInvId = dgvInvoices.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string dgvInvNo = dgvInvoices.Rows[e.RowIndex].Cells[1].Value.ToString();
                 //string isPaid = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
-                string isPrinted = dgvInvoices.Rows[e.RowIndex].Cells[17].Value.ToString();
+                string isPrinted = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
                 switch (colName)
                 {
                     case "colEdit":
