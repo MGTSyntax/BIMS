@@ -175,7 +175,6 @@
             this.btnMainPayments.BackColor = System.Drawing.Color.Transparent;
             this.btnMainPayments.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMainPayments.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMainPayments.Enabled = false;
             this.btnMainPayments.FlatAppearance.BorderSize = 0;
             this.btnMainPayments.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnMainPayments.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -193,7 +192,6 @@
             this.btnMainPayments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainPayments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnMainPayments.UseVisualStyleBackColor = false;
-            this.btnMainPayments.Visible = false;
             this.btnMainPayments.Click += new System.EventHandler(this.btnMainPayments_Click);
             // 
             // btnMainCustomers

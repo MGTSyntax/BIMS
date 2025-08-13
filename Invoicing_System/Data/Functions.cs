@@ -516,7 +516,6 @@ namespace Invoicing_System.Data
                             }
                         }
                     }
-
                 }
 
                 cbox.DataSource = companies;
@@ -525,31 +524,29 @@ namespace Invoicing_System.Data
 
                 if (!isUpdateMode)
                 {
-                    // Auto-fill textboxes with initial selection
-                    if (cbox.SelectedItem is Company selected)
-                    {
-                        companyIdBox.Text = selected.CompanyID;
-                        invoiceSeriesBox.Text = selected.InvoiceNoSeries.ToString();
-                    }
-
-                    // Update on selection change
-                    cbox.SelectedIndexChanged += (s, e) =>
-                    {
-                        if (cbox.SelectedItem is Company selectedCompany)
-                        {
-                            companyIdBox.Text = selectedCompany.CompanyID;
-                            invoiceSeriesBox.Text = selectedCompany.InvoiceNoSeries.ToString();
-                        }
-                    };
+                    UpdateCompanyTextBoxes(cbox, companyIdBox, invoiceSeriesBox);
+                    cbox.SelectedIndexChanged -= (s, e) => UpdateCompanyTextBoxes(cbox, companyIdBox, invoiceSeriesBox);
+                    cbox.SelectedIndexChanged += (s, e) => UpdateCompanyTextBoxes(cbox, companyIdBox, invoiceSeriesBox);
                 }
             }
             catch (Exception ex)
             {
-                con.Close();
                 MessageBox.Show("Problem in Loading data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 throw;
             }
         }
         // End of Populate Title Template
+
+        private void UpdateCompanyTextBoxes(ComboBox cbox, TextBox companyIdBox, TextBox invoiceSeriesBox)
+        {
+            if (cbox.SelectedItem is Company selected)
+            {
+                companyIdBox.Text = selected.CompanyID;
+                if (invoiceSeriesBox != null)
+                {
+                    invoiceSeriesBox.Text = selected.InvoiceNoSeries.ToString();
+                }
+            }
+        }
     }
 }

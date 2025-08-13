@@ -121,7 +121,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(950, 34);
+            this.panel1.Size = new System.Drawing.Size(949, 34);
             this.panel1.TabIndex = 0;
             // 
             // label23
@@ -141,7 +141,7 @@
             this.pbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbClose.Image = ((System.Drawing.Image)(resources.GetObject("pbClose.Image")));
-            this.pbClose.Location = new System.Drawing.Point(921, 5);
+            this.pbClose.Location = new System.Drawing.Point(920, 5);
             this.pbClose.Name = "pbClose";
             this.pbClose.Size = new System.Drawing.Size(25, 24);
             this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -501,11 +501,11 @@
             // 
             this.txtpreparedBy.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.errorProvider.SetIconAlignment(this.txtpreparedBy, System.Windows.Forms.ErrorIconAlignment.MiddleLeft);
-            this.txtpreparedBy.Location = new System.Drawing.Point(849, 716);
+            this.txtpreparedBy.Location = new System.Drawing.Point(608, 514);
             this.txtpreparedBy.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtpreparedBy.Name = "txtpreparedBy";
             this.txtpreparedBy.ReadOnly = true;
-            this.txtpreparedBy.Size = new System.Drawing.Size(42, 23);
+            this.txtpreparedBy.Size = new System.Drawing.Size(64, 23);
             this.txtpreparedBy.TabIndex = 50;
             this.txtpreparedBy.Visible = false;
             // 
@@ -538,11 +538,11 @@
             // txtDetID
             // 
             this.txtDetID.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDetID.Location = new System.Drawing.Point(799, 715);
+            this.txtDetID.Location = new System.Drawing.Point(530, 514);
             this.txtDetID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtDetID.Name = "txtDetID";
             this.txtDetID.ReadOnly = true;
-            this.txtDetID.Size = new System.Drawing.Size(42, 23);
+            this.txtDetID.Size = new System.Drawing.Size(69, 23);
             this.txtDetID.TabIndex = 41;
             this.txtDetID.Visible = false;
             this.txtDetID.TextChanged += new System.EventHandler(this.txtDetID_TextChanged);
@@ -581,13 +581,14 @@
             // txtcompID
             // 
             this.txtcompID.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcompID.Location = new System.Drawing.Point(899, 716);
+            this.txtcompID.Location = new System.Drawing.Point(681, 514);
             this.txtcompID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtcompID.Name = "txtcompID";
             this.txtcompID.ReadOnly = true;
-            this.txtcompID.Size = new System.Drawing.Size(42, 23);
+            this.txtcompID.Size = new System.Drawing.Size(63, 23);
             this.txtcompID.TabIndex = 44;
             this.txtcompID.Visible = false;
+            this.txtcompID.TextChanged += new System.EventHandler(this.txtcompID_TextChanged);
             // 
             // txtNonDeductible
             // 
@@ -958,7 +959,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 549);
+            this.ClientSize = new System.Drawing.Size(949, 551);
             this.ControlBox = false;
             this.Controls.Add(this.label42);
             this.Controls.Add(this.cbComp);

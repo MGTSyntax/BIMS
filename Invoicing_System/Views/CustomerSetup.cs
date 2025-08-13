@@ -77,6 +77,7 @@ namespace Invoicing_System.Views
 
         private void dgvCustomers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
             try
             {
                 string colName = dgvCustomers.Columns[e.ColumnIndex].Name;

@@ -19,7 +19,6 @@ namespace Invoicing_System.Views.Monitoring
         public int InvID { get; set; }
         private string _vatactive;
         private double zeroout = 0.00;
-        private string existingDetachmentId = "0";
 
         public InvoiceDetails(frmInvoices frmI)
         {
@@ -210,8 +209,72 @@ namespace Invoicing_System.Views.Monitoring
 
         }
 
+        private void InvoiceDetails_Load(object sender, EventArgs e)
+        {
+            if (FormCode == "UPD")
+            {
+                functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo, isUpdateMode: true);
+
+                var headerQuery = "SELECT compID, customerID FROM invoice_monitoring WHERE invoicesid = @InvID";
+                var parameters = new Dictionary<string, object> { { "@InvID", InvID } };
+                DataTable headerDt = functions.ParamSelectData(headerQuery, "invoiceHeader", parameters);
+
+                if (headerDt.Rows.Count > 0)
+                {
+                    txtcompID.Text = headerDt.Rows[0]["compID"].ToString();
+                    cbComp.SelectedValue = txtcompID.Text.ToLower();
+
+                    PopulateDetachment();
+
+                    txtDetID.Text = headerDt.Rows[0]["customerID"].ToString();
+                    cmbDetachment.SelectedValue = txtDetID.Text;
+                }
+
+                PopulateControlsToUpdate();
+            }
+            else
+            {
+                functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo);
+                Reset();
+            }
+        }
+
+        private void cbComp_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbComp.SelectedValue != null)
+            {
+                txtcompID.Text = cbComp.SelectedValue.ToString().ToLower();
+            }
+        }
+
+        private void cmbDetachment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDetachment.SelectedValue != null)
+            {
+                txtDetID.Text = cmbDetachment.SelectedValue.ToString();
+            }
+
+            if (txtDetID.Text == "0")
+            {
+                Reset();
+            }
+            else
+            {
+                errorProvider.Clear();
+            }
+        }
+
+        private void txtcompID_TextChanged(object sender, EventArgs e)
+        {
+            //cbComp.SelectedValue = txtcompID.Text;
+            if (!string.IsNullOrEmpty(txtcompID.Text))
+            {
+                PopulateDetachment();
+            }
+        }
+
         // Populate Detachment
-        private void PopulateDetachment(string selectedId = "0")
+        private void PopulateDetachment()
         {
             string Detquery = "SELECT custID, custName FROM customerstable WHERE isDeleted=0 " +
                 "AND compID IN (" + Variables.User_CompAccess + ") AND compID = '" + txtcompID.Text + "' ORDER by custName";
@@ -220,89 +283,60 @@ namespace Invoicing_System.Views.Monitoring
 
             functions.PopulateComboboxFromDb(cmbDetachment, Detquery, DetdisplayMember, DetvalueMember, "Select an option", "0");
 
-            // Only set selection if provided (for update mode)
-            cmbDetachment.SelectedValue = selectedId;
             //txtDetID.Text = cmbDetachment.SelectedValue.ToString();
         }
 
         private void PopulateControlsToUpdate()
         {
-            string query = "SELECT a.reimbursement,a.agencyFee,a.vat,a.otherBillable,b.custName,a.titleTemplate," +
-                "a.billingPeriod_from,a.billingPeriod_to,a.invoiceNumber,a.notes,a.nonDeductible,preparedBy,a.discount " +
-                "FROM invoice_monitoring a INNER JOIN customerstable b ON a.customerID = b.custID " +
-                "WHERE invoicesid = '" + InvID.ToString() + "'";
+            string query = @"SELECT a.reimbursement, a.agencyFee, a.vat, a.otherBillable, b.custName, a.titleTemplate,
+                        a.billingPeriod_from, a.billingPeriod_to, a.invoiceNumber, a.notes, a.nonDeductible,
+                        preparedBy, a.discount, a.compID, a.customerID
+                    FROM invoice_monitoring a
+                    INNER JOIN customerstable b ON a.customerID = b.custID
+                    INNER JOIN tblcompanies c ON a.compID = c.companyID
+                    WHERE invoicesid = @InvID";
 
-            var.dt = functions.SelectData(query, "invoice_monitoring");
+            var parameters = new Dictionary<string, object> { { "@InvID", InvID } };
+            var.dt = functions.ParamSelectData(query, "invoice_monitoring", parameters);
+
             if (var.dt.Rows.Count > 0)
             {
-                foreach (DataRow dr in var.dt.Rows)
-                {
-                    txtBillableType.Text = dr[0].ToString();
-                    functions.ConvertToDecimal(txtBillableType);
+                DataRow dr = var.dt.Rows[0];
 
-                    txtAgencyFee.Text = dr[1].ToString();
-                    functions.ConvertToDecimal(txtAgencyFee);
+                txtBillableType.Text = dr[0].ToString();
+                functions.ConvertToDecimal(txtBillableType);
 
-                    txtVAT.Text = dr[2].ToString();
-                    functions.ConvertToDecimal(txtVAT);
+                txtAgencyFee.Text = dr[1].ToString();
+                functions.ConvertToDecimal(txtAgencyFee);
 
-                    txtOtherBillables.Text = dr[3].ToString();
-                    functions.ConvertToDecimal(txtOtherBillables);
+                txtVAT.Text = dr[2].ToString();
+                functions.ConvertToDecimal(txtVAT);
 
-                    cmbDetachment.Text = dr[4].ToString();
+                txtOtherBillables.Text = dr[3].ToString();
+                functions.ConvertToDecimal(txtOtherBillables);
 
-                    txtInvoiceFor.Text = dr[5].ToString();
+                // Don't set cmbDetachment.Text here — already handled in Load event
 
-                    bpFrom.Value = (DateTime)dr[6];
+                txtInvoiceFor.Text = dr[5].ToString();
+                bpFrom.Value = (DateTime)dr[6];
+                bpTo.Value = (DateTime)dr[7];
+                txtInvoiceNo.Text = dr[8].ToString();
+                txtNotes.Text = dr[9].ToString();
 
-                    bpTo.Value = (DateTime)dr[7];
+                txtNonDeductible.Text = dr[10].ToString();
+                functions.ConvertToDecimal(txtNonDeductible);
 
-                    txtInvoiceNo.Text = dr[8].ToString();
+                txtpreparedBy.Text = dr[11].ToString();
+                txtDiscount.Text = dr[12].ToString();
+                functions.ConvertToDecimal(txtDiscount);
 
-                    txtNotes.Text = dr[9].ToString();
+                // Calculate display fields
+                CalculateTotal();
 
-                    txtNonDeductible.Text = dr[10].ToString();
-                    functions.ConvertToDecimal(txtNonDeductible);
-
-                    txtpreparedBy.Text = dr[11].ToString();
-
-                    txtDiscount.Text = dr[12].ToString();
-                    functions.ConvertToDecimal(txtDiscount);
-
-                    // Calculate and Display the total sales
-                    decimal totalSales = Convert.ToDecimal(txtAgencyFee.Text) + Convert.ToDecimal(txtVAT.Text);
-                    txttsVATin.Text = totalSales.ToString("N");
-
-                    // Display less: VAT
-                    txtlessVAT.Text = (-Math.Abs(Convert.ToDecimal(txtVAT.Text))).ToString("N");
-
-                    // Display net of VAT
-                    txtnetofVAT.Text = Convert.ToDecimal(txtAgencyFee.Text).ToString("N");
-
-                    // Fetch, calculate and display less: Withholding Tax
-                    string qrywTaxRate = functions.GetRecordString("SELECT wtax_rate FROM tblwtax");
-                    decimal wTaxRate = Convert.ToDecimal(qrywTaxRate);
-                    decimal wTax = Convert.ToDecimal(txtAgencyFee.Text) * wTaxRate;
-                    txtlessWTax.Text = (-Math.Abs(wTax)).ToString("N");
-
-                    // Calculate and display amount due
-                    decimal amtDue = Convert.ToDecimal(txtAgencyFee.Text) - wTax;
-                    txtamtDue.Text = amtDue.ToString("N");
-
-                    // Display add: 12% VAT
-                    txtaddVAT.Text = Convert.ToDecimal(txtVAT.Text).ToString("N");
-
-                    // Calculate and display total amount due
-                    decimal totalAmtDue = amtDue + Convert.ToDecimal(txtVAT.Text);
-                    txttotalamtDue.Text = totalAmtDue.ToString("N");
-
-                    // Calculate and display grand total
-                    decimal grandTotal = Convert.ToDecimal(txtTotal.Text) - wTax;
-                    txtgrandTotal.Text = grandTotal.ToString("N");
-                }
-
-                string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + txtInvoiceNo.Text + "'";
-                var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
+                // Invoice number lock check
+                string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = @InvoiceNo";
+                var checkParams = new Dictionary<string, object> { { "@InvoiceNo", txtInvoiceNo.Text } };
+                var dtqryinvoiceNum = functions.ParamSelectData(qryinvoiceNum, "qryinvoiceNum", checkParams);
                 if (dtqryinvoiceNum.Rows.Count > 0)
                 {
                     txtInvoiceNo.ReadOnly = true;
@@ -310,40 +344,100 @@ namespace Invoicing_System.Views.Monitoring
             }
         }
 
+
+        //private void PopulateControlsToUpdate()
+        //{
+        //    string query = "SELECT a.reimbursement, a.agencyFee, a.vat, a.otherBillable, b.custName, a.titleTemplate, " +
+        //        "a.billingPeriod_from, a.billingPeriod_to, a.invoiceNumber, a.notes, a.nonDeductible, preparedBy, a.discount, " +
+        //        "a.compID, a.customerID FROM invoice_monitoring a INNER JOIN customerstable b ON a.customerID = b.custID " +
+        //        "INNER JOIN tblcompanies c ON a.compID = c.companyID WHERE invoicesid = '" + InvID.ToString() + "'";
+        //    // c.companyName, 
+        //    var.dt = functions.SelectData(query, "invoice_monitoring");
+        //    if (var.dt.Rows.Count > 0)
+        //    {
+        //        foreach (DataRow dr in var.dt.Rows)
+        //        {
+        //            txtBillableType.Text = dr[0].ToString();
+        //            functions.ConvertToDecimal(txtBillableType);
+
+        //            txtAgencyFee.Text = dr[1].ToString();
+        //            functions.ConvertToDecimal(txtAgencyFee);
+
+        //            txtVAT.Text = dr[2].ToString();
+        //            functions.ConvertToDecimal(txtVAT);
+
+        //            txtOtherBillables.Text = dr[3].ToString();
+        //            functions.ConvertToDecimal(txtOtherBillables);
+
+        //            cmbDetachment.Text = dr[4].ToString();
+
+        //            txtInvoiceFor.Text = dr[5].ToString();
+
+        //            bpFrom.Value = (DateTime)dr[6];
+
+        //            bpTo.Value = (DateTime)dr[7];
+
+        //            txtInvoiceNo.Text = dr[8].ToString();
+
+        //            txtNotes.Text = dr[9].ToString();
+
+        //            txtNonDeductible.Text = dr[10].ToString();
+        //            functions.ConvertToDecimal(txtNonDeductible);
+
+        //            txtpreparedBy.Text = dr[11].ToString();
+
+        //            txtDiscount.Text = dr[12].ToString();
+        //            functions.ConvertToDecimal(txtDiscount);
+
+        //            txtcompID.Text = dr[13].ToString();
+        //            cbComp.SelectedValue = txtcompID.Text;
+
+        //            txtDetID.Text = dr[14].ToString();
+
+        //            // Calculate and Display the total sales
+        //            decimal totalSales = Convert.ToDecimal(txtAgencyFee.Text) + Convert.ToDecimal(txtVAT.Text);
+        //            txttsVATin.Text = totalSales.ToString("N");
+
+        //            // Display less: VAT
+        //            txtlessVAT.Text = (-Math.Abs(Convert.ToDecimal(txtVAT.Text))).ToString("N");
+
+        //            // Display net of VAT
+        //            txtnetofVAT.Text = Convert.ToDecimal(txtAgencyFee.Text).ToString("N");
+
+        //            // Fetch, calculate and display less: Withholding Tax
+        //            string qrywTaxRate = functions.GetRecordString("SELECT wtax_rate FROM tblwtax");
+        //            decimal wTaxRate = Convert.ToDecimal(qrywTaxRate);
+        //            decimal wTax = Convert.ToDecimal(txtAgencyFee.Text) * wTaxRate;
+        //            txtlessWTax.Text = (-Math.Abs(wTax)).ToString("N");
+
+        //            // Calculate and display amount due
+        //            decimal amtDue = Convert.ToDecimal(txtAgencyFee.Text) - wTax;
+        //            txtamtDue.Text = amtDue.ToString("N");
+
+        //            // Display add: 12% VAT
+        //            txtaddVAT.Text = Convert.ToDecimal(txtVAT.Text).ToString("N");
+
+        //            // Calculate and display total amount due
+        //            decimal totalAmtDue = amtDue + Convert.ToDecimal(txtVAT.Text);
+        //            txttotalamtDue.Text = totalAmtDue.ToString("N");
+
+        //            // Calculate and display grand total
+        //            decimal grandTotal = Convert.ToDecimal(txtTotal.Text) - wTax;
+        //            txtgrandTotal.Text = grandTotal.ToString("N");
+        //        }
+
+        //        string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + txtInvoiceNo.Text + "'";
+        //        var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
+        //        if (dtqryinvoiceNum.Rows.Count > 0)
+        //        {
+        //            txtInvoiceNo.ReadOnly = true;
+        //        }
+        //    }
+        //}
+
         private void pbClose_Click(object sender, EventArgs e)
         {
             this.Dispose();
-        }
-
-        private void cmbDetachment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbDetachment.SelectedValue != null)
-                txtDetID.Text = cmbDetachment.SelectedValue.ToString();
-
-            if (txtDetID.Text == "0")
-                Reset();
-            else
-                errorProvider.Clear();
-        }
-
-        private void chkbSpecifyTT_CheckedChanged(object sender, EventArgs e)
-        {
-            bool isStringValid = val.FormStringValidation(GetControlsToValidateString(), errorProvider);
-            if (isStringValid)
-            {
-                if (chkbSpecifyTT.Checked)
-                {
-                    txtInvoiceFor.ReadOnly = false;
-                    txtInvoiceFor.SelectAll();
-                    txtInvoiceFor.Focus();
-                }
-                else
-                {
-                    txtInvoiceFor.ReadOnly = true;
-                    GetCustDetails();
-                }
-            }
-            else chkbSpecifyTT.Checked = false;
         }
 
         private void txtDetID_TextChanged(object sender, EventArgs e)
@@ -372,18 +466,24 @@ namespace Invoicing_System.Views.Monitoring
             else txtInvoiceFor.Clear();
         }
 
-        private void InvoiceDetails_Load(object sender, EventArgs e)
+        private void chkbSpecifyTT_CheckedChanged(object sender, EventArgs e)
         {
-            if (FormCode == "UPD")
+            bool isStringValid = val.FormStringValidation(GetControlsToValidateString(), errorProvider);
+            if (isStringValid)
             {
-                functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo, isUpdateMode: true);
-                PopulateControlsToUpdate();
+                if (chkbSpecifyTT.Checked)
+                {
+                    txtInvoiceFor.ReadOnly = false;
+                    txtInvoiceFor.SelectAll();
+                    txtInvoiceFor.Focus();
+                }
+                else
+                {
+                    txtInvoiceFor.ReadOnly = true;
+                    GetCustDetails();
+                }
             }
-            else
-            {
-                functions.PopulateMIBCompanies(cbComp, txtcompID, txtInvoiceNo);
-                Reset();
-            }
+            else chkbSpecifyTT.Checked = false;
         }
 
         private void Reset()
@@ -535,7 +635,7 @@ namespace Invoicing_System.Views.Monitoring
             else
             {
                 functions.ConvertToDecimal(txtDiscount);
-                
+
                 if (decimal.TryParse(txtDiscount.Text, out var value))
                 {
                     txtDiscount.Text = (-Math.Abs(value)).ToString();
@@ -629,14 +729,5 @@ namespace Invoicing_System.Views.Monitoring
             txtgrandTotal.Text = grandTotal.ToString("N");
         }
 
-        private void cbComp_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtcompID.Text = cbComp.SelectedValue.ToString();
-
-            if (FormCode == "UPD")
-                PopulateDetachment(existingDetachmentId);
-            else
-                PopulateDetachment();
-        }
     }
 }

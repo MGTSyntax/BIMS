@@ -58,7 +58,7 @@ namespace Invoicing_System.Views
 
         public void PopPaymentDGV(string queryFilters)
         {
-            string qryInterest = "SELECT a.interestID," +
+            string qryInterest = "SELECT a.paymentID," +
                 "a.invoiceNum," +
                 "b.custName," +
                 "a.shippingDate," +
@@ -70,7 +70,6 @@ namespace Invoicing_System.Views
                 "a.isPaid " +
                 "FROM interest_monitoring a LEFT JOIN customerstable b ON a.customerID = b.custID LEFT JOIN " +
                 "(SELECT IF(DATEDIFF(CURDATE(), shippingDate) < 0, (DATEDIFF(CURDATE(), shippingDate) * - 1), DATEDIFF(CURDATE(), shippingDate)) AS age_value, invoiceNum FROM interest_monitoring) AS age ON a.invoiceNum = age.invoiceNum";
-            //Interest  - IF(age.age_value > 30, (IFNULL(a.balanceAmt - (SELECT SUM(p_invoiceBalPay) FROM tblpayment WHERE p_invoiceNum = a.invoiceNum), a.balanceAmt) * (SELECT interest_rate FROM tblinterest)), a.interestAmount) as interest,
 
             functions.PopulateDataGridView(dgvInterest, qryInterest + " " + queryFilters);
             lastperformedQuery = qryInterest + " " + queryFilters;

@@ -209,7 +209,7 @@ namespace Invoicing_System.Views
 
             if (isPaid == "False")
             {
-                string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + invNo.ToString() + "'";
+                string qryinvoiceNum = "SELECT * FROM payment_monitoring WHERE invoiceNum = '" + invNo.ToString() + "'";
                 var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
                 if (dtqryinvoiceNum.Rows.Count > 0)
                 {

@@ -66,8 +66,8 @@ namespace Invoicing_System.Views.CustomerList
 
         private void PopulateControlsToUpdate()
         {
-            string query = "SELECT custName,contactPerson,cpPosition,custagencyFee,isvatable,otherBillAmt," +
-                "companyAddress,emailAddress,titleid,hasInterest,b.companyName,tin,telno FROM customerstable a " +
+            string query = "SELECT custName, contactPerson, cpPosition, custagencyFee, isvatable, otherBillAmt, " +
+                "companyAddress, emailAddress, titleid, hasInterest, b.companyName, tin, telno FROM customerstable a " +
                 "LEFT JOIN tblcompanies b ON a.compID = b.companyID WHERE custID = '" + CustID.ToString() + "'";
             var.dt = functions.SelectData(query, "customerstable");
             if (var.dt.Rows.Count > 0)
