@@ -130,5 +130,15 @@ namespace Invoicing_System
             frmUploadBillings.BringToFront();
             frmUploadBillings.Show();
         }
+
+        private void btnReimBreakDown_Click(object sender, EventArgs e)
+        {
+            pnlMainView.Controls.Clear();
+            frmReimbursements frmReimbursements = new frmReimbursements();
+            frmReimbursements.TopLevel = false;
+            pnlMainView.Controls.Add(frmReimbursements);
+            frmReimbursements.BringToFront();
+            frmReimbursements.Show();
+        }
     }
 }

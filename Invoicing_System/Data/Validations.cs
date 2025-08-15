@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -31,11 +32,8 @@ namespace Invoicing_System.Data
         // Check Controls for Numeric Value Only
         public bool isNumeric(IEnumerable<Control> control, ErrorProvider errorProvider)
         {
-            // Regex contents = new Regex(@"^(?:\d{1,3}(?:,\d{3})*|\d+)(?:\.\d+)?$");
-
             foreach (var ctrl in control)
             {
-                // if (!contents.IsMatch(ctrl.Text))
                 if (!decimal.TryParse(ctrl.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out _))
                 {
                     errorProvider.SetError(ctrl, "Numbers Only!");
@@ -46,6 +44,27 @@ namespace Invoicing_System.Data
 
             return true;
         } // End of isNumeric
+
+        // Check if a textbox has numeric value only
+        public bool ValidateNumeric(TextBox ctrl, ErrorProvider errorProvider)
+        {
+            if (ctrl == null) return false;
+
+            bool isValid = decimal.TryParse(ctrl.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out _);
+            
+            if(!isValid)
+            {
+                errorProvider.SetError(ctrl, "Numbers Only!");
+                ctrl.SelectAll();
+                ctrl.Focus();
+            }
+            else
+            {
+                errorProvider.SetError(ctrl, null);
+            }
+
+            return isValid;
+        }
 
         // Check for Valid Date Range
         public bool isDateRangeValid(DateTimePicker dateFrom, DateTimePicker dateTo, ErrorProvider errorProvider)

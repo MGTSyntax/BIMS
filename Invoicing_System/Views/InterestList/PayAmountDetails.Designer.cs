@@ -55,11 +55,11 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtBalance = new System.Windows.Forms.TextBox();
             this.gbPayment = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.txtBank = new System.Windows.Forms.TextBox();
             this.gbBalance = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txttotalBal = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtBank = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errPPayAmt)).BeginInit();
@@ -377,6 +377,27 @@
             this.gbPayment.TabStop = false;
             this.gbPayment.Text = "Pay";
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.label8.Location = new System.Drawing.Point(34, 149);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(39, 15);
+            this.label8.TabIndex = 55;
+            this.label8.Text = "Bank :";
+            // 
+            // txtBank
+            // 
+            this.txtBank.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBank.Location = new System.Drawing.Point(139, 146);
+            this.txtBank.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.txtBank.Name = "txtBank";
+            this.txtBank.Size = new System.Drawing.Size(269, 23);
+            this.txtBank.TabIndex = 54;
+            // 
             // gbBalance
             // 
             this.gbBalance.Controls.Add(this.label9);
@@ -423,27 +444,6 @@
             this.txttotalBal.TabIndex = 5;
             this.txttotalBal.Text = "0";
             this.txttotalBal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label8.Location = new System.Drawing.Point(34, 149);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(39, 15);
-            this.label8.TabIndex = 55;
-            this.label8.Text = "Bank :";
-            // 
-            // txtBank
-            // 
-            this.txtBank.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBank.Location = new System.Drawing.Point(139, 146);
-            this.txtBank.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.txtBank.Name = "txtBank";
-            this.txtBank.Size = new System.Drawing.Size(269, 23);
-            this.txtBank.TabIndex = 54;
             // 
             // PayAmountDetails
             // 

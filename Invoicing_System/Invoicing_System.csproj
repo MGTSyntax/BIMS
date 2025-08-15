@@ -260,6 +260,12 @@
     <Compile Include="Views\frmPayments.Designer.cs">
       <DependentUpon>frmPayments.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\frmReimbursements.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmReimbursements.Designer.cs">
+      <DependentUpon>frmReimbursements.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmUploadBillings.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -277,6 +283,12 @@
     </Compile>
     <Compile Include="Views\OtherSetupList\WTaxRate.Designer.cs">
       <DependentUpon>WTaxRate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReimbursementList\ReimbursementDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ReimbursementList\ReimbursementDetails.Designer.cs">
+      <DependentUpon>ReimbursementDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\Reporting\frmCustomerList.cs">
       <SubType>Form</SubType>
@@ -407,6 +419,9 @@
     <EmbeddedResource Include="Views\frmPayments.resx">
       <DependentUpon>frmPayments.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Views\frmReimbursements.resx">
+      <DependentUpon>frmReimbursements.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\frmUploadBillings.resx">
       <DependentUpon>frmUploadBillings.cs</DependentUpon>
     </EmbeddedResource>
@@ -415,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\OtherSetupList\WTaxRate.resx">
       <DependentUpon>WTaxRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ReimbursementList\ReimbursementDetails.resx">
+      <DependentUpon>ReimbursementDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\Reporting\frmCustomerList.resx">
       <DependentUpon>frmCustomerList.cs</DependentUpon>

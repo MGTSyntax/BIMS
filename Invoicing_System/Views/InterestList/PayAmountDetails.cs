@@ -127,6 +127,5 @@ namespace Invoicing_System.Views.InterestList
             txtBalancePay.SelectAll();
             txtBalancePay.Focus();
         }
-
     }
 }

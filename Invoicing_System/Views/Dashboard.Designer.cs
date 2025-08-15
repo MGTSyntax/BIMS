@@ -47,6 +47,7 @@
             this.pnlMainView = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnSignout = new System.Windows.Forms.Button();
+            this.btnReimBreakDown = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).BeginInit();
@@ -61,6 +62,7 @@
             this.panel1.Controls.Add(this.btnMainTitle);
             this.panel1.Controls.Add(this.btnMainPayments);
             this.panel1.Controls.Add(this.btnMainCustomers);
+            this.panel1.Controls.Add(this.btnReimBreakDown);
             this.panel1.Controls.Add(this.btnMainExit);
             this.panel1.Controls.Add(this.btnMainMonitoring);
             this.panel1.Controls.Add(this.btnMainDashboard);
@@ -85,12 +87,12 @@
             this.btnMainUsers.ForeColor = System.Drawing.Color.White;
             this.btnMainUsers.Image = ((System.Drawing.Image)(resources.GetObject("btnMainUsers.Image")));
             this.btnMainUsers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMainUsers.Location = new System.Drawing.Point(0, 550);
+            this.btnMainUsers.Location = new System.Drawing.Point(0, 600);
             this.btnMainUsers.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainUsers.Name = "btnMainUsers";
             this.btnMainUsers.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainUsers.Size = new System.Drawing.Size(214, 50);
-            this.btnMainUsers.TabIndex = 8;
+            this.btnMainUsers.TabIndex = 9;
             this.btnMainUsers.Text = "   Users";
             this.btnMainUsers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainUsers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -103,6 +105,7 @@
             this.btnUploadBillings.BackColor = System.Drawing.Color.Transparent;
             this.btnUploadBillings.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnUploadBillings.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnUploadBillings.Enabled = false;
             this.btnUploadBillings.FlatAppearance.BorderSize = 0;
             this.btnUploadBillings.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
             this.btnUploadBillings.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -110,16 +113,17 @@
             this.btnUploadBillings.ForeColor = System.Drawing.Color.White;
             this.btnUploadBillings.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadBillings.Image")));
             this.btnUploadBillings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadBillings.Location = new System.Drawing.Point(0, 500);
+            this.btnUploadBillings.Location = new System.Drawing.Point(0, 550);
             this.btnUploadBillings.Margin = new System.Windows.Forms.Padding(4);
             this.btnUploadBillings.Name = "btnUploadBillings";
             this.btnUploadBillings.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnUploadBillings.Size = new System.Drawing.Size(214, 50);
-            this.btnUploadBillings.TabIndex = 7;
+            this.btnUploadBillings.TabIndex = 8;
             this.btnUploadBillings.Text = "   Upload Billings";
             this.btnUploadBillings.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnUploadBillings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUploadBillings.UseVisualStyleBackColor = false;
+            this.btnUploadBillings.Visible = false;
             this.btnUploadBillings.Click += new System.EventHandler(this.btnUploadBillings_Click);
             // 
             // btnMainCompany
@@ -134,12 +138,12 @@
             this.btnMainCompany.ForeColor = System.Drawing.Color.White;
             this.btnMainCompany.Image = ((System.Drawing.Image)(resources.GetObject("btnMainCompany.Image")));
             this.btnMainCompany.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMainCompany.Location = new System.Drawing.Point(0, 450);
+            this.btnMainCompany.Location = new System.Drawing.Point(0, 500);
             this.btnMainCompany.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainCompany.Name = "btnMainCompany";
             this.btnMainCompany.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainCompany.Size = new System.Drawing.Size(214, 50);
-            this.btnMainCompany.TabIndex = 6;
+            this.btnMainCompany.TabIndex = 7;
             this.btnMainCompany.Text = "   Company";
             this.btnMainCompany.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainCompany.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -158,12 +162,12 @@
             this.btnMainTitle.ForeColor = System.Drawing.Color.White;
             this.btnMainTitle.Image = ((System.Drawing.Image)(resources.GetObject("btnMainTitle.Image")));
             this.btnMainTitle.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMainTitle.Location = new System.Drawing.Point(0, 400);
+            this.btnMainTitle.Location = new System.Drawing.Point(0, 450);
             this.btnMainTitle.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainTitle.Name = "btnMainTitle";
             this.btnMainTitle.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainTitle.Size = new System.Drawing.Size(214, 50);
-            this.btnMainTitle.TabIndex = 5;
+            this.btnMainTitle.TabIndex = 6;
             this.btnMainTitle.Text = "   Rates";
             this.btnMainTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainTitle.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -182,12 +186,12 @@
             this.btnMainPayments.ForeColor = System.Drawing.Color.White;
             this.btnMainPayments.Image = ((System.Drawing.Image)(resources.GetObject("btnMainPayments.Image")));
             this.btnMainPayments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMainPayments.Location = new System.Drawing.Point(0, 350);
+            this.btnMainPayments.Location = new System.Drawing.Point(0, 400);
             this.btnMainPayments.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainPayments.Name = "btnMainPayments";
             this.btnMainPayments.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainPayments.Size = new System.Drawing.Size(214, 50);
-            this.btnMainPayments.TabIndex = 4;
+            this.btnMainPayments.TabIndex = 5;
             this.btnMainPayments.Text = "   Payments";
             this.btnMainPayments.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainPayments.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -206,12 +210,12 @@
             this.btnMainCustomers.ForeColor = System.Drawing.Color.White;
             this.btnMainCustomers.Image = ((System.Drawing.Image)(resources.GetObject("btnMainCustomers.Image")));
             this.btnMainCustomers.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMainCustomers.Location = new System.Drawing.Point(0, 300);
+            this.btnMainCustomers.Location = new System.Drawing.Point(0, 350);
             this.btnMainCustomers.Margin = new System.Windows.Forms.Padding(4);
             this.btnMainCustomers.Name = "btnMainCustomers";
             this.btnMainCustomers.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
             this.btnMainCustomers.Size = new System.Drawing.Size(214, 50);
-            this.btnMainCustomers.TabIndex = 3;
+            this.btnMainCustomers.TabIndex = 4;
             this.btnMainCustomers.Text = "   Customers";
             this.btnMainCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMainCustomers.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -391,6 +395,30 @@
             this.btnSignout.UseVisualStyleBackColor = false;
             this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
             // 
+            // btnReimBreakDown
+            // 
+            this.btnReimBreakDown.BackColor = System.Drawing.Color.Transparent;
+            this.btnReimBreakDown.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReimBreakDown.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReimBreakDown.FlatAppearance.BorderSize = 0;
+            this.btnReimBreakDown.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnReimBreakDown.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReimBreakDown.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReimBreakDown.ForeColor = System.Drawing.Color.White;
+            this.btnReimBreakDown.Image = ((System.Drawing.Image)(resources.GetObject("btnReimBreakDown.Image")));
+            this.btnReimBreakDown.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReimBreakDown.Location = new System.Drawing.Point(0, 300);
+            this.btnReimBreakDown.Margin = new System.Windows.Forms.Padding(4);
+            this.btnReimBreakDown.Name = "btnReimBreakDown";
+            this.btnReimBreakDown.Padding = new System.Windows.Forms.Padding(13, 0, 0, 0);
+            this.btnReimBreakDown.Size = new System.Drawing.Size(214, 50);
+            this.btnReimBreakDown.TabIndex = 3;
+            this.btnReimBreakDown.Text = "   Reimbursements";
+            this.btnReimBreakDown.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReimBreakDown.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReimBreakDown.UseVisualStyleBackColor = false;
+            this.btnReimBreakDown.Click += new System.EventHandler(this.btnReimBreakDown_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -434,6 +462,7 @@
         private System.Windows.Forms.Button btnMainPayments;
         private System.Windows.Forms.Button btnSignout;
         private System.Windows.Forms.Button btnUploadBillings;
+        private System.Windows.Forms.Button btnReimBreakDown;
     }
 }
 

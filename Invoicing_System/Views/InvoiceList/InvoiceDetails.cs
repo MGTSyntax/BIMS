@@ -206,7 +206,6 @@ namespace Invoicing_System.Views.Monitoring
             yield return txtNonDeductible;
             yield return txtOtherBillables;
             yield return txtDiscount;
-
         }
 
         private void InvoiceDetails_Load(object sender, EventArgs e)

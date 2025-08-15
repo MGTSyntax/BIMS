@@ -257,3 +257,5 @@ D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Drawing.Common.pdb
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Drawing.Common.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmReimbursements.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.ReimbursementList.ReimbursementDetails.resources
