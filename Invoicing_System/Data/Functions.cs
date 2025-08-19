@@ -1,22 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms.DataVisualization.Charting;
 using System.Windows.Forms;
-using System.ComponentModel;
 using System.Data;
-using System.Text.RegularExpressions;
-using Invoicing_System.Reports;
-using Microsoft.Reporting.WinForms;
-using System.Runtime.Remoting.Lifetime;
 using System.IO;
 using OfficeOpenXml;
-using Google.Protobuf.WellKnownTypes;
-using static OfficeOpenXml.ExcelErrorValue;
+using OfficeOpenXml.Style;
 
 namespace Invoicing_System.Data
 {
@@ -546,6 +535,95 @@ namespace Invoicing_System.Data
                 {
                     invoiceSeriesBox.Text = selected.InvoiceNoSeries.ToString();
                 }
+            }
+        }
+
+        public void logEvent(string historyTable, string queryTable, string queryTableId, string recordId = null)
+        {
+            string logQuery;
+
+            if (recordId == null) // CRT
+            {
+                logQuery = $@"
+                    CALL SP_history(@username, 
+                        '{historyTable}', 
+                        '{queryTable}', 
+                        '{queryTableId}', 
+                        (SELECT MAX(`{queryTableId}`) FROM `{queryTable}`)
+                    );
+                ";
+            }
+            else // UPD
+            {
+                logQuery = $@"
+                    CALL SP_history(@username, 
+                        '{historyTable}', 
+                        '{queryTable}', 
+                        '{queryTableId}', 
+                        {recordId}
+                    );
+                ";
+            }
+
+            var parameters = new Dictionary<string, object>
+            {
+                { "@username", Variables.user_unameValue }
+            };
+
+            ParamSaveData(logQuery, parameters);
+        }
+
+        public void createExcelReport(string reportQuery, string sheetName)
+        {
+            try
+            {
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                {
+                    using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(reportQuery, localCon))
+                    {
+                        DataTable dt = new DataTable();
+                        dataAdapter.Fill(dt);
+
+                        using (ExcelPackage package = new ExcelPackage())
+                        {
+                            ExcelWorksheet ws = package.Workbook.Worksheets.Add(sheetName);
+
+                            // Load datatable into worksheet, starting at cell A1
+                            ws.Cells["A1"].LoadFromDataTable(dt, true);
+
+                            // Style header
+                            using (var range = ws.Cells[1, 1, 1, dt.Columns.Count])
+                            {
+                                range.Style.Font.Bold = true;
+                                range.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                                range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                            }
+
+                            // Auto-fit columns
+                            ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+                            // Save file dialog
+                            SaveFileDialog sfd = new SaveFileDialog
+                            {
+                                Filter = "Excel Workbook|*.xlsx",
+                                Title = "Save " + sheetName
+                            };
+
+                            if (sfd.ShowDialog() == DialogResult.OK)
+                            {
+                                string fileName = sfd.FileName;
+                                FileInfo file = new FileInfo(fileName);
+                                package.SaveAs(file);
+
+                                MessageBox.Show("Export successful!", _title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error exporting data: " + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

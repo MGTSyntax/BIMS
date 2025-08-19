@@ -42,11 +42,6 @@ namespace Invoicing_System.Views
         {
             PopInterestDGV();
             PopulateInterest();
-
-            var balance = 0;
-            var pay = 0;
-            lblbalance.Text = balance.ToString("N2");
-            lblpay.Text = pay.ToString("N2");
         }
 
         public void PopulateInterest()
@@ -58,7 +53,7 @@ namespace Invoicing_System.Views
 
         public void PopPaymentDGV(string queryFilters)
         {
-            string qryInterest = "SELECT a.paymentID," +
+            string qryInterest = "SELECT a.interestID," +
                 "a.invoiceNum," +
                 "b.custName," +
                 "a.shippingDate," +
@@ -140,19 +135,19 @@ namespace Invoicing_System.Views
                                 totalBalance += rowBalance;
                             }
                             updatedBalance = (invTotalAmt + invInterestAmt);
-                            lblbalance.Text = updatedBalance.ToString("N2");
-                            lblpay.Text = totalBalance.ToString("N2");
+                            //lblbalance.Text = updatedBalance.ToString("N2");
+                            //lblpay.Text = totalBalance.ToString("N2");
                         } else
                         {
                             updatedBalance = (invTotalAmt + invInterestAmt);
-                            lblbalance.Text = updatedBalance.ToString("N2");
-                            lblpay.Text = totalBalance.ToString("N2");
+                            //lblbalance.Text = updatedBalance.ToString("N2");
+                            //lblpay.Text = totalBalance.ToString("N2");
                         }
                         break;
                 }
-                lblORN.Text = "No payment details";
-                lblARN.Text = "No payment details";
-                lblCHKN.Text = "No payment details";
+                //lblORN.Text = "No payment details";
+                //lblARN.Text = "No payment details";
+                //lblCHKN.Text = "No payment details";
             }
             catch (Exception)
             {
@@ -266,17 +261,17 @@ namespace Invoicing_System.Views
                     {
                         foreach (DataRow dr in dtqryPaymentDetails.Rows)
                         {
-                            lblORN.Text = dr[0].ToString();
-                            lblARN.Text = dr[1].ToString();
-                            lblBank.Text = dr[2].ToString();
-                            lblCHKN.Text = dr[3].ToString();
+                            //lblORN.Text = dr[0].ToString();
+                            //lblARN.Text = dr[1].ToString();
+                            //lblBank.Text = dr[2].ToString();
+                            //lblCHKN.Text = dr[3].ToString();
                         }
                     }
                     else
                     {
-                        lblORN.Text = "No payments made";
-                        lblARN.Text = "No payments made";
-                        lblCHKN.Text = "No payments made";
+                        //lblORN.Text = "No payments made";
+                        //lblARN.Text = "No payments made";
+                        //lblCHKN.Text = "No payments made";
                     }
                 }
                 else MessageBox.Show("No row is selected.");

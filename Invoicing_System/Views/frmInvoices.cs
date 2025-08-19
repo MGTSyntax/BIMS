@@ -1,6 +1,7 @@
 ﻿using Invoicing_System.Data;
 using Invoicing_System.Views.InvoiceList;
 using Invoicing_System.Views.Monitoring;
+using Invoicing_System.Views.ReimbursementList;
 using Invoicing_System.Views.Reporting;
 using System;
 using System.Collections;
@@ -23,6 +24,7 @@ namespace Invoicing_System.Views
         private InvoiceFilter InvoiceFilter;
         private frmReport frmReport;
         private frmInvoiceList frmInvoiceList;
+        private ReimbursementDetails insertReimbursementDetails;
         Variables var = new Variables();
         private string lastperformedQuery;
 
@@ -118,7 +120,6 @@ namespace Invoicing_System.Views
                 string colName = dgvInvoices.Columns[e.ColumnIndex].Name;
                 string dgvInvId = dgvInvoices.Rows[e.RowIndex].Cells[0].Value.ToString();
                 string dgvInvNo = dgvInvoices.Rows[e.RowIndex].Cells[1].Value.ToString();
-                //string isPaid = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
                 string isPrinted = dgvInvoices.Rows[e.RowIndex].Cells[16].Value.ToString();
                 switch (colName)
                 {
@@ -231,6 +232,7 @@ namespace Invoicing_System.Views
         private void btnFilter_Click(object sender, EventArgs e)
         {
             InvoiceFilter = new InvoiceFilter(this);
+            InvoiceFilter.formCode = "frmInvoices";
             InvoiceFilter.ShowDialog();
         }
 
@@ -247,6 +249,34 @@ namespace Invoicing_System.Views
             frmInvoiceList = new frmInvoiceList();
             frmInvoiceList.PreviewInvoiceList(lastperformedQuery);
             frmInvoiceList.ShowDialog();
+        }
+
+        private void btnreimbursementDetails_Click(object sender, EventArgs e)
+        {
+            DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
+            string company = selectedRow.Cells[14].Value.ToString();
+            int invoiceNumber = int.Parse(selectedRow.Cells[1].Value.ToString());
+            string customerName = selectedRow.Cells[2].Value.ToString();
+            DateTime periodFrom = DateTime.Parse(selectedRow.Cells[3].Value.ToString());
+            DateTime periodTo = DateTime.Parse(selectedRow.Cells[4].Value.ToString());
+            double reimbursementAmount = double.Parse(selectedRow.Cells[5].Value.ToString());
+
+            if (dgvInvoices.Rows.Count > 0)
+            {
+                insertReimbursementDetails = new ReimbursementDetails(this);
+                insertReimbursementDetails.company = company;
+                insertReimbursementDetails.invoiceNumber = invoiceNumber;
+                insertReimbursementDetails.customerName = customerName;
+                insertReimbursementDetails.periodFrom = periodFrom;
+                insertReimbursementDetails.periodTo = periodTo;
+                insertReimbursementDetails.reimbursementAmount = reimbursementAmount;
+                insertReimbursementDetails.FormCode = "CRT";
+                insertReimbursementDetails.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

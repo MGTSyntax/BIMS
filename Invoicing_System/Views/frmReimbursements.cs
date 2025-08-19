@@ -1,4 +1,5 @@
 ﻿using Invoicing_System.Data;
+using Invoicing_System.Views.InvoiceList;
 using Invoicing_System.Views.Monitoring;
 using Invoicing_System.Views.ReimbursementList;
 using System;
@@ -7,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +20,7 @@ namespace Invoicing_System.Views
         Functions functions = new Functions();
         Variables var = new Variables();
         private ReimbursementDetails insertReimbursementDetails;
+        private InvoiceFilter InvoiceFilter;
         private string lastperformedQuery;
 
         public frmReimbursements()
@@ -30,34 +33,6 @@ namespace Invoicing_System.Views
             this.Close();
         }
 
-        private void btninsertdetails_Click(object sender, EventArgs e)
-        {
-            DataGridViewRow selectedRow = dgvreimbursements.SelectedRows[0];
-            string company = selectedRow.Cells[1].Value.ToString();
-            int invoiceNumber = int.Parse(selectedRow.Cells[2].Value.ToString());
-            string customerName = selectedRow.Cells[3].Value.ToString();
-            DateTime periodFrom = DateTime.Parse(selectedRow.Cells[4].Value.ToString());
-            DateTime periodTo = DateTime.Parse(selectedRow.Cells[5].Value.ToString());
-            double reimbursementAmount = double.Parse(selectedRow.Cells[6].Value.ToString());
-
-            if (dgvreimbursements.Rows.Count > 0)
-            {
-                insertReimbursementDetails = new ReimbursementDetails(this);
-                insertReimbursementDetails.company = company;
-                insertReimbursementDetails.invoiceNumber = invoiceNumber;
-                insertReimbursementDetails.customerName = customerName;
-                insertReimbursementDetails.periodFrom = periodFrom;
-                insertReimbursementDetails.periodTo = periodTo;
-                insertReimbursementDetails.reimbursementAmount = reimbursementAmount;
-                insertReimbursementDetails.FormCode = "CRT";
-                insertReimbursementDetails.ShowDialog();
-            }
-            else
-            {
-
-            }
-        }
-
         private void frmReimbursements_Load(object sender, EventArgs e)
         {
             populateReimbursements();
@@ -65,19 +40,19 @@ namespace Invoicing_System.Views
 
         public void populateReimbursements()
         {
-            string query = "WHERE a.isVoid=0 AND a.compID IN (" + Variables.User_CompAccess + ") " +
+            string query = "WHERE b.isVoid=0 AND b.compID IN (" + Variables.User_CompAccess + ") " +
                 "ORDER BY c.custName LIMIT 100";
             queryData(query);
         }
 
         public void queryData(string whereQuery)
         {
-            string query = "SELECT b.id, UPPER(a.compID) as company, a.invoiceNumber, c.custName, a.billingPeriod_from, " +
-                "a.billingPeriod_to, a.reimbursement, b.total_payroll, b.thirteenth_mp, b.sil, b.uniform_allowance, " +
-                "b.total_mandatories, b.retirement, b.insurance, b.radio_n_firearms " +
-                "FROM invoice_monitoring a " +
-                "LEFT JOIN reimbursement_details b ON a.invoiceNumber = b.invoice_number " +
-                "LEFT JOIN customerstable c ON a.customerID = c.custID";
+            string query = "SELECT a.id, UPPER(b.compID) as company, a.invoice_number, c.custName, b.billingPeriod_from, " +
+                "b.billingPeriod_to, b.reimbursement, a.total_payroll, a.thirteenth_mp, a.sil, a.uniform_allowance, " +
+                "a.total_mandatories, a.retirement, a.insurance, a.radio_n_firearms " +
+                "FROM reimbursement_details a " +
+                "LEFT JOIN invoice_monitoring b ON a.invoice_number = b.invoiceNumber " +
+                "INNER JOIN customerstable c ON b.customerID = c.custID";
             functions.PopulateDataGridView(dgvreimbursements, query + " " + whereQuery);
             lastperformedQuery = query + " " + whereQuery;
         }
@@ -85,7 +60,7 @@ namespace Invoicing_System.Views
         private void dgvreimbursements_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
-            // NEED LANG GAWAN NG VALIDATION IF NULL IS EQUAL TO ZERO
+
             try
             {
                 string colName = dgvreimbursements.Columns[e.ColumnIndex].Name;
@@ -109,6 +84,11 @@ namespace Invoicing_System.Views
                 switch (colName)
                 {
                     case "colEdit":
+                        if (string.IsNullOrEmpty(dgvId))
+                        {
+                            MessageBox.Show("No break down to change yet.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            return;
+                        }
                         insertReimbursementDetails = new ReimbursementDetails(this);
                         insertReimbursementDetails.reimbursementID = int.Parse(dgvId);
                         insertReimbursementDetails.company = dgvCompany;
@@ -139,6 +119,32 @@ namespace Invoicing_System.Views
         private void btnrefresh_Click(object sender, EventArgs e)
         {
             populateReimbursements();
+        }
+
+        private void btnexportexcel_Click(object sender, EventArgs e)
+        {
+            string sheetName = "Reimbursement Details";
+            string query = "SELECT UPPER(a.compID) as company, a.invoiceNumber, b.custName, a.billingPeriod_from, " +
+                "a.billingPeriod_to, a.reimbursement, a.nonDeductible, a.agencyFee, a.vat, a.otherBillable, a.discount," +
+                "(a.reimbursement + a.nonDeductible + a.agencyFee + a.vat + a.otherBillable) as totalamt, " +
+                "ROUND(a.agencyFee * wt.wtax_rate) as wht," +
+                "ROUND((a.reimbursement + a.nonDeductible + a.agencyFee + a.vat + a.otherBillable + a.discount) - (a.agencyFee * wt.wtax_rate),2) as grandtotal," +
+                "a.isPaid, rd.total_payroll, rd.thirteenth_mp, rd.sil, rd.uniform_allowance, rd.total_mandatories, " +
+                "rd.retirement, rd.insurance, rd.radio_n_firearms " +
+                "FROM invoice_monitoring a " +
+                "LEFT JOIN customerstable b ON a.customerID = b.custID " +
+                "LEFT JOIN (SELECT wtax_rate FROM tblwtax WHERE wtaxID = '1') wt ON 1 = 1 " +
+                "INNER JOIN reimbursement_details rd ON a.invoiceNumber = rd.invoice_number " +
+                "WHERE a.isVoid=0 AND a.compID IN (" + Variables.User_CompAccess + ") " +
+                "ORDER BY b.custName";
+            functions.createExcelReport(query, sheetName);
+        }
+
+        private void btnfilter_Click(object sender, EventArgs e)
+        {
+            InvoiceFilter = new InvoiceFilter(this);
+            InvoiceFilter.formCode = "frmReimbursements";
+            InvoiceFilter.ShowDialog();
         }
     }
 }

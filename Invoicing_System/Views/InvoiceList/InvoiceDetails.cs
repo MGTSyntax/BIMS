@@ -75,7 +75,7 @@ namespace Invoicing_System.Views.Monitoring
                     MessageBox.Show("Invoice Successfully Saved!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Save history for logs
-                    logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
+                    functions.logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
 
                     this.Dispose();
 
@@ -117,7 +117,7 @@ namespace Invoicing_System.Views.Monitoring
                     MessageBox.Show("Invoice Successfully Updated!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Save history for logs
-                    logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
+                    functions.logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid", InvID.ToString());
 
                     this.Dispose();
                 }
@@ -169,27 +169,6 @@ namespace Invoicing_System.Views.Monitoring
 
             errorProvider.SetError(txtInvoiceNo, null);
             return true;
-        }
-
-        // Logging Method
-        public void logEvent(string historyTable, string queryTable, string queryTableId)
-        {
-            // Save history for logs
-            string logQuery = $@"
-                CALL SP_history(@username, 
-                    `{historyTable}`, 
-                    `{queryTable}`, 
-                    `{queryTableId}`, 
-                    (SELECT MAX(`{queryTableId}`) FROM `{queryTable}`)
-                );
-            ";
-
-            var parameters = new Dictionary<string, object>
-            {
-                { "@username", Variables.user_unameValue }
-            };
-
-            functions.ParamSaveData(logQuery, parameters);
         }
 
         // Get Controls to Validate String Value

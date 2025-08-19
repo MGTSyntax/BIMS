@@ -259,3 +259,15 @@ D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\System.Drawing.Common.xml
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmReimbursements.resources
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.ReimbursementList.ReimbursementDetails.resources
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\DocumentFormat.OpenXml.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\DocumentFormat.OpenXml.Framework.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ExcelNumberFormat.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.Bcl.HashCode.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\RBush.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SixLabors.Fonts.dll
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\DocumentFormat.OpenXml.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\DocumentFormat.OpenXml.Framework.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\ExcelNumberFormat.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.Bcl.HashCode.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\RBush.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SixLabors.Fonts.xml

@@ -29,16 +29,23 @@ namespace Invoicing_System.Views.ReimbursementList
         public double retirement { get; set; }
         public double insurance { get; set; }
         public double radioFirearms { get; set; }
+        private frmInvoices frmInvoices;
         private frmReimbursements frmReimbursements;
         Validations val = new Validations();
         Functions functions = new Functions();
         Variables var = new Variables();
         const double zeroout = 0.00;
 
-        public ReimbursementDetails(frmReimbursements frmReimbursement)
+        public ReimbursementDetails(frmReimbursements frmReimbursements)
         {
             InitializeComponent();
-            frmReimbursements = frmReimbursement;
+            this.frmReimbursements = frmReimbursements;
+        }
+
+        public ReimbursementDetails(frmInvoices frmInvoices)
+        {
+            InitializeComponent();
+            this.frmInvoices = frmInvoices;
         }
 
         private void pbClose_Click(object sender, EventArgs e)
@@ -264,12 +271,10 @@ namespace Invoicing_System.Views.ReimbursementList
 
                     functions.ParamSaveData(query, parameters);
 
-                    frmReimbursements.populateReimbursements();
-
                     MessageBox.Show("Reimbursement details successfully saved!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     // Save history for logs
-                    //logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
+                    functions.logEvent("reimbursement_details_h", "reimbursement_details", "id");
 
                     this.Dispose();
                 }
@@ -298,12 +303,15 @@ namespace Invoicing_System.Views.ReimbursementList
 
                 functions.ParamSaveData(query, parameters);
 
-                frmReimbursements.populateReimbursements();
+                if (frmReimbursements != null)
+                {
+                    frmReimbursements.populateReimbursements();
+                }
 
                 MessageBox.Show("Reimbursement details successfully updated!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Save history for logs
-                //logEvent("invoice_monitoring_h", "invoice_monitoring", "invoicesid");
+                functions.logEvent("reimbursement_details_h", "reimbursement_details", "id", reimbursementID.ToString());
 
                 this.Dispose();
             }
@@ -334,27 +342,6 @@ namespace Invoicing_System.Views.ReimbursementList
 
             errorProvider.SetError(txtinvoicenumber, null);
             return true;
-        }
-
-        // Logging Method
-        public void logEvent(string historyTable, string queryTable, string queryTableId)
-        {
-            // Save history for logs
-            string logQuery = $@"
-                CALL SP_history(@username, 
-                    `{historyTable}`, 
-                    `{queryTable}`, 
-                    `{queryTableId}`, 
-                    (SELECT MAX(`{queryTableId}`) FROM `{queryTable}`)
-                );
-            ";
-
-            var parameters = new Dictionary<string, object>
-            {
-                { "@username", Variables.user_unameValue }
-            };
-
-            functions.ParamSaveData(logQuery, parameters);
         }
     }
 }
