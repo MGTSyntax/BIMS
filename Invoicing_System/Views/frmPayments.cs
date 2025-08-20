@@ -111,43 +111,15 @@ namespace Invoicing_System.Views
         {
             try
             {
-                string colName = dgvInterest.Columns[e.ColumnIndex].Name;
-                switch (colName)
-                {
-                    case "colViewPayment":
-                        // Payment History
-                        qryPaymentHistory = "SELECT p_id,p_invoiceBalPay,p_datePaid FROM tblpayment WHERE " +
-                            "p_invoiceNum = '" + dgvInterest.Rows[e.RowIndex].Cells[1].Value.ToString() + "' " +
-                            "ORDER BY p_datePaid";
-                        functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
+                DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
+                string invoiceNumber = selectedRow.Cells[1].Value.ToString();
 
-                        decimal totalBalance = 0;
-                        decimal updatedBalance = 0;
-                        decimal invTotalAmt = Convert.ToDecimal(dgvInterest.Rows[e.RowIndex].Cells[5].Value);
-                        decimal invInterestAmt = Convert.ToDecimal(dgvInterest.Rows[e.RowIndex].Cells[7].Value);
-
-                        var dtqryPaymentHistory = functions.SelectData(qryPaymentHistory, "qryPaymentHistory");
-                        if (dtqryPaymentHistory.Rows.Count > 0)
-                        {
-                            foreach (DataRow dr in dtqryPaymentHistory.Rows)
-                            {
-                                decimal rowBalance = Convert.ToDecimal(dr[1]);
-                                totalBalance += rowBalance;
-                            }
-                            updatedBalance = (invTotalAmt + invInterestAmt);
-                            //lblbalance.Text = updatedBalance.ToString("N2");
-                            //lblpay.Text = totalBalance.ToString("N2");
-                        } else
-                        {
-                            updatedBalance = (invTotalAmt + invInterestAmt);
-                            //lblbalance.Text = updatedBalance.ToString("N2");
-                            //lblpay.Text = totalBalance.ToString("N2");
-                        }
-                        break;
-                }
-                //lblORN.Text = "No payment details";
-                //lblARN.Text = "No payment details";
-                //lblCHKN.Text = "No payment details";
+                // View Payment History
+                qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
+                    "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
+                    "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
+                    "ORDER BY p_datePaid";
+                functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
             }
             catch (Exception)
             {
@@ -165,23 +137,11 @@ namespace Invoicing_System.Views
 
                 string interestNo = selectedRow.Cells[0].Value.ToString();
                 decimal invBal = Convert.ToDecimal(selectedRow.Cells[5].Value.ToString());
-                decimal interestAmt = Convert.ToDecimal(selectedRow.Cells[7].Value.ToString());
-                decimal totalInvBal = invBal + interestAmt;
-                bool paid = Convert.ToBoolean(selectedRow.Cells[9].Value.ToString());
-
-                if (paid == true)
-                {
-                    MessageBox.Show("Invoice No. is already paid.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    PayAmountDetails = new PayAmountDetails(this);
-                    PayAmountDetails.InterestNo = interestNo;
-                    PayAmountDetails.InvBal = invBal;
-                    PayAmountDetails.InterestAmt = interestAmt;
-                    PayAmountDetails.totalInvBal = totalInvBal;
-                    PayAmountDetails.ShowDialog();
-                }
+                
+                PayAmountDetails = new PayAmountDetails(this);
+                PayAmountDetails.InterestNo = interestNo;
+                PayAmountDetails.InvBal = invBal;
+                PayAmountDetails.ShowDialog();
             }
             else MessageBox.Show("No payment selected", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
@@ -245,41 +205,41 @@ namespace Invoicing_System.Views
             lastperformedQueryreport = queryFilters + " " + lastfilterreport;
         }
 
-        private void dgvPaymentHistory_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (dgvPaymentHistory.SelectedRows.Count > 0)
-                {
-                    DataGridViewRow selectedRow = dgvPaymentHistory.SelectedRows[0];
-                    string pID = selectedRow.Cells["colp_id"].Value.ToString();
+        //private void dgvPaymentHistory_CellClick(object sender, DataGridViewCellEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (dgvPaymentHistory.SelectedRows.Count > 0)
+        //        {
+        //            DataGridViewRow selectedRow = dgvPaymentHistory.SelectedRows[0];
+        //            string pID = selectedRow.Cells["colp_id"].Value.ToString();
 
-                    // Payment Details
-                    qryPaymentDetails = "SELECT p_orNum,p_arNum,p_bank,p_checkNum FROM tblpayment WHERE p_id = '" + pID + "'";
-                    var dtqryPaymentDetails = functions.SelectData(qryPaymentDetails, "qryPaymentDetails");
-                    if (dtqryPaymentDetails.Rows.Count > 0)
-                    {
-                        foreach (DataRow dr in dtqryPaymentDetails.Rows)
-                        {
-                            //lblORN.Text = dr[0].ToString();
-                            //lblARN.Text = dr[1].ToString();
-                            //lblBank.Text = dr[2].ToString();
-                            //lblCHKN.Text = dr[3].ToString();
-                        }
-                    }
-                    else
-                    {
-                        //lblORN.Text = "No payments made";
-                        //lblARN.Text = "No payments made";
-                        //lblCHKN.Text = "No payments made";
-                    }
-                }
-                else MessageBox.Show("No row is selected.");
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
+        //            // Payment Details
+        //            qryPaymentDetails = "SELECT p_orNum,p_arNum,p_bank,p_checkNum FROM tblpayment WHERE p_id = '" + pID + "'";
+        //            var dtqryPaymentDetails = functions.SelectData(qryPaymentDetails, "qryPaymentDetails");
+        //            if (dtqryPaymentDetails.Rows.Count > 0)
+        //            {
+        //                foreach (DataRow dr in dtqryPaymentDetails.Rows)
+        //                {
+        //                    //lblORN.Text = dr[0].ToString();
+        //                    //lblARN.Text = dr[1].ToString();
+        //                    //lblBank.Text = dr[2].ToString();
+        //                    //lblCHKN.Text = dr[3].ToString();
+        //                }
+        //            }
+        //            else
+        //            {
+        //                //lblORN.Text = "No payments made";
+        //                //lblARN.Text = "No payments made";
+        //                //lblCHKN.Text = "No payments made";
+        //            }
+        //        }
+        //        else MessageBox.Show("No row is selected.");
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
     }
 }

@@ -507,6 +507,13 @@ namespace Invoicing_System.Data
                     }
                 }
 
+                companies.Insert(0, new Company()
+                {
+                    CompanyID = "",
+                    CompanyName = "--Select an option--",
+                    InvoiceNoSeries = 0
+                });
+
                 cbox.DataSource = companies;
                 cbox.DisplayMember = nameof(Company.CompanyName);
                 cbox.ValueMember = nameof(Company.CompanyID);

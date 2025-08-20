@@ -43,9 +43,6 @@ namespace Invoicing_System.Views.InterestList
         private void Reset()
         {
             txtBalancePay.Text = "0.00";
-            txtARN.Clear();
-            txtORN.Clear();
-            txtCheckN.Clear();
             dtpPaymentDate.Value = DateTime.Now;
         }
 
@@ -65,29 +62,56 @@ namespace Invoicing_System.Views.InterestList
                 }
             }
             txtBalance.Text = InvBal.ToString("N2");
-            txtInterest.Text = InterestAmt.ToString("N2");
-            txttotalBal.Text = totalInvBal.ToString("N2");
         } // End of PopulateControlsToUpdate
 
         private void btnPay_Click(object sender, EventArgs e)
         {
+            if (double.Parse(txtBalancePay.Text) > double.Parse(txtBalance.Text))
+            {
+                errPPayAmt.SetError(txtBalancePay, "The payment amount should not be greater than the balance amount!");
+                return;
+            }
+            else
+            {
+                errPPayAmt.SetError(txtBalancePay, null);
+            }
+
             bool isStringValid = val.FormStringValidation(GetControlsToValidateString(), errPPayAmt);
             bool isNumbersValid = val.isNumeric(GetControlsToValidateNumbers(), errPPayAmt);
+
             if (isStringValid && isNumbersValid)
             {
-                string addPayment = "INSERT INTO tblpayment(p_invoiceNum,p_invoiceBalPay,p_datePaid,p_customer,p_orNum," +
-                    "p_arNum,p_bank,p_checkNum) VALUES('" + txtInvoiceNum.Text + "','" + txtBalancePay.Text.Replace(",", "") + "'," +
-                    "'" + dtpPaymentDate.Value.ToString("yyyy-MM-dd") + "','" + txtCustID.Text + "'," +
-                    "'" + txtORN.Text + "','" + txtARN.Text + "','" + txtBank.Text + "','" + txtCheckN.Text + "')";
-                functions.SaveData(addPayment);
+                string query = @"
+                        INSERT INTO 
+                            tblpayment(p_invoiceNum, p_invoiceBalPay, p_datePaid, 
+                            p_customer, p_orNum, p_arNum, p_bank, p_checkNum
+                        ) VALUES (
+                            @p_invoiceNum, @p_invoiceBalPay, @p_datePaid, 
+                            @p_customer, @p_orNum, @p_arNum, @p_bank, @p_checkNum
+                        );
+                    ";
+
+                var parameters = new Dictionary<string, object>
+                    {
+                        {"@p_invoiceNum", txtInvoiceNum.Text },
+                        {"@p_invoiceBalPay", txtBalancePay.Text.Replace(",", "") },
+                        {"@p_datePaid", dtpPaymentDate.Value.ToString("yyyy-MM-dd") },
+                        {"@p_customer", txtCustID.Text },
+                        {"@p_orNum", txtORN.Text },
+                        {"@p_arNum", txtARN.Text },
+                        {"@p_bank", txtBank.Text },
+                        {"@p_checkNum", txtCheckN.Text }
+                    };
+
+                functions.ParamSaveData(query, parameters);
+
                 MessageBox.Show("Payment for Invoice no. " + txtInvoiceNum.Text + " successfully made!", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 _frmPayments.PopInterestDGV();
                 _frmPayments.PopulateInterest();
 
                 // Save history for logs
-                functions.SaveData("CALL SP_history('" + Variables.user_unameValue + "','tblpayment_h'," +
-                    "'tblpayment','p_id',(SELECT MAX(p_id) FROM tblpayment))");
+                functions.logEvent("tblpayment_h", "tblpayment", "p_id");
 
                 this.Dispose();
             }
@@ -99,33 +123,30 @@ namespace Invoicing_System.Views.InterestList
             yield return txtARN;
             yield return txtORN;
             yield return txtCheckN;
-        } // End of GetControlsToValidateString
+        }
 
         // Get Controls to Validate Numeric Value
         private IEnumerable<Control> GetControlsToValidateNumbers()
         {
             yield return txtBalancePay;
 
-        } // End of GetControlsToValidateNumbers
+        }
 
         private void txtBalancePay_Leave(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errPPayAmt);
-            if (!isValid)
-            {
-                txtBalancePay.SelectAll();
-                txtBalancePay.Focus();
-            }
-            else
-            {
-                functions.ConvertToDecimal(txtBalancePay);
-            }
+            bool isValid = val.ValidateNumeric(sender as TextBox, errPPayAmt);
+            if (isValid) functions.ConvertToDecimal(txtBalancePay);
         }
 
         private void txtBalancePay_Click(object sender, EventArgs e)
         {
             txtBalancePay.SelectAll();
             txtBalancePay.Focus();
+        }
+
+        private void txtBalancePay_TextChanged(object sender, EventArgs e)
+        {
+            val.ValidateNumeric(sender as TextBox, errPPayAmt);
         }
     }
 }
