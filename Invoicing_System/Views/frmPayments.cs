@@ -109,23 +109,15 @@ namespace Invoicing_System.Views
 
         private void dgvInterest_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
-                DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
-                string invoiceNumber = selectedRow.Cells[1].Value.ToString();
+            DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
+            string invoiceNumber = selectedRow.Cells[1].Value.ToString();
 
-                // View Payment History
-                qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
-                    "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
-                    "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
-                    "ORDER BY p_datePaid";
-                functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            // View Payment History
+            qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
+                "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
+                "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
+                "ORDER BY p_datePaid";
+            functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
         }
 
         private void btnEnterPayment_Click(object sender, EventArgs e)

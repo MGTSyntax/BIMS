@@ -544,6 +544,7 @@
             this.txtDetID.ReadOnly = true;
             this.txtDetID.Size = new System.Drawing.Size(69, 23);
             this.txtDetID.TabIndex = 41;
+            this.txtDetID.Visible = false;
             this.txtDetID.TextChanged += new System.EventHandler(this.txtDetID_TextChanged);
             // 
             // chkbSpecifyTT

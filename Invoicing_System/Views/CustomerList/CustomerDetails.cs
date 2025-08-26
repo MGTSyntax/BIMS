@@ -102,14 +102,36 @@ namespace Invoicing_System.Views.CustomerList
             {
                 if (isStringValid && isNumbersValid)
                 {
-                    string addCustomer = "INSERT INTO customerstable(custName,contactPerson,cpPosition," +
-                        "custagencyFee,isvatable,otherBillAmt,companyAddress,emailAddress,titleid," +
-                        "hasInterest,isDeleted,compID,tin,telno) " +
-                        "VALUES('" + txtDetachmentName.Text + "','" + txtContactPerson.Text + "'," +
-                        "'" + txtPosition.Text + "','" + txtAgencyFeeRate.Text + "','" + isVATValue + "'," +
-                        "'" + txtFBAmt.Text + "','" + txtCompanyAddress.Text + "','" + txtEmailAddress.Text + "'," +
-                        "'" + cbTT.Text + "','" + isInterestValue + "','0','" + txtcompID.Text + "'," +
-                        ",'" + txtTIN.Text + "','" + txtTelNo.Text + "')";
+                    string addCustomer = "INSERT INTO customerstable(" +
+                        "custName, " +
+                        "contactPerson, " +
+                        "cpPosition, " +
+                        "custagencyFee, " +
+                        "isvatable, " +
+                        "otherBillAmt, " +
+                        "companyAddress, " +
+                        "emailAddress, " +
+                        "titleid, " +
+                        "hasInterest, " +
+                        "isDeleted, " +
+                        "compID, " +
+                        "tin, " +
+                        "telno) " +
+                        "VALUES(" +
+                        "'" + txtDetachmentName.Text + "', " +
+                        "'" + txtContactPerson.Text + "', " +
+                        "'" + txtPosition.Text + "', " +
+                        "'" + txtAgencyFeeRate.Text + "', " +
+                        "'" + isVATValue + "', " +
+                        "'" + txtFBAmt.Text + "', " +
+                        "'" + txtCompanyAddress.Text + "', " +
+                        "'" + txtEmailAddress.Text + "', " +
+                        "'" + cbTT.Text + "', " +
+                        "'" + isInterestValue + "', " +
+                        "'0', " +
+                        "'" + txtcompID.Text.ToLower() + "', " +
+                        "'" + txtTIN.Text + "', " +
+                        "'" + txtTelNo.Text + "')";
                     functions.SaveData(addCustomer);
 
                     customerSetup.PopulateCustomers();
@@ -128,18 +150,18 @@ namespace Invoicing_System.Views.CustomerList
                 if (isStringValid && isNumbersValid)
                 {
                     string updateCustomer = "UPDATE customerstable SET " +
-                        "custName = '" + txtDetachmentName.Text + "'," +
-                        "contactPerson = '" + txtContactPerson.Text + "'," +
-                        "cpPosition = '" + txtPosition.Text + "'," +
-                        "custagencyFee = '" + txtAgencyFeeRate.Text + "'," +
-                        "isvatable = '" + isVATValue + "'," +
-                        "otherBillAmt = '" + txtFBAmt.Text + "'," +
-                        "companyAddress = '" + txtCompanyAddress.Text + "'," +
-                        "emailAddress = '" + txtEmailAddress.Text + "'," +
-                        "titleid = '" + cbTT.Text + "'," +
-                        "hasInterest = '" + isInterestValue + "'," +
-                        "compID = '" + txtcompID.Text + "'," +
-                        "tin = '" + txtTIN.Text + "'," +
+                        "custName = '" + txtDetachmentName.Text + "', " +
+                        "contactPerson = '" + txtContactPerson.Text + "', " +
+                        "cpPosition = '" + txtPosition.Text + "', " +
+                        "custagencyFee = '" + txtAgencyFeeRate.Text + "',  " +
+                        "isvatable = '" + isVATValue + "',  " +
+                        "otherBillAmt = '" + txtFBAmt.Text + "',  " +
+                        "companyAddress = '" + txtCompanyAddress.Text + "',  " +
+                        "emailAddress = '" + txtEmailAddress.Text + "',  " +
+                        "titleid = '" + cbTT.Text + "',  " +
+                        "hasInterest = '" + isInterestValue + "',  " +
+                        "compID = '" + txtcompID.Text.ToLower() + "', " +
+                        "tin = '" + txtTIN.Text + "',  " +
                         "telno = '" + txtTelNo.Text + "' " +
                         "WHERE custID = '" + CustID.ToString() + "'";
                     functions.SaveData(updateCustomer);
@@ -171,8 +193,8 @@ namespace Invoicing_System.Views.CustomerList
         {
             yield return txtAgencyFeeRate;
             yield return txtFBAmt;
-            yield return txtTIN;
-            yield return txtTelNo;
+            //yield return txtTIN;
+            //yield return txtTelNo;
 
         } // End of GetControlsToValidateNumbers
 
@@ -183,7 +205,7 @@ namespace Invoicing_System.Views.CustomerList
 
         private void cmbComp_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtcompID.Text = cmbComp.SelectedValue.ToString();
+            txtcompID.Text = cmbComp.SelectedValue.ToString().ToLower();
         }
     }
 }

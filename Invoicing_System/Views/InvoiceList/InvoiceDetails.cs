@@ -61,14 +61,14 @@ namespace Invoicing_System.Views.Monitoring
                         {"@billingPeriod_to", bpTo.Value.ToString("yyyy-MM-dd") },
                         {"@invoiceNumber", txtInvoiceNo.Text },
                         {"@notes", txtNotes.Text },
-                        {"@compID", txtcompID.Text },
+                        {"@compID", txtcompID.Text.ToLower() },
                         {"@nonDeductible", txtNonDeductible.Text.Replace(",", "") },
                         {"@preparedBy", txtpreparedBy.Text },
                         {"@discount", txtDiscount.Text.Replace(",", "") }
                     };
 
                     functions.ParamSaveData(createInvoice, parameters);
-                    IncrementInvoiceSeries(txtcompID.Text);
+                    IncrementInvoiceSeries(txtcompID.Text.ToLower());
 
                     frmInvoices.PopulateInvoices();
                     frmInvoices.PopTotals();
@@ -85,12 +85,14 @@ namespace Invoicing_System.Views.Monitoring
             {
                 if (isStringValid && isNumbersValid && isDateRangeValid && isInvNumNotExists())
                 {
-                    string updateInvoice = @"UPDATE invoice_monitoring SET
-                        reimbursement = @reimbursement, agencyFee = @agencyFee, vat = @vat, 
-                        otherBillable = @otherBillable, customerID = @customerID, titleTemplate = @titleTemplate, 
-                        billingPeriod_from = @billingPeriod_from, billingPeriod_to = @billingPeriod_to, 
-                        invoiceNumber = @invoiceNumber, notes = @notes, nonDeductible = @nonDeductible,
-                        preparedBy = @preparedBy WHERE invoicesid = @invoicesid
+                    string updateInvoice = @"
+                        UPDATE invoice_monitoring SET 
+                            reimbursement = @reimbursement, agencyFee = @agencyFee, vat = @vat, 
+                            otherBillable = @otherBillable, customerID = @customerID, titleTemplate = @titleTemplate, 
+                            billingPeriod_from = @billingPeriod_from, billingPeriod_to = @billingPeriod_to, 
+                            invoiceNumber = @invoiceNumber, notes = @notes, compID = @compID, 
+                            nonDeductible = @nonDeductible, preparedBy = @preparedBy, discount = @discount 
+                        WHERE invoicesid = @invoicesid
                     ";
 
                     var parameters = new Dictionary<string, object>
@@ -105,8 +107,10 @@ namespace Invoicing_System.Views.Monitoring
                         { "@billingPeriod_to", bpTo.Value.ToString("yyyy-MM-dd") },
                         { "@invoiceNumber", txtInvoiceNo.Text },
                         { "@notes", txtNotes.Text },
+                        { "@compID", txtcompID.Text.ToLower() },
                         { "@nonDeductible", txtNonDeductible.Text.Replace(",", "") },
                         { "@preparedBy", txtpreparedBy.Text },
+                        { "@discount", txtDiscount.Text.Replace(",", "") },
                         { "@invoicesid", InvID }
                     };
 
@@ -200,7 +204,7 @@ namespace Invoicing_System.Views.Monitoring
                 if (headerDt.Rows.Count > 0)
                 {
                     txtcompID.Text = headerDt.Rows[0]["compID"].ToString();
-                    cbComp.SelectedValue = txtcompID.Text.ToLower();
+                    cbComp.SelectedValue = txtcompID.Text;
 
                     PopulateDetachment();
 
@@ -344,7 +348,7 @@ namespace Invoicing_System.Views.Monitoring
                     {
                         txtOtherBillables.Text = var.dt.Rows[0]["otherBillAmt"].ToString();
                     }
-                    txtcompID.Text = var.dt.Rows[0]["compID"].ToString();
+                    txtcompID.Text = var.dt.Rows[0]["compID"].ToString().ToLower();
                 }
             }
             else txtInvoiceFor.Clear();
@@ -388,8 +392,12 @@ namespace Invoicing_System.Views.Monitoring
 
         private void txtBillableType_Click(object sender, EventArgs e)
         {
-            txtBillableType.SelectAll();
-            txtBillableType.Focus();
+            if (txtBillableType.Text == "0.00")
+            {
+                txtBillableType.SelectAll();
+                txtBillableType.Focus();
+            }
+
             if (cmbDetachment.Text == "Select an option")
             {
                 errorProvider.SetError(cmbDetachment, "Please select detachment.");
@@ -399,11 +407,10 @@ namespace Invoicing_System.Views.Monitoring
 
         private void txtBillableType_Leave(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+
             if (!isValid)
             {
-                txtBillableType.SelectAll();
-                txtBillableType.Focus();
                 txtAgencyFee.Text = zeroout.ToString();
                 txtVAT.Text = zeroout.ToString();
                 txtTotal.Text = zeroout.ToString();
@@ -417,12 +424,10 @@ namespace Invoicing_System.Views.Monitoring
 
         private void txtBillableType_TextChanged(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
 
             if (!isValid)
             {
-                txtBillableType.SelectAll();
-                txtBillableType.Focus();
                 txtAgencyFee.Text = zeroout.ToString();
                 txtVAT.Text = zeroout.ToString();
                 txtTotal.Text = zeroout.ToString();
@@ -436,109 +441,73 @@ namespace Invoicing_System.Views.Monitoring
 
         private void txtNonDeductible_Click(object sender, EventArgs e)
         {
-            txtNonDeductible.SelectAll();
-            txtNonDeductible.Focus();
+            if (txtNonDeductible.Text == "0.00")
+            {
+                txtNonDeductible.SelectAll();
+                txtNonDeductible.Focus();
+            }
         }
 
         private void txtNonDeductible_Leave(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
-            {
-                txtNonDeductible.SelectAll();
-                txtNonDeductible.Focus();
-            }
-            else
-            {
-                functions.ConvertToDecimal(txtNonDeductible);
-            }
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+            if (isValid) functions.ConvertToDecimal(txtNonDeductible);
         }
 
         private void txtNonDeductible_TextChanged(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
-            {
-                txtNonDeductible.SelectAll();
-                txtNonDeductible.Focus();
-            }
-            else
-            {
-                CalculateTotal();
-            }
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+            if (isValid) CalculateTotal();
         }
 
         private void txtOtherBillables_Leave(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
-            {
-                txtOtherBillables.SelectAll();
-                txtOtherBillables.Focus();
-            }
-            else
-            {
-                functions.ConvertToDecimal(txtOtherBillables);
-            }
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+            if (isValid) functions.ConvertToDecimal(txtOtherBillables);
         }
 
         private void txtOtherBillables_Click(object sender, EventArgs e)
         {
-            txtOtherBillables.SelectAll();
-            txtOtherBillables.Focus();
-        }
-
-        private void txtOtherBillables_TextChanged(object sender, EventArgs e)
-        {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
+            if (txtOtherBillables.Text == "0.00")
             {
                 txtOtherBillables.SelectAll();
                 txtOtherBillables.Focus();
             }
-            else
-            {
-                CalculateTotal();
-            }
+        }
+
+        private void txtOtherBillables_TextChanged(object sender, EventArgs e)
+        {
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+            if (isValid) CalculateTotal();
         }
 
         private void txtDiscount_Click(object sender, EventArgs e)
         {
-            txtDiscount.SelectAll();
-            txtDiscount.Focus();
-        }
-
-        private void txtDiscount_Leave(object sender, EventArgs e)
-        {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
+            if (txtDiscount.Text == "0.00")
             {
                 txtDiscount.SelectAll();
                 txtDiscount.Focus();
             }
-            else
-            {
-                functions.ConvertToDecimal(txtDiscount);
+        }
 
+        private void txtDiscount_Leave(object sender, EventArgs e)
+        {
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+            if (isValid)
+            {
                 if (decimal.TryParse(txtDiscount.Text, out var value))
                 {
                     txtDiscount.Text = (-Math.Abs(value)).ToString();
                 }
+
+                functions.ConvertToDecimal(txtDiscount);
             }
         }
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
-            bool isValid = val.isNumeric(GetControlsToValidateNumbers(), errorProvider);
-            if (!isValid)
-            {
-                txtDiscount.SelectAll();
-                txtDiscount.Focus();
-            }
-            else
-            {
-                CalculateTotal();
-            }
+            bool isValid = val.ValidateNumeric(sender as TextBox, errorProvider);
+            if (isValid) CalculateTotal();
         }
 
         private void CalculateTotal()

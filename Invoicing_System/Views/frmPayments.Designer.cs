@@ -389,7 +389,7 @@
             // dgvPaymentHistory
             // 
             this.dgvPaymentHistory.AllowUserToAddRows = false;
-            this.dgvPaymentHistory.BackgroundColor = System.Drawing.Color.Salmon;
+            this.dgvPaymentHistory.BackgroundColor = System.Drawing.Color.White;
             this.dgvPaymentHistory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPaymentHistory.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvPaymentHistory.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -414,7 +414,7 @@
             this.dgvPaymentHistory.Cursor = System.Windows.Forms.Cursors.Hand;
             dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -427,9 +427,10 @@
             this.dgvPaymentHistory.Location = new System.Drawing.Point(3, 3);
             this.dgvPaymentHistory.MultiSelect = false;
             this.dgvPaymentHistory.Name = "dgvPaymentHistory";
+            this.dgvPaymentHistory.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvPaymentHistory.RowHeadersVisible = false;
             this.dgvPaymentHistory.RowHeadersWidth = 62;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Azure;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.MistyRose;
             this.dgvPaymentHistory.RowsDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvPaymentHistory.RowTemplate.Height = 27;
             this.dgvPaymentHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

@@ -396,13 +396,12 @@
             // txtcompID
             // 
             this.txtcompID.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            this.txtcompID.Location = new System.Drawing.Point(178, 658);
+            this.txtcompID.Location = new System.Drawing.Point(87, 582);
             this.txtcompID.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtcompID.Name = "txtcompID";
             this.txtcompID.ReadOnly = true;
             this.txtcompID.Size = new System.Drawing.Size(84, 23);
             this.txtcompID.TabIndex = 67;
-            this.txtcompID.Visible = false;
             // 
             // label7
             // 

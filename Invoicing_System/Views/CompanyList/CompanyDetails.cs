@@ -40,11 +40,20 @@ namespace Invoicing_System.Views.CompanyList
             {
                 if (isStringValid)
                 {
-                    string addCompany = "INSERT INTO tblcompanies(companyID,companyName,isActive," +
-                        "approveBy,notedBy) " +
-                        "VALUES('" + txtCompCode.Text + "','" + txtCompanyDesc.Text + "'," +
-                        "'" + isActive + "','" + txtApprovedBy.Text + "'," +
-                        "'" + txtNotedBy.Text + "','" + txtInvNoSeries.Text + "' )";
+                    string addCompany = "INSERT INTO tblcompanies(" +
+                        "companyID, " +
+                        "companyName, " +
+                        "isActive, " +
+                        "approveBy, " +
+                        "notedBy, " +
+                        "invNumSeries) " +
+                        "VALUES(" +
+                        "'" + txtCompCode.Text.ToLower() + "', " +
+                        "'" + txtCompanyDesc.Text + "', " +
+                        "'" + isActive + "', " +
+                        "'" + txtApprovedBy.Text + "', " +
+                        "'" + txtNotedBy.Text + "', " +
+                        "'" + txtInvNoSeries.Text + "')";
                     functions.SaveData(addCompany);
 
                     _frmCompany.PopulateCompanies();
@@ -62,7 +71,7 @@ namespace Invoicing_System.Views.CompanyList
                 if (isStringValid)
                 {
                     string updateCustomer = "UPDATE tblcompanies SET " +
-                        "companyID = '" + txtCompCode.Text + "'," +
+                        "companyID = '" + txtCompCode.Text.ToLower() + "'," +
                         "companyName = '" + txtCompanyDesc.Text + "'," +
                         "isActive = '" + isActive + "'," +
                         "approveBy = '" + txtApprovedBy.Text + "'," +
@@ -109,7 +118,7 @@ namespace Invoicing_System.Views.CompanyList
             {
                 foreach (DataRow dr in var.dt.Rows)
                 {
-                    txtCompCode.Text = dr[1].ToString();
+                    txtCompCode.Text = dr[1].ToString().ToLower();
                     txtCompanyDesc.Text = dr[2].ToString();
                     chkisActive.Checked = dr[3].ToString() == "1" ? true : false;
                     txtApprovedBy.Text = dr[4].ToString();

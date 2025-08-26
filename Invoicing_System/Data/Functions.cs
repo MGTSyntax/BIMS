@@ -498,7 +498,7 @@ namespace Invoicing_System.Data
                             {
                                 companies.Add(new Company()
                                 {
-                                    CompanyID = dr.GetString(0),
+                                    CompanyID = dr.GetString(0).ToLower(),
                                     CompanyName = dr.GetString(1),
                                     InvoiceNoSeries = dr.GetInt32(2)
                                 });
