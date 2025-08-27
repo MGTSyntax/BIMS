@@ -6,6 +6,8 @@ using System.Data;
 using System.IO;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using System.Text;
+using System.IO.Packaging;
 
 namespace Invoicing_System.Data
 {
@@ -631,6 +633,90 @@ namespace Invoicing_System.Data
             catch (Exception ex)
             {
                 MessageBox.Show("Error exporting data: " + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void createIIFReport(string reportQuery, string fileName)
+        {
+            try
+            {
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                {
+                    using (MySqlDataAdapter dataAdapter = new MySqlDataAdapter(reportQuery, localCon))
+                    {
+                        DataTable dt = new DataTable();
+                        dataAdapter.Fill(dt);
+
+                        StringBuilder sb = new StringBuilder();
+
+                        // Header Template
+                        sb.AppendLine("!TRNS\tTRNSID\tTRNSTYPE\tDATE\tACCNT\tNAME\tCLASS\tAMOUNT\tDOCNUM\tMEMO\tCLEAR\tTOPRINT\tADDR1\tADDR2\tADDR3\tADDR4\tADDR5\tDUEDATE\tTERMS\tPAID\tSHIPDATE");
+                        sb.AppendLine("!SPL\tSPLID\tTRNSTYPE\tDATE\tACCNT\tNAME\tCLASS\tAMOUNT\tDOCNUM\tMEMO\tCLEAR\tQNTY\tPRICE\tINVITEM\tPAYMETH\tTAXABLE\tREIMBEXP\tEXTRA\t''\t''\t''");
+                        sb.AppendLine("!ENDTRNS");
+
+                        // Loop through rows and add data
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            string trnstype = "INVOICE";
+                            string date = DateTime.Now.ToString("MM/dd/yyyy");
+                            string accnt1 = "TRADE RECEIVABLES:Accounts Receivable";
+                            string accnt2 = "Security service income";
+                            string accnt3 = "Reimbursements";
+                            string accnt4 = "Other Revenue";
+                            string accnt5 = "OTHER CURRENT LIABILITIES:Output Tax:Output VAT";
+                            string name = row["custName"]?.ToString() ?? "";
+                            string classes = row["clientName"]?.ToString() ?? "";
+                            string amount = row["totalamt"]?.ToString() ?? "";
+                            string docnum = row["invoiceNumber"]?.ToString() ?? "";
+                            string memo = (row["billingPeriod_from"]?.ToString() + "-" + row["billingPeriod_to"]?.ToString()) ?? "";
+                            string duedate = row["dueDate"]?.ToString() ?? "";
+                            string paid = row["isPaid"]?.ToString() ?? "";
+                            string shipdate = row["shippingDate"]?.ToString() ?? "";
+                            string agencyfee = row["agencyFee"]?.ToString() ?? "";
+                            string reimbursement = row["reimbursement"]?.ToString() ?? "";
+                            string otherresources = row["otherBillable"]?.ToString() ?? "";
+                            string tax = row["wht"]?.ToString() ?? "";
+
+                            double af = double.TryParse(agencyfee, out var tempAf) ? tempAf : 0;
+                            string afamount = (-Math.Abs(af)).ToString("0.00");
+
+                            double reim = double.TryParse(reimbursement, out var tempReim) ? tempReim : 0;
+                            string reimamount = (-Math.Abs(reim)).ToString("0.00");
+
+                            double ob = double.TryParse(otherresources, out var tempOb) ? tempOb : 0;
+                            string obamount = (-Math.Abs(ob)).ToString("0.00");
+
+                            double wht = double.TryParse(tax, out var tempTax) ? tempTax : 0;
+                            string taxamount = (-Math.Abs(wht)).ToString("0.00");
+
+                            sb.AppendLine($"TRNS\t''\t{trnstype}\t{date}\t{accnt1}\t{name}\t{classes}\t{amount}\t{docnum}\t{memo}\tN\tY\t''\t''\t''\t''\t''\t{duedate}\tNet 30\t{paid}\t{shipdate}");
+                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt2}\t{name}\t{classes}\t{afamount}\t{docnum}\t{memo}\tN\t''\t{agencyfee}\tAgency Fee\t''\tY\tN\t''\t''\t''\t''");
+                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt3}\t{name}\t{classes}\t{reimamount}\t{docnum}\t{memo}\tN\t''\t{reimbursement}\tReimbursement\t''\tN\tN\t''\t''\t''\t''");
+                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt4}\t{name}\t{classes}\t{obamount}\t{docnum}\t{memo}\tN\t''\t{otherresources}\tOther Resources\t''\tN\tN\t''\t''\t''\t''");
+                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt5}\tBUREAU OF INTERNAL REVENUE\t''\t{taxamount}\t''\t''\tN\t''\t12.00%\tOutput VAT\t''\tN\tN\tAUTOSTAX\t''\t''\t''");
+                            sb.AppendLine("ENDTRNS");
+                        }
+
+                        // Save file dialog
+                        SaveFileDialog sfd = new SaveFileDialog
+                        {
+                            Filter = "IIF File|*.iif",
+                            Title = "Save IIF Export",
+                        };
+                        
+                        if (sfd.ShowDialog() == DialogResult.OK)
+                        {
+                            string fname = sfd.FileName;
+                            File.WriteAllText(fname, sb.ToString(), new UTF8Encoding(false));
+
+                            MessageBox.Show("IIF Export successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error exporting data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }
