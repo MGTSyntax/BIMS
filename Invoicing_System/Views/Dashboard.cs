@@ -2,6 +2,7 @@
 using Invoicing_System.Data;
 using System;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace Invoicing_System
 {
@@ -139,6 +140,17 @@ namespace Invoicing_System
             pnlMainView.Controls.Add(frmReimbursements);
             frmReimbursements.BringToFront();
             frmReimbursements.Show();
+        }
+
+        private void btnexporting_Click(object sender, EventArgs e)
+        {
+            pnlMainView.Controls.Clear();
+            frmExporting frmExporting = new frmExporting();
+            frmExporting.TopLevel = false;
+            pnlMainView.Controls.Add(frmExporting);
+            frmExporting.Location = new Point((pnlMainView.Width - frmExporting.Width) / 2,(pnlMainView.Height - frmExporting.Height) / 2);
+            frmExporting.BringToFront();
+            frmExporting.Show();
         }
     }
 }

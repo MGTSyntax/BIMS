@@ -22,7 +22,6 @@ namespace Invoicing_System.Views
     public partial class frmPayments : Form
     {
         private string qryPaymentHistory;
-        private string qryPaymentDetails;
         Functions functions = new Functions();
         Variables var = new Variables();
         private PayAmountDetails PayAmountDetails;

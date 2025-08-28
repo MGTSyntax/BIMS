@@ -271,3 +271,4 @@ D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\Microsoft.Bcl.HashCode.xml
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\RBush.xml
 D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\bin\Debug\SixLabors.Fonts.xml
+D:\Systems\Invoicing and Monitoring System\Invoicing_System\Invoicing_System\obj\Debug\Invoicing_System.Views.frmExporting.resources

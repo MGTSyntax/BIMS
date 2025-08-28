@@ -636,7 +636,7 @@ namespace Invoicing_System.Data
             }
         }
 
-        public void createIIFReport(string reportQuery, string fileName)
+        public void createIIFReport(string reportQuery)
         {
             try
             {
@@ -651,7 +651,7 @@ namespace Invoicing_System.Data
 
                         // Header Template
                         sb.AppendLine("!TRNS\tTRNSID\tTRNSTYPE\tDATE\tACCNT\tNAME\tCLASS\tAMOUNT\tDOCNUM\tMEMO\tCLEAR\tTOPRINT\tADDR1\tADDR2\tADDR3\tADDR4\tADDR5\tDUEDATE\tTERMS\tPAID\tSHIPDATE");
-                        sb.AppendLine("!SPL\tSPLID\tTRNSTYPE\tDATE\tACCNT\tNAME\tCLASS\tAMOUNT\tDOCNUM\tMEMO\tCLEAR\tQNTY\tPRICE\tINVITEM\tPAYMETH\tTAXABLE\tREIMBEXP\tEXTRA\t''\t''\t''");
+                        sb.AppendLine("!SPL\tSPLID\tTRNSTYPE\tDATE\tACCNT\tNAME\tCLASS\tAMOUNT\tDOCNUM\tMEMO\tCLEAR\tQNTY\tPRICE\tINVITEM\tPAYMETH\tTAXABLE\tREIMBEXP\tEXTRA\t\t\t");
                         sb.AppendLine("!ENDTRNS");
 
                         // Loop through rows and add data
@@ -666,34 +666,75 @@ namespace Invoicing_System.Data
                             string accnt5 = "OTHER CURRENT LIABILITIES:Output Tax:Output VAT";
                             string name = row["custName"]?.ToString() ?? "";
                             string classes = row["clientName"]?.ToString() ?? "";
-                            string amount = row["totalamt"]?.ToString() ?? "";
                             string docnum = row["invoiceNumber"]?.ToString() ?? "";
-                            string memo = (row["billingPeriod_from"]?.ToString() + "-" + row["billingPeriod_to"]?.ToString()) ?? "";
-                            string duedate = row["dueDate"]?.ToString() ?? "";
                             string paid = row["isPaid"]?.ToString() ?? "";
-                            string shipdate = row["shippingDate"]?.ToString() ?? "";
-                            string agencyfee = row["agencyFee"]?.ToString() ?? "";
-                            string reimbursement = row["reimbursement"]?.ToString() ?? "";
-                            string otherresources = row["otherBillable"]?.ToString() ?? "";
-                            string tax = row["wht"]?.ToString() ?? "";
 
-                            double af = double.TryParse(agencyfee, out var tempAf) ? tempAf : 0;
-                            string afamount = (-Math.Abs(af)).ToString("0.00");
+                            string amount = "";
+                            if (decimal.TryParse(row["totalamt"]?.ToString(), out decimal totaAmt))
+                            {
+                                amount = totaAmt.ToString("N2");
+                            }
 
-                            double reim = double.TryParse(reimbursement, out var tempReim) ? tempReim : 0;
-                            string reimamount = (-Math.Abs(reim)).ToString("0.00");
+                            string agencyfee = "";
+                            if (decimal.TryParse(row["agencyFee"]?.ToString(), out decimal agencyFee))
+                            {
+                                agencyfee = agencyFee.ToString("N2");
+                            }
 
-                            double ob = double.TryParse(otherresources, out var tempOb) ? tempOb : 0;
-                            string obamount = (-Math.Abs(ob)).ToString("0.00");
+                            string reimbursement = "";
+                            if (decimal.TryParse(row["reimbursement"]?.ToString(), out decimal reimBursement))
+                            {
+                                reimbursement = reimBursement.ToString("N2");
+                            }
 
-                            double wht = double.TryParse(tax, out var tempTax) ? tempTax : 0;
-                            string taxamount = (-Math.Abs(wht)).ToString("0.00");
+                            string otherresources = "";
+                            if (decimal.TryParse(row["otherBillable"]?.ToString(), out decimal otherBillables))
+                            {
+                                otherresources = otherBillables.ToString("N2");
+                            }
 
-                            sb.AppendLine($"TRNS\t''\t{trnstype}\t{date}\t{accnt1}\t{name}\t{classes}\t{amount}\t{docnum}\t{memo}\tN\tY\t''\t''\t''\t''\t''\t{duedate}\tNet 30\t{paid}\t{shipdate}");
-                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt2}\t{name}\t{classes}\t{afamount}\t{docnum}\t{memo}\tN\t''\t{agencyfee}\tAgency Fee\t''\tY\tN\t''\t''\t''\t''");
-                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt3}\t{name}\t{classes}\t{reimamount}\t{docnum}\t{memo}\tN\t''\t{reimbursement}\tReimbursement\t''\tN\tN\t''\t''\t''\t''");
-                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt4}\t{name}\t{classes}\t{obamount}\t{docnum}\t{memo}\tN\t''\t{otherresources}\tOther Resources\t''\tN\tN\t''\t''\t''\t''");
-                            sb.AppendLine($"SPL\t''\t{trnstype}\t{date}\t{accnt5}\tBUREAU OF INTERNAL REVENUE\t''\t{taxamount}\t''\t''\tN\t''\t12.00%\tOutput VAT\t''\tN\tN\tAUTOSTAX\t''\t''\t''");
+                            string tax = "";
+                            if (decimal.TryParse(row["wht"]?.ToString(), out decimal withHoldTax))
+                            {
+                                tax = withHoldTax.ToString("N2");
+                            }
+
+                            string memo = "";
+                            if (DateTime.TryParse(row["billingPeriod_from"]?.ToString(), out DateTime billingFrom) &&
+                                DateTime.TryParse(row["billingPeriod_to"]?.ToString(), out DateTime billingTo))
+                            {
+                                memo = billingFrom.ToString("MMMM dd, yyyy") + "-" + billingTo.ToString("MMMM dd, yyyy");
+                            }
+
+                            string duedate = "";
+                            if (DateTime.TryParse(row["dueDate"]?.ToString(), out DateTime due))
+                            {
+                                duedate = due.ToString("MM/dd/yyyy");
+                            }
+
+                            string shipdate = "";
+                            if (DateTime.TryParse(row["shippingDate"]?.ToString(), out DateTime ship))
+                            {
+                                shipdate = ship.ToString("MM/dd/yyyy");
+                            }
+
+                            decimal af = decimal.TryParse(agencyfee, out var tempAf) ? tempAf : 0;
+                            string afamount = (-Math.Abs(af)).ToString("N2");
+
+                            decimal reim = decimal.TryParse(reimbursement, out var tempReim) ? tempReim : 0;
+                            string reimamount = (-Math.Abs(reim)).ToString("N2");
+
+                            decimal ob = decimal.TryParse(otherresources, out var tempOb) ? tempOb : 0;
+                            string obamount = (-Math.Abs(ob)).ToString("N2");
+
+                            decimal wht = decimal.TryParse(tax, out var tempTax) ? tempTax : 0;
+                            string taxamount = (-Math.Abs(wht)).ToString("N2");
+
+                            sb.AppendLine($"TRNS\t\t{trnstype}\t{date}\t{accnt1}\t{name}\t{classes}\t{amount}\t{docnum}\t{memo}\tN\tY\t\t\t\t\t\t{duedate}\tNet 30\t{paid}\t{shipdate}");
+                            sb.AppendLine($"SPL\t\t{trnstype}\t{date}\t{accnt2}\t{name}\t{classes}\t{afamount}\t{docnum}\t{memo}\tN\t\t{agencyfee}\tAgency Fee\t\tY\tN\t\t\t\t");
+                            sb.AppendLine($"SPL\t\t{trnstype}\t{date}\t{accnt3}\t{name}\t{classes}\t{reimamount}\t{docnum}\t{memo}\tN\t\t{reimbursement}\tReimbursement\t\tN\tN\t\t\t\t");
+                            sb.AppendLine($"SPL\t\t{trnstype}\t{date}\t{accnt4}\t{name}\t{classes}\t{obamount}\t{docnum}\t{memo}\tN\t\t{otherresources}\tOther Resources\t\tN\tN\t\t\t\t");
+                            sb.AppendLine($"SPL\t\t{trnstype}\t{date}\t{accnt5}\tBUREAU OF INTERNAL REVENUE\t\t{taxamount}\t\t\tN\t\t12.00%\tOutput VAT\t\tN\tN\tAUTOSTAX\t\t\t");
                             sb.AppendLine("ENDTRNS");
                         }
 
