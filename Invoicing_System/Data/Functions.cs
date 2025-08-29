@@ -608,8 +608,35 @@ namespace Invoicing_System.Data
                                 range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
                             }
 
-                            // Auto-fit columns
-                            ws.Cells[ws.Dimension.Address].AutoFitColumns();
+                            if (dt.Rows.Count > 0)
+                            {
+                                ws.Cells[ws.Dimension.Address].AutoFitColumns();
+
+                                int totalRows = dt.Rows.Count;
+                                int totalCols = dt.Columns.Count;
+
+                                for (int col = 0; col < totalCols; col++)
+                                {
+                                    if (dt.Columns[col].DataType == typeof(DateTime))
+                                    {
+                                        var excelCol = ws.Cells[2, col + 1, totalRows + 1, col + 1];
+                                        excelCol.Style.Numberformat.Format = "MMMM dd, yyyy";
+                                    }
+
+                                    // Format numeric (money/amounts)
+                                    if (dt.Columns[col].DataType == typeof(decimal) ||
+                                        dt.Columns[col].DataType == typeof(double) ||
+                                        dt.Columns[col].DataType == typeof(float))
+                                    {
+                                        var excelCol = ws.Cells[2, col + 1, totalRows + 1, col + 1];
+                                        excelCol.Style.Numberformat.Format = "#,##0.00"; // currency style, 2 decimals
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                ws.Cells["A2"].Value = "No records found.";
+                            }
 
                             // Save file dialog
                             SaveFileDialog sfd = new SaveFileDialog

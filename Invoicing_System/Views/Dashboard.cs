@@ -42,12 +42,7 @@ namespace Invoicing_System
 
         private void btnMainDashboard_Click(object sender, EventArgs e)
         {
-            pnlMainView.Controls.Clear();
-            frmAnalytics frmAnalytics = new frmAnalytics();
-            frmAnalytics.TopLevel = false;
-            pnlMainView.Controls.Add(frmAnalytics);
-            frmAnalytics.BringToFront();
-            frmAnalytics.Show();
+            showAnalytics();
         }
 
         private void btnMainExit_Click(object sender, EventArgs e)
@@ -61,6 +56,12 @@ namespace Invoicing_System
             frmInvoices frmInvoices = new frmInvoices();
             frmInvoices.TopLevel = false;
             pnlMainView.Controls.Add(frmInvoices);
+
+            frmInvoices.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmInvoices.BringToFront();
             frmInvoices.Show();
         }
@@ -71,6 +72,12 @@ namespace Invoicing_System
             CustomerSetup Customer = new CustomerSetup();
             Customer.TopLevel = false;
             pnlMainView.Controls.Add(Customer);
+
+            Customer.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             Customer.BringToFront();
             Customer.Show();
         }
@@ -81,6 +88,12 @@ namespace Invoicing_System
             frmOtherSetup frmTitleTemplate = new frmOtherSetup();
             frmTitleTemplate.TopLevel = false;
             pnlMainView.Controls.Add(frmTitleTemplate);
+
+            frmTitleTemplate.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmTitleTemplate.BringToFront();
             frmTitleTemplate.Show();
         }
@@ -91,6 +104,12 @@ namespace Invoicing_System
             frmUsers frmUsers = new frmUsers();
             frmUsers.TopLevel = false;
             pnlMainView.Controls.Add(frmUsers);
+
+            frmUsers.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmUsers.BringToFront();
             frmUsers.Show();
         }
@@ -101,6 +120,12 @@ namespace Invoicing_System
             frmCompany frmCompany = new frmCompany();
             frmCompany.TopLevel = false;
             pnlMainView.Controls.Add(frmCompany);
+
+            frmCompany.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmCompany.BringToFront();
             frmCompany.Show();
         }
@@ -111,6 +136,12 @@ namespace Invoicing_System
             frmPayments frmPayments = new frmPayments();
             frmPayments.TopLevel = false;
             pnlMainView.Controls.Add(frmPayments);
+
+            frmPayments.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmPayments.BringToFront();
             frmPayments.Show();
         }
@@ -119,7 +150,7 @@ namespace Invoicing_System
         {
             frmLogin frmLogin = new frmLogin();
             frmLogin.Show();
-            this.Dispose();
+            this.Close();
         }
 
         private void btnUploadBillings_Click(object sender, EventArgs e)
@@ -128,6 +159,12 @@ namespace Invoicing_System
             frmUploadBillings frmUploadBillings = new frmUploadBillings();
             frmUploadBillings.TopLevel = false;
             pnlMainView.Controls.Add(frmUploadBillings);
+
+            frmUploadBillings.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmUploadBillings.BringToFront();
             frmUploadBillings.Show();
         }
@@ -138,6 +175,12 @@ namespace Invoicing_System
             frmReimbursements frmReimbursements = new frmReimbursements();
             frmReimbursements.TopLevel = false;
             pnlMainView.Controls.Add(frmReimbursements);
+
+            frmReimbursements.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmReimbursements.BringToFront();
             frmReimbursements.Show();
         }
@@ -148,9 +191,28 @@ namespace Invoicing_System
             frmExporting frmExporting = new frmExporting();
             frmExporting.TopLevel = false;
             pnlMainView.Controls.Add(frmExporting);
-            frmExporting.Location = new Point((pnlMainView.Width - frmExporting.Width) / 2,(pnlMainView.Height - frmExporting.Height) / 2);
+
+            frmExporting.Location = new Point(
+                (pnlMainView.Width - frmExporting.Width) / 2,
+                (pnlMainView.Height - frmExporting.Height) / 2);
+
+            frmExporting.FormClosed += (s, args) =>
+            {
+                showAnalytics();
+            };
+
             frmExporting.BringToFront();
             frmExporting.Show();
+        }
+
+        private void showAnalytics()
+        {
+            pnlMainView.Controls.Clear();
+            frmAnalytics frmAnalytics = new frmAnalytics();
+            frmAnalytics.TopLevel = false;
+            pnlMainView.Controls.Add(frmAnalytics);
+            frmAnalytics.BringToFront();
+            frmAnalytics.Show();
         }
     }
 }

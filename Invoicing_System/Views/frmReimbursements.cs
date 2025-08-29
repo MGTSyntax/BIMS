@@ -121,42 +121,6 @@ namespace Invoicing_System.Views
             populateReimbursements();
         }
 
-        private void btnexportexcel_Click(object sender, EventArgs e)
-        {
-            string sheetName = "Reimbursement Details";
-            string query = "SELECT " +
-                "UPPER(a.compID) AS 'Company', " +
-                "a.invoiceNumber AS 'Invoice Number', " +
-                "b.custName AS 'Customer Name', " +
-                "a.billingPeriod_from AS 'Billing Period From', " +
-                "a.billingPeriod_to AS 'Billing Period To', " +
-                "Round(a.reimbursement,2) AS 'Reimbursement', " +
-                "Round(a.nonDeductible,2) AS 'Additional Reimbursement', " +
-                "Round(a.agencyFee,2) AS 'Agency Fee', " +
-                "Round(a.vat,2) AS 'VAT', " +
-                "Round(a.otherBillable,2) AS 'Other Billable', " +
-                "Round(a.discount,2) AS 'Less Discount', " +
-                "Round((a.reimbursement + a.nonDeductible + a.agencyFee + a.vat + a.otherBillable),2) AS 'Total Amount', " +
-                "Round((a.agencyFee * wt.wtax_rate),2) AS 'Withholding Tax', " +
-                "Round((a.reimbursement + a.nonDeductible + a.agencyFee + a.vat + a.otherBillable + a.discount) - (a.agencyFee * wt.wtax_rate),2) AS 'Grand Total Amount', " +
-                "If(a.isPaid = 'True', 'Paid', 'Unpaid') AS 'Payment Status', " +
-                "Round(rd.total_payroll,2) AS 'Total Payroll', " +
-                "Round(rd.thirteenth_mp,2) AS 'Thirteenth Month Pay', " +
-                "Round(rd.sil,2) AS '5 Days SIL', " +
-                "Round(rd.uniform_allowance,2) AS 'Uniform Allowance', " +
-                "Round(rd.total_mandatories,2) AS 'Total Mandatories', " +
-                "Round(rd.retirement,2) AS 'Retirement', " +
-                "Round(rd.insurance,2) AS 'Insurance', " +
-                "Round(rd.radio_n_firearms,2) AS 'Radio And Firearms' " +
-                "FROM invoice_monitoring a " +
-                "LEFT JOIN customerstable b ON a.customerID = b.custID " +
-                "LEFT JOIN (SELECT wtax_rate FROM tblwtax WHERE wtaxID = '1') wt ON 1 = 1 " +
-                "INNER JOIN reimbursement_details rd ON a.invoiceNumber = rd.invoice_number " +
-                "WHERE a.isVoid=0 AND a.compID IN (" + Variables.User_CompAccess + ") " +
-                "ORDER BY b.custName";
-            functions.createExcelReport(query, sheetName);
-        }
-
         private void btnfilter_Click(object sender, EventArgs e)
         {
             InvoiceFilter = new InvoiceFilter(this);

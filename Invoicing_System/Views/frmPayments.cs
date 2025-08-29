@@ -106,19 +106,6 @@ namespace Invoicing_System.Views
             functions.SaveData(qryUpdisPaid2);
         }
 
-        private void dgvInterest_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
-            string invoiceNumber = selectedRow.Cells[1].Value.ToString();
-
-            // View Payment History
-            qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
-                "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
-                "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
-                "ORDER BY p_datePaid";
-            functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
-        }
-
         private void btnEnterPayment_Click(object sender, EventArgs e)
         {
             if (dgvInterest.SelectedRows.Count > 0)
@@ -196,41 +183,17 @@ namespace Invoicing_System.Views
             lastperformedQueryreport = queryFilters + " " + lastfilterreport;
         }
 
-        //private void dgvPaymentHistory_CellClick(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    try
-        //    {
-        //        if (dgvPaymentHistory.SelectedRows.Count > 0)
-        //        {
-        //            DataGridViewRow selectedRow = dgvPaymentHistory.SelectedRows[0];
-        //            string pID = selectedRow.Cells["colp_id"].Value.ToString();
+        private void dgvInterest_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
+            string invoiceNumber = selectedRow.Cells[1].Value.ToString();
 
-        //            // Payment Details
-        //            qryPaymentDetails = "SELECT p_orNum,p_arNum,p_bank,p_checkNum FROM tblpayment WHERE p_id = '" + pID + "'";
-        //            var dtqryPaymentDetails = functions.SelectData(qryPaymentDetails, "qryPaymentDetails");
-        //            if (dtqryPaymentDetails.Rows.Count > 0)
-        //            {
-        //                foreach (DataRow dr in dtqryPaymentDetails.Rows)
-        //                {
-        //                    //lblORN.Text = dr[0].ToString();
-        //                    //lblARN.Text = dr[1].ToString();
-        //                    //lblBank.Text = dr[2].ToString();
-        //                    //lblCHKN.Text = dr[3].ToString();
-        //                }
-        //            }
-        //            else
-        //            {
-        //                //lblORN.Text = "No payments made";
-        //                //lblARN.Text = "No payments made";
-        //                //lblCHKN.Text = "No payments made";
-        //            }
-        //        }
-        //        else MessageBox.Show("No row is selected.");
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
+            // View Payment History
+            qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
+                "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
+                "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
+                "ORDER BY p_datePaid";
+            functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
+        }
     }
 }

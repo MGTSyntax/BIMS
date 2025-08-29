@@ -33,12 +33,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbStatus = new System.Windows.Forms.ComboBox();
             this.chkStatus = new System.Windows.Forms.CheckBox();
-            this.btngenerate = new System.Windows.Forms.Button();
             this.chkBP = new System.Windows.Forms.CheckBox();
             this.txtInvNo = new System.Windows.Forms.TextBox();
             this.chkInvNo = new System.Windows.Forms.CheckBox();
@@ -51,6 +48,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.dtpBPFrom = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.btngenerate = new System.Windows.Forms.Button();
+            this.cbreportfile = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbClose)).BeginInit();
             this.panel2.SuspendLayout();
@@ -80,7 +80,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(590, 34);
+            this.panel1.Size = new System.Drawing.Size(600, 34);
             this.panel1.TabIndex = 4;
             // 
             // pbClose
@@ -88,42 +88,25 @@
             this.pbClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pbClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbClose.Image = ((System.Drawing.Image)(resources.GetObject("pbClose.Image")));
-            this.pbClose.Location = new System.Drawing.Point(561, 5);
+            this.pbClose.Location = new System.Drawing.Point(571, 5);
             this.pbClose.Name = "pbClose";
             this.pbClose.Size = new System.Drawing.Size(25, 24);
             this.pbClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbClose.TabIndex = 1;
             this.pbClose.TabStop = false;
+            this.pbClose.Click += new System.EventHandler(this.pbClose_Click);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.btngenerate);
-            this.panel2.Controls.Add(this.comboBox1);
+            this.panel2.Controls.Add(this.cbreportfile);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(590, 477);
+            this.panel2.Size = new System.Drawing.Size(600, 492);
             this.panel2.TabIndex = 5;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Enabled = false;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(164, 59);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(378, 28);
-            this.comboBox1.TabIndex = 13;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 62);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 20);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Select Report File";
             // 
             // groupBox1
             // 
@@ -137,7 +120,7 @@
             this.groupBox1.Controls.Add(this.cbCompany);
             this.groupBox1.Controls.Add(this.chkCompany);
             this.groupBox1.Controls.Add(this.panel3);
-            this.groupBox1.Location = new System.Drawing.Point(12, 111);
+            this.groupBox1.Location = new System.Drawing.Point(18, 125);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(566, 289);
             this.groupBox1.TabIndex = 15;
@@ -147,10 +130,16 @@
             // cbStatus
             // 
             this.cbStatus.FormattingEnabled = true;
+            this.cbStatus.Items.AddRange(new object[] {
+            "--Select an option--",
+            "All",
+            "Paid",
+            "Unpaid"});
             this.cbStatus.Location = new System.Drawing.Point(159, 152);
             this.cbStatus.Name = "cbStatus";
             this.cbStatus.Size = new System.Drawing.Size(194, 28);
             this.cbStatus.TabIndex = 22;
+            this.cbStatus.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbStatus_KeyPress);
             // 
             // chkStatus
             // 
@@ -161,20 +150,7 @@
             this.chkStatus.TabIndex = 21;
             this.chkStatus.Text = "Status";
             this.chkStatus.UseVisualStyleBackColor = true;
-            // 
-            // btngenerate
-            // 
-            this.btngenerate.BackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btngenerate.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btngenerate.FlatAppearance.BorderSize = 0;
-            this.btngenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btngenerate.ForeColor = System.Drawing.Color.White;
-            this.btngenerate.Location = new System.Drawing.Point(205, 411);
-            this.btngenerate.Name = "btngenerate";
-            this.btngenerate.Size = new System.Drawing.Size(155, 41);
-            this.btngenerate.TabIndex = 20;
-            this.btngenerate.Text = "Generate";
-            this.btngenerate.UseVisualStyleBackColor = false;
+            this.chkStatus.CheckedChanged += new System.EventHandler(this.chkStatus_CheckedChanged);
             // 
             // chkBP
             // 
@@ -185,6 +161,7 @@
             this.chkBP.TabIndex = 19;
             this.chkBP.Text = "Billing Period";
             this.chkBP.UseVisualStyleBackColor = true;
+            this.chkBP.CheckedChanged += new System.EventHandler(this.chkBP_CheckedChanged);
             // 
             // txtInvNo
             // 
@@ -202,6 +179,7 @@
             this.chkInvNo.TabIndex = 16;
             this.chkInvNo.Text = "Invoice No.";
             this.chkInvNo.UseVisualStyleBackColor = true;
+            this.chkInvNo.CheckedChanged += new System.EventHandler(this.chkInvNo_CheckedChanged);
             // 
             // cbDet
             // 
@@ -211,6 +189,7 @@
             this.cbDet.Name = "cbDet";
             this.cbDet.Size = new System.Drawing.Size(378, 28);
             this.cbDet.TabIndex = 15;
+            this.cbDet.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbDet_KeyPress);
             // 
             // chkDet
             // 
@@ -221,6 +200,7 @@
             this.chkDet.TabIndex = 14;
             this.chkDet.Text = "Detachment";
             this.chkDet.UseVisualStyleBackColor = true;
+            this.chkDet.CheckedChanged += new System.EventHandler(this.chkDet_CheckedChanged);
             // 
             // cbCompany
             // 
@@ -229,6 +209,7 @@
             this.cbCompany.Name = "cbCompany";
             this.cbCompany.Size = new System.Drawing.Size(194, 28);
             this.cbCompany.TabIndex = 13;
+            this.cbCompany.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbCompany_KeyPress);
             // 
             // chkCompany
             // 
@@ -239,6 +220,7 @@
             this.chkCompany.TabIndex = 12;
             this.chkCompany.Text = "Company";
             this.chkCompany.UseVisualStyleBackColor = true;
+            this.chkCompany.CheckedChanged += new System.EventHandler(this.chkCompany_CheckedChanged);
             // 
             // panel3
             // 
@@ -285,11 +267,48 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "From";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 50);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(127, 20);
+            this.label3.TabIndex = 14;
+            this.label3.Text = "Select Report File";
+            // 
+            // btngenerate
+            // 
+            this.btngenerate.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btngenerate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btngenerate.FlatAppearance.BorderSize = 0;
+            this.btngenerate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btngenerate.ForeColor = System.Drawing.Color.White;
+            this.btngenerate.Location = new System.Drawing.Point(223, 428);
+            this.btngenerate.Name = "btngenerate";
+            this.btngenerate.Size = new System.Drawing.Size(155, 41);
+            this.btngenerate.TabIndex = 20;
+            this.btngenerate.Text = "Generate";
+            this.btngenerate.UseVisualStyleBackColor = false;
+            this.btngenerate.Click += new System.EventHandler(this.btngenerate_Click);
+            // 
+            // cbreportfile
+            // 
+            this.cbreportfile.FormattingEnabled = true;
+            this.cbreportfile.Items.AddRange(new object[] {
+            "--Select an option--",
+            "Invoices with Reimbursement Breakdown (.xlsx)",
+            "QuickBooks Invoice Template (.iif)"});
+            this.cbreportfile.Location = new System.Drawing.Point(50, 74);
+            this.cbreportfile.Name = "cbreportfile";
+            this.cbreportfile.Size = new System.Drawing.Size(505, 28);
+            this.cbreportfile.TabIndex = 13;
+            this.cbreportfile.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cbreportfile_KeyPress);
+            // 
             // frmExporting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 477);
+            this.ClientSize = new System.Drawing.Size(600, 492);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -318,7 +337,7 @@
         private System.Windows.Forms.PictureBox pbClose;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbreportfile;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox cbStatus;
         private System.Windows.Forms.CheckBox chkStatus;
