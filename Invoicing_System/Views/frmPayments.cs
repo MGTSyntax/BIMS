@@ -52,18 +52,31 @@ namespace Invoicing_System.Views
 
         public void PopPaymentDGV(string queryFilters)
         {
-            string qryInterest = "SELECT a.interestID," +
-                "a.invoiceNum," +
-                "b.custName," +
-                "a.shippingDate," +
-                "a.dueDate," +
-                "IFNULL(a.balanceAmt-(SELECT IFNULL(SUM(p_invoiceBalPay), 0) FROM tblpayment WHERE p_invoiceNum = a.invoiceNum), a.balanceAmt) AS balance," +
-                "age.age_value AS aging," +
-                "a.interestAmount AS interest," +
-                "a.compID," +
-                "a.isPaid " +
-                "FROM interest_monitoring a LEFT JOIN customerstable b ON a.customerID = b.custID LEFT JOIN " +
-                "(SELECT IF(DATEDIFF(CURDATE(), shippingDate) < 0, (DATEDIFF(CURDATE(), shippingDate) * - 1), DATEDIFF(CURDATE(), shippingDate)) AS age_value, invoiceNum FROM interest_monitoring) AS age ON a.invoiceNum = age.invoiceNum";
+            string qryInterest = @"
+                SELECT 
+                    a.interestID,
+                    a.invoiceNum,
+                    b.custName,
+                    a.shippingDate,
+                    a.dueDate,
+                    IFNULL(a.balanceAmt - (
+                        SELECT IFNULL(SUM(p_invoiceBalPay), 0) 
+                        FROM tblpayment 
+                        WHERE p_invoiceNum = a.invoiceNum
+                    ), a.balanceAmt) AS balance,
+                    age.age_value AS aging,
+                    a.interestAmount AS interest,
+                    a.compID,
+                    a.isPaid
+                FROM interest_monitoring a 
+                LEFT JOIN customerstable b ON a.customerID = b.custID 
+                LEFT JOIN (
+                    SELECT 
+                        invoiceNum,
+                        DATEDIFF(CURDATE(), shippingDate) AS age_value 
+                    FROM interest_monitoring
+                ) age ON a.invoiceNum = age.invoiceNum
+            ";
 
             functions.PopulateDataGridView(dgvInterest, qryInterest + " " + queryFilters);
             lastperformedQuery = qryInterest + " " + queryFilters;
@@ -71,39 +84,115 @@ namespace Invoicing_System.Views
 
         public void PopInterestDGV()
         {
-            string qryInterest = "SELECT a.invoiceNum," +
-                "IFNULL(a.balanceAmt-(SELECT SUM(p_invoiceBalPay) FROM tblpayment WHERE p_invoiceNum = a.invoiceNum), a.balanceAmt) AS balance," +
-                "age.age_value AS age," +
-                "IF(age.age_value > 30, ROUND((IFNULL(a.balanceAmt-(SELECT SUM(p_invoiceBalPay) FROM tblpayment WHERE p_invoiceNum = a.invoiceNum), a.balanceAmt)) * ((0.02 / 30) * (DATEDIFF(curdate(),shippingDate))),2),0) AS interest " +
-                "FROM interest_monitoring a LEFT JOIN " +
-                "(SELECT IF(DATEDIFF(CURDATE(), shippingDate) < 0, (DATEDIFF(CURDATE(), shippingDate) * - 1), DATEDIFF(CURDATE(), shippingDate)) AS age_value, " +
-                "invoiceNum FROM interest_monitoring) AS age ON a.invoiceNum = age.invoiceNum " +
-                "WHERE isPaid = 0 AND isVoid = 0 AND compID IN (" + useraccess + ")";
+            string qryInterest = @"
+                SELECT 
+                    a.invoiceNum,
+                    IFNULL(a.balanceAmt - (
+                        SELECT IFNULL(SUM(p_invoiceBalPay), 0) 
+                        FROM tblpayment 
+                        WHERE p_invoiceNum = a.invoiceNum
+                    ), a.balanceAmt) AS balance,
+                    
+                    CASE 
+                        WHEN DATEDIFF(CURDATE(), a.dueDate) > 0
+                        THEN DATEDIFF(
+                            CURDATE(),
+                            GREATEST(
+                                a.dueDate,
+                                IFNULL((
+                                    SELECT MAX(p_datePaid)
+                                    FROM tblpayment 
+                                    WHERE p_invoiceNum = a.invoiceNum
+                                ), a.dueDate)
+                            )
+                        )
+                        ELSE 0
+                    END AS age,
+
+                    CASE 
+                        WHEN DATEDIFF(CURDATE(), a.dueDate) > 0
+                        THEN ROUND(
+                            (IFNULL(a.balanceAmt - (
+                                SELECT IFNULL(SUM(p_invoiceBalPay), 0) 
+                                FROM tblpayment 
+                                WHERE p_invoiceNum = a.invoiceNum
+                            ), a.balanceAmt)) * (
+                                (SELECT interest_rate FROM tblinterest LIMIT 1) / 30
+                            ) * 
+                            DATEDIFF(
+                                CURDATE(), 
+                                GREATEST(
+                                    a.dueDate,
+                                    IFNULL((
+                                        SELECT MAX(p_datePaid)
+                                        FROM tblpayment 
+                                        WHERE p_invoiceNum = a.invoiceNum
+                                    ), a.dueDate)
+                                )
+                            ),
+                        2)
+                        ELSE 0
+                    END AS interest 
+
+                FROM interest_monitoring a 
+                WHERE isPaid = 0 AND isVoid = 0 AND compID IN (" + useraccess + @")
+            ";
 
             var dtqryInterest = functions.SelectData(qryInterest, "interest");
+
             foreach (DataRow drInterest in dtqryInterest.Rows)
             {
-                UpdateInterest(drInterest["invoiceNum"].ToString(), decimal.Parse(drInterest["interest"].ToString()), int.Parse(drInterest["age"].ToString()));
-                if (decimal.Parse(drInterest["balance"].ToString()) == 0)
+                decimal balance = drInterest["balance"] != DBNull.Value ? Convert.ToDecimal(drInterest["balance"]) : 0;
+                decimal newInterest = drInterest["interest"] != DBNull.Value ? Convert.ToDecimal(drInterest["interest"]) : 0;
+                int age = drInterest["age"] != DBNull.Value ? Convert.ToInt32(drInterest["age"]) : 0;
+                string invoiceNum = drInterest["invoiceNum"].ToString();
+
+                UpdateInterest(invoiceNum, newInterest, age);
+
+                if (balance == 0 && newInterest == 0)
                 {
-                    UpdatePaidStatus(drInterest["invoiceNum"].ToString(), decimal.Parse(drInterest["balance"].ToString()));
+                    UpdatePaidStatus(invoiceNum);
                 }
             }
         }
 
         private void UpdateInterest(string invoiceNum, decimal newInterest, int age)
         {
-            string qryUpdateInterest = "UPDATE interest_monitoring SET aging='" + age + "', interestAmount='" + newInterest + "' WHERE invoiceNum='" + invoiceNum + "'";
-            functions.SaveData(qryUpdateInterest);
+            string qryUpdateInterest = @"
+                UPDATE interest_monitoring 
+                SET aging = @Age, 
+                    interestAmount = @Interest 
+                WHERE invoiceNum = @InvoiceNum";
+
+            functions.ParamSaveData(qryUpdateInterest, new Dictionary<string, object>
+            {
+                {"@Age", age },
+                {"@Interest", newInterest },
+                {"@InvoiceNum", invoiceNum}
+            });
         }
 
-        private void UpdatePaidStatus(string invoiceNum, decimal newPaidStatus)
+        private void UpdatePaidStatus(string invoiceNum)
         {
-            string qryUpdisPaid1 = "UPDATE interest_monitoring SET isPaid='1' WHERE invoiceNum='" + invoiceNum + "'";
-            functions.SaveData(qryUpdisPaid1);
+            string qryUpdisPaid1 = @"
+                UPDATE interest_monitoring 
+                SET isPaid = @paidStats 
+                WHERE invoiceNum = @InvoiceNum";
+            functions.ParamSaveData(qryUpdisPaid1, new Dictionary<string, object>
+            {
+                {"@paidStats", '1' },
+                {"invoiceNum", invoiceNum}
+            });
 
-            string qryUpdisPaid2 = "UPDATE invoice_monitoring SET isPaid='1' WHERE invoiceNumber='" + invoiceNum + "'";
-            functions.SaveData(qryUpdisPaid2);
+            string qryUpdisPaid2 = @"
+                UPDATE invoice_monitoring 
+                SET isPaid = @paidStats 
+                WHERE invoiceNum = @InvoiceNum";
+            functions.ParamSaveData(qryUpdisPaid2, new Dictionary<string, object>
+            {
+                {"@paidStats", '1' },
+                {"invoiceNum", invoiceNum}
+            });
         }
 
         private void btnEnterPayment_Click(object sender, EventArgs e)
@@ -115,6 +204,19 @@ namespace Invoicing_System.Views
 
                 string interestNo = selectedRow.Cells[0].Value.ToString();
                 decimal invBal = Convert.ToDecimal(selectedRow.Cells[5].Value.ToString());
+                string interestStats = selectedRow.Cells[9].Value.ToString();
+
+                //string query = @"
+                //    SELECT 
+                //        hasInterest
+                //    FROM customerstable
+                //    WHERE custID = '" + interestStats + "'";
+                //var dtqryInterestStats = functions.SelectData(query, "interest");
+
+                //foreach (DataRow drInterest in dtqryInterestStats.Rows)
+                //{
+                //    string intStats = drInterest["hasInterest"];
+                //}
                 
                 PayAmountDetails = new PayAmountDetails(this);
                 PayAmountDetails.InterestNo = interestNo;
@@ -158,7 +260,7 @@ namespace Invoicing_System.Views
                 "a.shippingDate," +
                 "a.dueDate," +
                 "a.balanceAmt AS balance," +
-                "IF(DATEDIFF(CURDATE(), a.shippingDate) < 0, (DATEDIFF(CURDATE(), a.shippingDate) * - 1), DATEDIFF(CURDATE(), a.shippingDate)) AS aging," +
+                "DATEDIFF(CURDATE(), a.shippingDate) AS aging," +
                 "a.interestAmount as interest," +
                 "IFNULL(c.p_invoiceBalPay,0) AS payment," +
                 "c.p_orNum AS orno," +

@@ -51,7 +51,7 @@ namespace Invoicing_System.Views
             {
                 dgvInvoices.Columns["colVoid"].Visible = false;
             }
-            
+
             PopulateInvoices();
             PopTotals();
         }

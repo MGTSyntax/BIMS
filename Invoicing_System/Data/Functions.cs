@@ -8,6 +8,8 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Text;
 using System.IO.Packaging;
+using System.Drawing;
+using System.Threading.Tasks;
 
 namespace Invoicing_System.Data
 {
@@ -189,11 +191,11 @@ namespace Invoicing_System.Data
                 con.Open();
                 cmd = new MySqlCommand(query, con);
                 dr = cmd.ExecuteReader();
+
                 while (dr.Read())
                 {
                     // Create Array to Store Column Values
                     object[] drValues = new object[dr.FieldCount];
-                    //dr.GetValues(drValues);
 
                     // Iterate over readers columns
                     for (int i = 0; i < dr.FieldCount; i++)
@@ -204,10 +206,8 @@ namespace Invoicing_System.Data
                             // Format the DateTime value to display only the date portion
                             drValues[i] = ((DateTime)dr.GetValue(i)).ToShortDateString();
                         }
-                        else drValues[i] = dr.GetValue(i); // Retrieve the value for others
-
                         // Check if the Column is of Boolean
-                        if (dr.GetFieldType(i) == typeof(bool))
+                        else if (dr.GetFieldType(i) == typeof(bool))
                         {
                             // Get the Boolean value
                             drValues[i] = (dr.GetBoolean(i)) ? true : false;
@@ -785,6 +785,33 @@ namespace Invoicing_System.Data
             catch (Exception ex)
             {
                 MessageBox.Show("Error exporting data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void ShowLoading(string message, Action action)
+        {
+            using (Form loadingForm = new Form())
+            {
+                loadingForm.StartPosition = FormStartPosition.CenterParent;
+                loadingForm.FormBorderStyle = FormBorderStyle.None;
+                loadingForm.BackColor = Color.White;
+                loadingForm.Size = new Size(200, 100);
+
+                Label lbl = new Label
+                {
+                    Text = message,
+                    Dock = DockStyle.Fill,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                };
+                loadingForm.Controls.Add(lbl);
+
+                loadingForm.Shown += async (s, e) =>
+                {
+                    await Task.Run(() => action());
+                    loadingForm.Invoke(new Action(() => loadingForm.Close()));
+                };
+
+                loadingForm.ShowDialog();
             }
         }
     }
