@@ -33,20 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CustomerSetup));
             this.dgvCustomers = new System.Windows.Forms.DataGridView();
-            this.colCustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCustName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCPerson = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHasAF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colHasVAT = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colHasInterest = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colOBAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colComp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTelNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEditCust = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colDelCust = new System.Windows.Forms.DataGridViewImageColumn();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -60,6 +46,21 @@
             this.pbClose = new System.Windows.Forms.PictureBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colCustID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colclass = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCustName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCPerson = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPosition = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEAdd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHasAF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colHasVAT = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colHasInterest = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colOBAmt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colComp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTelNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEditCust = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colDelCust = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomers)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -90,6 +91,7 @@
             this.dgvCustomers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCustID,
+            this.colclass,
             this.colCustName,
             this.colCPerson,
             this.colPosition,
@@ -127,117 +129,6 @@
             this.dgvCustomers.Size = new System.Drawing.Size(1263, 538);
             this.dgvCustomers.TabIndex = 1;
             this.dgvCustomers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomers_CellContentClick);
-            // 
-            // colCustID
-            // 
-            this.colCustID.HeaderText = "ID";
-            this.colCustID.MinimumWidth = 8;
-            this.colCustID.Name = "colCustID";
-            this.colCustID.Visible = false;
-            this.colCustID.Width = 150;
-            // 
-            // colCustName
-            // 
-            this.colCustName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCustName.HeaderText = "Customer Name";
-            this.colCustName.MinimumWidth = 8;
-            this.colCustName.Name = "colCustName";
-            // 
-            // colCPerson
-            // 
-            this.colCPerson.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colCPerson.HeaderText = "Contact Person";
-            this.colCPerson.MinimumWidth = 8;
-            this.colCPerson.Name = "colCPerson";
-            // 
-            // colPosition
-            // 
-            this.colPosition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colPosition.HeaderText = "Position";
-            this.colPosition.MinimumWidth = 8;
-            this.colPosition.Name = "colPosition";
-            // 
-            // colEAdd
-            // 
-            this.colEAdd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEAdd.HeaderText = "Email Address";
-            this.colEAdd.MinimumWidth = 8;
-            this.colEAdd.Name = "colEAdd";
-            // 
-            // colHasAF
-            // 
-            this.colHasAF.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colHasAF.HeaderText = "Agency Fee";
-            this.colHasAF.MinimumWidth = 8;
-            this.colHasAF.Name = "colHasAF";
-            this.colHasAF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colHasAF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colHasAF.Width = 65;
-            // 
-            // colHasVAT
-            // 
-            this.colHasVAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colHasVAT.HeaderText = "VAT";
-            this.colHasVAT.MinimumWidth = 8;
-            this.colHasVAT.Name = "colHasVAT";
-            this.colHasVAT.Width = 32;
-            // 
-            // colHasInterest
-            // 
-            this.colHasInterest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colHasInterest.HeaderText = "Interest";
-            this.colHasInterest.MinimumWidth = 8;
-            this.colHasInterest.Name = "colHasInterest";
-            this.colHasInterest.Width = 51;
-            // 
-            // colOBAmt
-            // 
-            this.colOBAmt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colOBAmt.HeaderText = "Fixed Billable Amount";
-            this.colOBAmt.MinimumWidth = 8;
-            this.colOBAmt.Name = "colOBAmt";
-            this.colOBAmt.Width = 133;
-            // 
-            // colComp
-            // 
-            this.colComp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colComp.HeaderText = "Company";
-            this.colComp.Name = "colComp";
-            this.colComp.Width = 81;
-            // 
-            // colTIN
-            // 
-            this.colTIN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colTIN.HeaderText = "TIN";
-            this.colTIN.Name = "colTIN";
-            this.colTIN.Width = 50;
-            // 
-            // colTelNo
-            // 
-            this.colTelNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colTelNo.HeaderText = "Tel. No.";
-            this.colTelNo.Name = "colTelNo";
-            this.colTelNo.Width = 65;
-            // 
-            // colEditCust
-            // 
-            this.colEditCust.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colEditCust.HeaderText = "";
-            this.colEditCust.Image = ((System.Drawing.Image)(resources.GetObject("colEditCust.Image")));
-            this.colEditCust.MinimumWidth = 8;
-            this.colEditCust.Name = "colEditCust";
-            this.colEditCust.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colEditCust.Width = 8;
-            // 
-            // colDelCust
-            // 
-            this.colDelCust.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colDelCust.HeaderText = "";
-            this.colDelCust.Image = ((System.Drawing.Image)(resources.GetObject("colDelCust.Image")));
-            this.colDelCust.MinimumWidth = 8;
-            this.colDelCust.Name = "colDelCust";
-            this.colDelCust.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colDelCust.Width = 8;
             // 
             // tabControl1
             // 
@@ -396,6 +287,124 @@
             this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
             this.dataGridViewImageColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
+            // colCustID
+            // 
+            this.colCustID.HeaderText = "ID";
+            this.colCustID.MinimumWidth = 8;
+            this.colCustID.Name = "colCustID";
+            this.colCustID.Visible = false;
+            this.colCustID.Width = 150;
+            // 
+            // colclass
+            // 
+            this.colclass.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colclass.HeaderText = "Client Name";
+            this.colclass.Name = "colclass";
+            this.colclass.Width = 87;
+            // 
+            // colCustName
+            // 
+            this.colCustName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCustName.HeaderText = "Customer Name";
+            this.colCustName.MinimumWidth = 8;
+            this.colCustName.Name = "colCustName";
+            // 
+            // colCPerson
+            // 
+            this.colCPerson.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colCPerson.HeaderText = "Contact Person";
+            this.colCPerson.MinimumWidth = 8;
+            this.colCPerson.Name = "colCPerson";
+            // 
+            // colPosition
+            // 
+            this.colPosition.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colPosition.HeaderText = "Position";
+            this.colPosition.MinimumWidth = 8;
+            this.colPosition.Name = "colPosition";
+            // 
+            // colEAdd
+            // 
+            this.colEAdd.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEAdd.HeaderText = "Email Address";
+            this.colEAdd.MinimumWidth = 8;
+            this.colEAdd.Name = "colEAdd";
+            // 
+            // colHasAF
+            // 
+            this.colHasAF.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colHasAF.HeaderText = "Agency Fee";
+            this.colHasAF.MinimumWidth = 8;
+            this.colHasAF.Name = "colHasAF";
+            this.colHasAF.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colHasAF.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colHasAF.Width = 65;
+            // 
+            // colHasVAT
+            // 
+            this.colHasVAT.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colHasVAT.HeaderText = "VAT";
+            this.colHasVAT.MinimumWidth = 8;
+            this.colHasVAT.Name = "colHasVAT";
+            this.colHasVAT.Width = 32;
+            // 
+            // colHasInterest
+            // 
+            this.colHasInterest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colHasInterest.HeaderText = "Interest";
+            this.colHasInterest.MinimumWidth = 8;
+            this.colHasInterest.Name = "colHasInterest";
+            this.colHasInterest.Width = 51;
+            // 
+            // colOBAmt
+            // 
+            this.colOBAmt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colOBAmt.HeaderText = "Fixed Billable Amount";
+            this.colOBAmt.MinimumWidth = 8;
+            this.colOBAmt.Name = "colOBAmt";
+            this.colOBAmt.Width = 133;
+            // 
+            // colComp
+            // 
+            this.colComp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colComp.HeaderText = "Company";
+            this.colComp.Name = "colComp";
+            this.colComp.Width = 81;
+            // 
+            // colTIN
+            // 
+            this.colTIN.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colTIN.HeaderText = "TIN";
+            this.colTIN.Name = "colTIN";
+            this.colTIN.Width = 50;
+            // 
+            // colTelNo
+            // 
+            this.colTelNo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colTelNo.HeaderText = "Tel. No.";
+            this.colTelNo.Name = "colTelNo";
+            this.colTelNo.Width = 65;
+            // 
+            // colEditCust
+            // 
+            this.colEditCust.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colEditCust.HeaderText = "";
+            this.colEditCust.Image = ((System.Drawing.Image)(resources.GetObject("colEditCust.Image")));
+            this.colEditCust.MinimumWidth = 8;
+            this.colEditCust.Name = "colEditCust";
+            this.colEditCust.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colEditCust.Width = 8;
+            // 
+            // colDelCust
+            // 
+            this.colDelCust.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colDelCust.HeaderText = "";
+            this.colDelCust.Image = ((System.Drawing.Image)(resources.GetObject("colDelCust.Image")));
+            this.colDelCust.MinimumWidth = 8;
+            this.colDelCust.Name = "colDelCust";
+            this.colDelCust.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colDelCust.Width = 8;
+            // 
             // CustomerSetup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -437,6 +446,7 @@
         private System.Windows.Forms.Label lblnoofcust;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCustID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colclass;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCustName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCPerson;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPosition;

@@ -114,35 +114,6 @@ namespace Invoicing_System.Data
             }
         }
 
-        public DataTable SelectDataParameters(string query, string dtds, Dictionary<string, object> parameters = null)
-        {
-            try
-            {
-                con.Open();
-                ds = new DataSet();
-                da = new MySqlDataAdapter(query, con);
-
-                //Add parameters to the command if they are provided
-                if (parameters != null)
-                {
-                    foreach (var parameter in parameters)
-                    {
-                        da.SelectCommand.Parameters.AddWithValue(parameter.Key, parameter.Value);
-                    }
-                }
-
-                da.Fill(ds, dtds);
-                con.Close();
-                return ds.Tables[dtds];
-            }
-            catch (Exception ex)
-            {
-                con.Close();
-                MessageBox.Show("Problem in Getting Data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                throw;
-            }
-        } // End of SelectData
-
         public void PopulateComboboxFromDb(ComboBox cmb, string qry, string displayMem, string valueMem, object customDisplay, string customValue)
         {
             try
@@ -785,6 +756,28 @@ namespace Invoicing_System.Data
             catch (Exception ex)
             {
                 MessageBox.Show("Error exporting data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public decimal GetInterestRate()
+        {
+            try
+            {
+                string query = "SELECT " +
+                    "interest_rate " +
+                    "FROM tblinterest " +
+                    "LIMIT 1";
+                DataTable dt = ParamSelectData(query, "interestRate");
+                if (dt.Rows.Count > 0 && dt.Rows[0]["interest_rate"] != DBNull.Value)
+                {
+                    return Convert.ToDecimal(dt.Rows[0]["interest_rate"]);
+                }
+                else return 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Problem in getting interest rate!\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return 0;
             }
         }
 

@@ -44,7 +44,7 @@ namespace Invoicing_System.Views
                 { "@Password", enteredPassword }
             };
 
-            var userexists = functions.SelectDataParameters(qryUser, "tblusers", parameters);
+            var userexists = functions.ParamSelectData(qryUser, "tblusers", parameters);
             if (userexists.Rows.Count > 0)
             {
                 //username value

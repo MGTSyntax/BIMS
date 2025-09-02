@@ -7,7 +7,7 @@
       "RelativeMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|solutionrelative:invoicing_system\\views\\frmpayments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|d:\\systems\\invoicing and monitoring system\\invoicing_system\\invoicing_system\\views\\frmpayments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\invoicing_system\\views\\frmpayments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|solutionrelative:invoicing_system\\views\\frmpayments.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -19,15 +19,22 @@
       "RelativeMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|solutionrelative:invoicing_system\\views\\interestlist\\payamountdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|d:\\systems\\invoicing and monitoring system\\invoicing_system\\invoicing_system\\data\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|d:\\systems\\invoicing and monitoring system\\invoicing_system\\invoicing_system\\views\\customersetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|solutionrelative:invoicing_system\\views\\customersetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\invoicing_system\\data\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|solutionrelative:invoicing_system\\data\\functions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Invoicing_System||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\invoicing_system\\views\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|solutionrelative:invoicing_system\\views\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{00000000-0000-0000-0000-000000000000}|\u003CSolution\u003E|Invoicing_System||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+      "AbsoluteMoniker": "D:0:0:{8482ABE4-D481-4DC6-A5EE-E8E21D640582}|Invoicing_System\\Invoicing_System.csproj|d:\\systems\\invoicing and monitoring system\\invoicing_system\\invoicing_system\\||{B270807C-D8C6-49EB-8EBE-8E8D566637A1}|5e9a8ac2-4f34-4521-858f-4c248ba31532"
     }
   ],
   "DocumentGroupContainers": [
@@ -55,9 +62,9 @@
               "RelativeDocumentMoniker": "Invoicing_System\\Views\\InterestList\\PayAmountDetails.cs",
               "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\InterestList\\PayAmountDetails.cs",
               "RelativeToolTip": "Invoicing_System\\Views\\InterestList\\PayAmountDetails.cs",
-              "ViewState": "AgIAADUAAAAAAAAAAAAIwD8AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAIwGEAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T07:43:11.475Z",
+              "WhenOpened": "2025-09-02T08:14:19.185Z",
               "EditorCaption": ""
             },
             {
@@ -69,7 +76,7 @@
               "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\InterestList\\PayAmountDetails.cs [Design]",
               "RelativeToolTip": "Invoicing_System\\Views\\InterestList\\PayAmountDetails.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T07:43:06.941Z",
+              "WhenOpened": "2025-09-02T07:50:32.434Z",
               "EditorCaption": " [Design]"
             },
             {
@@ -80,9 +87,9 @@
               "RelativeDocumentMoniker": "Invoicing_System\\Views\\frmPayments.cs",
               "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\frmPayments.cs",
               "RelativeToolTip": "Invoicing_System\\Views\\frmPayments.cs",
-              "ViewState": "AgIAAHsAAAAAAAAAAAAIwJkAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAYwFgAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-09-01T02:03:36.975Z",
+              "WhenOpened": "2025-09-02T02:50:09.727Z",
               "EditorCaption": ""
             },
             {
@@ -99,7 +106,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "Dashboard.cs [Design]",
               "DocumentMoniker": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\Dashboard.cs",
               "RelativeDocumentMoniker": "Invoicing_System\\Views\\Dashboard.cs",
@@ -118,20 +125,33 @@
               "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Invoicing_System.csproj",
               "RelativeToolTip": "Invoicing_System\\Invoicing_System.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-01-23T07:37:09.625Z"
+              "WhenOpened": "2025-01-23T07:37:09.625Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Functions.cs",
               "DocumentMoniker": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Data\\Functions.cs",
               "RelativeDocumentMoniker": "Invoicing_System\\Data\\Functions.cs",
               "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Data\\Functions.cs",
               "RelativeToolTip": "Invoicing_System\\Data\\Functions.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAkwFUAAAAQAAAAAAAAAA==",
+              "ViewState": "AgIAAPsBAAAAAAAAAAAkwPkCAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-29T05:50:50.049Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CustomerSetup.cs [Design]",
+              "DocumentMoniker": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\CustomerSetup.cs",
+              "RelativeDocumentMoniker": "Invoicing_System\\Views\\CustomerSetup.cs",
+              "ToolTip": "D:\\Systems\\Invoicing and Monitoring System\\Invoicing_System\\Invoicing_System\\Views\\CustomerSetup.cs [Design]",
+              "RelativeToolTip": "Invoicing_System\\Views\\CustomerSetup.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-02T02:34:17.698Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

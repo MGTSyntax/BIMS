@@ -18,6 +18,7 @@ namespace Invoicing_System.Views.InterestList
         Functions functions = new Functions();
         Variables var = new Variables();
         Validations val = new Validations();
+
         public string InterestNo { get; set; }
         public decimal InvBal { get; set; }
         public decimal InterestAmt { get; set; }
@@ -62,6 +63,9 @@ namespace Invoicing_System.Views.InterestList
                 }
             }
             txtBalance.Text = InvBal.ToString("N2");
+            txtInterest.Text = InterestAmt.ToString("N2");
+            totalInvBal = (InvBal + InterestAmt);
+            txttotalBal.Text = totalInvBal.ToString("N2");
         } // End of PopulateControlsToUpdate
 
         private void btnPay_Click(object sender, EventArgs e)

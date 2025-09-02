@@ -50,7 +50,7 @@ namespace Invoicing_System.Views
 
         public void PopulateCustomers()
         {
-            qryCustomers = "SELECT custID,custName,contactPerson,cpPosition,emailAddress,custagencyFee, " +
+            qryCustomers = "SELECT custID,clientName,custName,contactPerson,cpPosition,emailAddress,custagencyFee, " +
                 "isvatable,hasInterest,otherBillAmt,UPPER(compID) as compID,tin,telno FROM customerstable";
 
             string qryFilter = "WHERE isDeleted = 0 AND compID IN (" + useraccess + ") ORDER BY custName";

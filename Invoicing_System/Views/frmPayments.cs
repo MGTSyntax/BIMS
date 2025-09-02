@@ -1,4 +1,5 @@
-﻿using Invoicing_System.Data;
+﻿using DocumentFormat.OpenXml.Drawing;
+using Invoicing_System.Data;
 using Invoicing_System.Reports;
 using Invoicing_System.Views.InterestList;
 using Invoicing_System.Views.InvoiceList;
@@ -66,8 +67,9 @@ namespace Invoicing_System.Views
                     ), a.balanceAmt) AS balance,
                     age.age_value AS aging,
                     a.interestAmount AS interest,
-                    a.compID,
-                    a.isPaid
+                    UPPER(a.compID) AS compID,
+                    a.isPaid,
+                    b.hasInterest
                 FROM interest_monitoring a 
                 LEFT JOIN customerstable b ON a.customerID = b.custID 
                 LEFT JOIN (
@@ -92,7 +94,6 @@ namespace Invoicing_System.Views
                         FROM tblpayment 
                         WHERE p_invoiceNum = a.invoiceNum
                     ), a.balanceAmt) AS balance,
-                    
                     CASE 
                         WHEN DATEDIFF(CURDATE(), a.dueDate) > 0
                         THEN DATEDIFF(
@@ -108,45 +109,28 @@ namespace Invoicing_System.Views
                         )
                         ELSE 0
                     END AS age,
-
-                    CASE 
-                        WHEN DATEDIFF(CURDATE(), a.dueDate) > 0
-                        THEN ROUND(
-                            (IFNULL(a.balanceAmt - (
-                                SELECT IFNULL(SUM(p_invoiceBalPay), 0) 
-                                FROM tblpayment 
-                                WHERE p_invoiceNum = a.invoiceNum
-                            ), a.balanceAmt)) * (
-                                (SELECT interest_rate FROM tblinterest LIMIT 1) / 30
-                            ) * 
-                            DATEDIFF(
-                                CURDATE(), 
-                                GREATEST(
-                                    a.dueDate,
-                                    IFNULL((
-                                        SELECT MAX(p_datePaid)
-                                        FROM tblpayment 
-                                        WHERE p_invoiceNum = a.invoiceNum
-                                    ), a.dueDate)
-                                )
-                            ),
-                        2)
-                        ELSE 0
-                    END AS interest 
-
+                    b.hasInterest
                 FROM interest_monitoring a 
-                WHERE isPaid = 0 AND isVoid = 0 AND compID IN (" + useraccess + @")
+                LEFT JOIN customerstable b ON a.customerID = b.custID 
+                WHERE a.isPaid = 0 AND a.isVoid = 0 AND a.compID IN (" + useraccess + @")
             ";
 
             var dtqryInterest = functions.SelectData(qryInterest, "interest");
+            decimal rate = functions.GetInterestRate();
 
             foreach (DataRow drInterest in dtqryInterest.Rows)
             {
                 decimal balance = drInterest["balance"] != DBNull.Value ? Convert.ToDecimal(drInterest["balance"]) : 0;
-                decimal newInterest = drInterest["interest"] != DBNull.Value ? Convert.ToDecimal(drInterest["interest"]) : 0;
                 int age = drInterest["age"] != DBNull.Value ? Convert.ToInt32(drInterest["age"]) : 0;
-                string invoiceNum = drInterest["invoiceNum"].ToString();
+                bool hasInterest = drInterest["hasInterest"] != DBNull.Value && Convert.ToInt32(drInterest["hasInterest"]) == 1;
 
+                decimal newInterest = 0;
+                if (hasInterest && age > 0)
+                {
+                    newInterest = Math.Round(balance * (rate / 30) * age, 2);
+                }
+
+                string invoiceNum = drInterest["invoiceNum"].ToString();
                 UpdateInterest(invoiceNum, newInterest, age);
 
                 if (balance == 0 && newInterest == 0)
@@ -168,7 +152,7 @@ namespace Invoicing_System.Views
             {
                 {"@Age", age },
                 {"@Interest", newInterest },
-                {"@InvoiceNum", invoiceNum}
+                {"@InvoiceNum", invoiceNum }
             });
         }
 
@@ -204,23 +188,12 @@ namespace Invoicing_System.Views
 
                 string interestNo = selectedRow.Cells[0].Value.ToString();
                 decimal invBal = Convert.ToDecimal(selectedRow.Cells[5].Value.ToString());
-                string interestStats = selectedRow.Cells[9].Value.ToString();
-
-                //string query = @"
-                //    SELECT 
-                //        hasInterest
-                //    FROM customerstable
-                //    WHERE custID = '" + interestStats + "'";
-                //var dtqryInterestStats = functions.SelectData(query, "interest");
-
-                //foreach (DataRow drInterest in dtqryInterestStats.Rows)
-                //{
-                //    string intStats = drInterest["hasInterest"];
-                //}
+                decimal interestAmount = Convert.ToDecimal(selectedRow.Cells[7].Value.ToString());
                 
                 PayAmountDetails = new PayAmountDetails(this);
                 PayAmountDetails.InterestNo = interestNo;
                 PayAmountDetails.InvBal = invBal;
+                PayAmountDetails.InterestAmt = interestAmount;
                 PayAmountDetails.ShowDialog();
             }
             else MessageBox.Show("No payment selected", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
