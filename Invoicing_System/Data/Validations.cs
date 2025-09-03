@@ -18,7 +18,7 @@ namespace Invoicing_System.Data
         {
             foreach (var ctrl in control)
             {
-                if (string.IsNullOrEmpty(ctrl.Text) || ctrl.Text == "Select an option")
+                if (string.IsNullOrEmpty(ctrl.Text) || ctrl.Text == "--Select an option--")
                 {
                     errorProvider.SetError(ctrl, "This field is required.");
                     ctrl.Focus();

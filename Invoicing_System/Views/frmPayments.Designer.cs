@@ -28,43 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayments));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvInterest = new System.Windows.Forms.DataGridView();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.btnFilter = new System.Windows.Forms.Button();
-            this.bntExport = new System.Windows.Forms.Button();
-            this.pbClose = new System.Windows.Forms.PictureBox();
-            this.btnEnterPayment = new System.Windows.Forms.Button();
-            this.tabControl2 = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dgvPaymentHistory = new System.Windows.Forms.DataGridView();
-            this.colp_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colp_amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colp_datePaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colornumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colarnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colbank = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colchecknum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.colinterestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colinvoiceNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colcustomerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +59,23 @@
             this.colComp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colisPaid = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colhasInterest = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.bntExport = new System.Windows.Forms.Button();
+            this.pbClose = new System.Windows.Forms.PictureBox();
+            this.btnEnterPayment = new System.Windows.Forms.Button();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgvPaymentHistory = new System.Windows.Forms.DataGridView();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colp_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colp_amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colp_datePaid = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colornumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colarnum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colbank = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colchecknum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -123,7 +123,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(1068, 417);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Interest Monitoring";
+            this.tabPage1.Text = "Payment Monitoring";
             // 
             // dgvInterest
             // 
@@ -136,14 +136,14 @@
             this.dgvInterest.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvInterest.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvInterest.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInterest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInterest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvInterest.ColumnHeadersHeight = 40;
             this.dgvInterest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvInterest.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -159,14 +159,14 @@
             this.colisPaid,
             this.colhasInterest});
             this.dgvInterest.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInterest.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInterest.DefaultCellStyle = dataGridViewCellStyle24;
             this.dgvInterest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvInterest.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvInterest.EnableHeadersVisualStyles = false;
@@ -176,13 +176,116 @@
             this.dgvInterest.Name = "dgvInterest";
             this.dgvInterest.RowHeadersVisible = false;
             this.dgvInterest.RowHeadersWidth = 62;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.dgvInterest.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.dgvInterest.RowsDefaultCellStyle = dataGridViewCellStyle25;
             this.dgvInterest.RowTemplate.Height = 27;
             this.dgvInterest.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvInterest.Size = new System.Drawing.Size(1062, 373);
             this.dgvInterest.TabIndex = 1;
             this.dgvInterest.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvInterest_CellClick);
+            // 
+            // colinterestID
+            // 
+            this.colinterestID.HeaderText = "interestID";
+            this.colinterestID.MinimumWidth = 8;
+            this.colinterestID.Name = "colinterestID";
+            this.colinterestID.Visible = false;
+            this.colinterestID.Width = 150;
+            // 
+            // colinvoiceNum
+            // 
+            this.colinvoiceNum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle17.Format = "N2";
+            dataGridViewCellStyle17.NullValue = null;
+            this.colinvoiceNum.DefaultCellStyle = dataGridViewCellStyle17;
+            this.colinvoiceNum.HeaderText = "Invoice No.";
+            this.colinvoiceNum.MinimumWidth = 8;
+            this.colinvoiceNum.Name = "colinvoiceNum";
+            this.colinvoiceNum.Width = 84;
+            // 
+            // colcustomerID
+            // 
+            this.colcustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle18.Format = "N2";
+            dataGridViewCellStyle18.NullValue = null;
+            this.colcustomerID.DefaultCellStyle = dataGridViewCellStyle18;
+            this.colcustomerID.HeaderText = "Customer";
+            this.colcustomerID.MinimumWidth = 8;
+            this.colcustomerID.Name = "colcustomerID";
+            // 
+            // colshippingDate
+            // 
+            this.colshippingDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle19.Format = "d";
+            dataGridViewCellStyle19.NullValue = null;
+            this.colshippingDate.DefaultCellStyle = dataGridViewCellStyle19;
+            this.colshippingDate.HeaderText = "Date Shipped";
+            this.colshippingDate.MinimumWidth = 8;
+            this.colshippingDate.Name = "colshippingDate";
+            this.colshippingDate.Width = 94;
+            // 
+            // coldueDate
+            // 
+            this.coldueDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle20.Format = "d";
+            dataGridViewCellStyle20.NullValue = null;
+            this.coldueDate.DefaultCellStyle = dataGridViewCellStyle20;
+            this.coldueDate.HeaderText = "Due Date";
+            this.coldueDate.MinimumWidth = 8;
+            this.coldueDate.Name = "coldueDate";
+            // 
+            // colbalanceAmt
+            // 
+            this.colbalanceAmt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle21.Format = "N2";
+            dataGridViewCellStyle21.NullValue = null;
+            this.colbalanceAmt.DefaultCellStyle = dataGridViewCellStyle21;
+            this.colbalanceAmt.HeaderText = "Balance";
+            this.colbalanceAmt.MinimumWidth = 8;
+            this.colbalanceAmt.Name = "colbalanceAmt";
+            // 
+            // colaging
+            // 
+            this.colaging.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle22.Format = "d";
+            dataGridViewCellStyle22.NullValue = null;
+            this.colaging.DefaultCellStyle = dataGridViewCellStyle22;
+            this.colaging.HeaderText = "Age";
+            this.colaging.MinimumWidth = 8;
+            this.colaging.Name = "colaging";
+            this.colaging.Width = 51;
+            // 
+            // colinterestAmount
+            // 
+            this.colinterestAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle23.Format = "N2";
+            dataGridViewCellStyle23.NullValue = null;
+            this.colinterestAmount.DefaultCellStyle = dataGridViewCellStyle23;
+            this.colinterestAmount.HeaderText = "Interest";
+            this.colinterestAmount.MinimumWidth = 8;
+            this.colinterestAmount.Name = "colinterestAmount";
+            this.colinterestAmount.Width = 70;
+            // 
+            // colComp
+            // 
+            this.colComp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colComp.HeaderText = "Company";
+            this.colComp.Name = "colComp";
+            this.colComp.Width = 81;
+            // 
+            // colisPaid
+            // 
+            this.colisPaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colisPaid.HeaderText = "Paid";
+            this.colisPaid.Name = "colisPaid";
+            this.colisPaid.Width = 34;
+            // 
+            // colhasInterest
+            // 
+            this.colhasInterest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colhasInterest.HeaderText = "Interest";
+            this.colhasInterest.Name = "colhasInterest";
+            this.colhasInterest.Width = 51;
             // 
             // panel1
             // 
@@ -299,14 +402,14 @@
             this.dgvPaymentHistory.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvPaymentHistory.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvPaymentHistory.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvPaymentHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle26.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle26.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle26.SelectionBackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle26.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle26.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvPaymentHistory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle26;
             this.dgvPaymentHistory.ColumnHeadersHeight = 40;
             this.dgvPaymentHistory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvPaymentHistory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -318,14 +421,14 @@
             this.colbank,
             this.colchecknum});
             this.dgvPaymentHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvPaymentHistory.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Bold);
+            dataGridViewCellStyle29.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle29.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle29.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            dataGridViewCellStyle29.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvPaymentHistory.DefaultCellStyle = dataGridViewCellStyle29;
             this.dgvPaymentHistory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPaymentHistory.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgvPaymentHistory.EnableHeadersVisualStyles = false;
@@ -336,12 +439,21 @@
             this.dgvPaymentHistory.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvPaymentHistory.RowHeadersVisible = false;
             this.dgvPaymentHistory.RowHeadersWidth = 62;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.MistyRose;
-            this.dgvPaymentHistory.RowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle30.SelectionBackColor = System.Drawing.Color.MistyRose;
+            this.dgvPaymentHistory.RowsDefaultCellStyle = dataGridViewCellStyle30;
             this.dgvPaymentHistory.RowTemplate.Height = 27;
             this.dgvPaymentHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPaymentHistory.Size = new System.Drawing.Size(1062, 201);
             this.dgvPaymentHistory.TabIndex = 2;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.dataGridViewImageColumn1.HeaderText = "";
+            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
+            this.dataGridViewImageColumn1.MinimumWidth = 8;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // colp_id
             // 
@@ -353,155 +465,49 @@
             // 
             // colp_amount
             // 
-            this.colp_amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle12.Format = "N2";
-            dataGridViewCellStyle12.NullValue = null;
-            this.colp_amount.DefaultCellStyle = dataGridViewCellStyle12;
+            this.colp_amount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle27.Format = "N2";
+            dataGridViewCellStyle27.NullValue = null;
+            this.colp_amount.DefaultCellStyle = dataGridViewCellStyle27;
             this.colp_amount.HeaderText = "Amount";
             this.colp_amount.MinimumWidth = 8;
             this.colp_amount.Name = "colp_amount";
+            this.colp_amount.Width = 74;
             // 
             // colp_datePaid
             // 
-            this.colp_datePaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle13.Format = "d";
-            dataGridViewCellStyle13.NullValue = null;
-            this.colp_datePaid.DefaultCellStyle = dataGridViewCellStyle13;
+            this.colp_datePaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dataGridViewCellStyle28.Format = "d";
+            dataGridViewCellStyle28.NullValue = null;
+            this.colp_datePaid.DefaultCellStyle = dataGridViewCellStyle28;
             this.colp_datePaid.HeaderText = "Date Paid";
             this.colp_datePaid.MinimumWidth = 8;
             this.colp_datePaid.Name = "colp_datePaid";
+            this.colp_datePaid.Width = 75;
             // 
             // colornumber
             // 
+            this.colornumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colornumber.HeaderText = "OR No.";
             this.colornumber.Name = "colornumber";
             // 
             // colarnum
             // 
+            this.colarnum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colarnum.HeaderText = "AR No.";
             this.colarnum.Name = "colarnum";
             // 
             // colbank
             // 
+            this.colbank.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colbank.HeaderText = "Bank";
             this.colbank.Name = "colbank";
             // 
             // colchecknum
             // 
+            this.colchecknum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colchecknum.HeaderText = "Check No.";
             this.colchecknum.Name = "colchecknum";
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.dataGridViewImageColumn1.HeaderText = "";
-            this.dataGridViewImageColumn1.Image = ((System.Drawing.Image)(resources.GetObject("dataGridViewImageColumn1.Image")));
-            this.dataGridViewImageColumn1.MinimumWidth = 8;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // colinterestID
-            // 
-            this.colinterestID.HeaderText = "interestID";
-            this.colinterestID.MinimumWidth = 8;
-            this.colinterestID.Name = "colinterestID";
-            this.colinterestID.Visible = false;
-            this.colinterestID.Width = 150;
-            // 
-            // colinvoiceNum
-            // 
-            this.colinvoiceNum.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle2.Format = "N2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.colinvoiceNum.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colinvoiceNum.HeaderText = "Invoice No.";
-            this.colinvoiceNum.MinimumWidth = 8;
-            this.colinvoiceNum.Name = "colinvoiceNum";
-            this.colinvoiceNum.Width = 84;
-            // 
-            // colcustomerID
-            // 
-            this.colcustomerID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle3.Format = "N2";
-            dataGridViewCellStyle3.NullValue = null;
-            this.colcustomerID.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colcustomerID.HeaderText = "Customer";
-            this.colcustomerID.MinimumWidth = 8;
-            this.colcustomerID.Name = "colcustomerID";
-            // 
-            // colshippingDate
-            // 
-            this.colshippingDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle4.Format = "d";
-            dataGridViewCellStyle4.NullValue = null;
-            this.colshippingDate.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colshippingDate.HeaderText = "Date Shipped";
-            this.colshippingDate.MinimumWidth = 8;
-            this.colshippingDate.Name = "colshippingDate";
-            this.colshippingDate.Width = 94;
-            // 
-            // coldueDate
-            // 
-            this.coldueDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.coldueDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.coldueDate.HeaderText = "Due Date";
-            this.coldueDate.MinimumWidth = 8;
-            this.coldueDate.Name = "coldueDate";
-            // 
-            // colbalanceAmt
-            // 
-            this.colbalanceAmt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.colbalanceAmt.DefaultCellStyle = dataGridViewCellStyle6;
-            this.colbalanceAmt.HeaderText = "Balance";
-            this.colbalanceAmt.MinimumWidth = 8;
-            this.colbalanceAmt.Name = "colbalanceAmt";
-            // 
-            // colaging
-            // 
-            this.colaging.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle7.Format = "d";
-            dataGridViewCellStyle7.NullValue = null;
-            this.colaging.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colaging.HeaderText = "Age";
-            this.colaging.MinimumWidth = 8;
-            this.colaging.Name = "colaging";
-            this.colaging.Width = 51;
-            // 
-            // colinterestAmount
-            // 
-            this.colinterestAmount.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            dataGridViewCellStyle8.Format = "N2";
-            dataGridViewCellStyle8.NullValue = null;
-            this.colinterestAmount.DefaultCellStyle = dataGridViewCellStyle8;
-            this.colinterestAmount.HeaderText = "Interest";
-            this.colinterestAmount.MinimumWidth = 8;
-            this.colinterestAmount.Name = "colinterestAmount";
-            this.colinterestAmount.Width = 70;
-            // 
-            // colComp
-            // 
-            this.colComp.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colComp.HeaderText = "Company";
-            this.colComp.Name = "colComp";
-            this.colComp.Width = 81;
-            // 
-            // colisPaid
-            // 
-            this.colisPaid.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colisPaid.HeaderText = "Paid";
-            this.colisPaid.Name = "colisPaid";
-            this.colisPaid.Width = 34;
-            // 
-            // colhasInterest
-            // 
-            this.colhasInterest.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colhasInterest.HeaderText = "Interest";
-            this.colhasInterest.Name = "colhasInterest";
-            this.colhasInterest.Width = 51;
             // 
             // frmPayments
             // 
@@ -546,13 +552,6 @@
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button bntExport;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colp_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colp_amount;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colp_datePaid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colornumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colarnum;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colbank;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colchecknum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colinterestID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colinvoiceNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colcustomerID;
@@ -564,5 +563,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colComp;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colisPaid;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colhasInterest;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colp_id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colp_amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colp_datePaid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colornumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colarnum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colbank;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colchecknum;
     }
 }

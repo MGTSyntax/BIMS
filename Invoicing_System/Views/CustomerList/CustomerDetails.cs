@@ -66,9 +66,26 @@ namespace Invoicing_System.Views.CustomerList
 
         private void PopulateControlsToUpdate()
         {
-            string query = "SELECT custName, contactPerson, cpPosition, custagencyFee, isvatable, otherBillAmt, " +
-                "companyAddress, emailAddress, titleid, hasInterest, b.companyName, tin, telno FROM customerstable a " +
-                "LEFT JOIN tblcompanies b ON a.compID = b.companyID WHERE custID = '" + CustID.ToString() + "'";
+            string query = "" +
+                "SELECT " +
+                "custName, " +
+                "contactPerson, " +
+                "cpPosition, " +
+                "custagencyFee, " +
+                "isvatable, " +
+                "otherBillAmt, " +
+                "companyAddress, " +
+                "emailAddress, " +
+                "titleid, " +
+                "hasInterest, " +
+                "b.companyName, " +
+                "tin, " +
+                "telno, " +
+                "clientName " +
+                "FROM customerstable a " +
+                "LEFT JOIN tblcompanies b ON a.compID = b.companyID " +
+                "WHERE custID = '" + CustID.ToString() + "'";
+
             var.dt = functions.SelectData(query, "customerstable");
             if (var.dt.Rows.Count > 0)
             {
@@ -87,6 +104,7 @@ namespace Invoicing_System.Views.CustomerList
                     cmbComp.Text = dr[10].ToString();
                     txtTIN.Text = dr[11].ToString();
                     txtTelNo.Text = dr[12].ToString();
+                    txtclientName.Text = dr[13].ToString();
                 }
             }
         } // End of PopulateControlsToUpdate
@@ -102,7 +120,9 @@ namespace Invoicing_System.Views.CustomerList
             {
                 if (isStringValid && isNumbersValid)
                 {
-                    string addCustomer = "INSERT INTO customerstable(" +
+                    string addCustomer = "" +
+                        "INSERT INTO " +
+                        "customerstable(" +
                         "custName, " +
                         "contactPerson, " +
                         "cpPosition, " +
@@ -116,7 +136,8 @@ namespace Invoicing_System.Views.CustomerList
                         "isDeleted, " +
                         "compID, " +
                         "tin, " +
-                        "telno) " +
+                        "telno, " +
+                        "clientName) " +
                         "VALUES(" +
                         "'" + txtDetachmentName.Text + "', " +
                         "'" + txtContactPerson.Text + "', " +
@@ -131,7 +152,8 @@ namespace Invoicing_System.Views.CustomerList
                         "'0', " +
                         "'" + txtcompID.Text.ToLower() + "', " +
                         "'" + txtTIN.Text + "', " +
-                        "'" + txtTelNo.Text + "')";
+                        "'" + txtTelNo.Text + "', " +
+                        "'" + txtclientName.Text + "')";
                     functions.SaveData(addCustomer);
 
                     customerSetup.PopulateCustomers();
@@ -149,7 +171,8 @@ namespace Invoicing_System.Views.CustomerList
             {
                 if (isStringValid && isNumbersValid)
                 {
-                    string updateCustomer = "UPDATE customerstable SET " +
+                    string updateCustomer = "" +
+                        "UPDATE customerstable SET " +
                         "custName = '" + txtDetachmentName.Text + "', " +
                         "contactPerson = '" + txtContactPerson.Text + "', " +
                         "cpPosition = '" + txtPosition.Text + "', " +
@@ -162,7 +185,8 @@ namespace Invoicing_System.Views.CustomerList
                         "hasInterest = '" + isInterestValue + "',  " +
                         "compID = '" + txtcompID.Text.ToLower() + "', " +
                         "tin = '" + txtTIN.Text + "',  " +
-                        "telno = '" + txtTelNo.Text + "' " +
+                        "telno = '" + txtTelNo.Text + "', " +
+                        "clientName = '" + txtclientName.Text + "' " +
                         "WHERE custID = '" + CustID.ToString() + "'";
                     functions.SaveData(updateCustomer);
 
@@ -182,10 +206,10 @@ namespace Invoicing_System.Views.CustomerList
         // Get Controls to Validate String Value
         private IEnumerable<Control> GetControlsToValidateString()
         {
+            yield return txtclientName;
             yield return txtDetachmentName;
             yield return txtContactPerson;
             yield return txtEmailAddress;
-
         } // End of GetControlsToValidateString
 
         // Get Controls to Validate Numeric Value
@@ -193,9 +217,6 @@ namespace Invoicing_System.Views.CustomerList
         {
             yield return txtAgencyFeeRate;
             yield return txtFBAmt;
-            //yield return txtTIN;
-            //yield return txtTelNo;
-
         } // End of GetControlsToValidateNumbers
 
         private void cbTT_SelectedIndexChanged(object sender, EventArgs e)

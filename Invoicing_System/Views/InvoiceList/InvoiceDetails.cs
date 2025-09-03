@@ -179,7 +179,6 @@ namespace Invoicing_System.Views.Monitoring
         private IEnumerable<Control> GetControlsToValidateString()
         {
             yield return cmbDetachment;
-
         }
 
         // Get Controls to Validate Numeric Value

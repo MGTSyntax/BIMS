@@ -299,6 +299,8 @@ namespace Invoicing_System.Reports {
             
             private global::System.Data.DataColumn columncompID;
             
+            private global::System.Data.DataColumn columnclientName;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtCustomersDataTable() {
@@ -414,6 +416,14 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn clientNameColumn {
+                get {
+                    return this.columnclientName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -449,7 +459,7 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtCustomersRow AdddtCustomersRow(string custID, string custName, string contactPerson, string cpPosition, string emailAddress, string custagencyFee, string isvatable, string hasInterest, string otherBillAmt, string compID) {
+            public dtCustomersRow AdddtCustomersRow(string custID, string custName, string contactPerson, string cpPosition, string emailAddress, string custagencyFee, string isvatable, string hasInterest, string otherBillAmt, string compID, string clientName) {
                 dtCustomersRow rowdtCustomersRow = ((dtCustomersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         custID,
@@ -461,7 +471,8 @@ namespace Invoicing_System.Reports {
                         isvatable,
                         hasInterest,
                         otherBillAmt,
-                        compID};
+                        compID,
+                        clientName};
                 rowdtCustomersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtCustomersRow);
                 return rowdtCustomersRow;
@@ -494,6 +505,7 @@ namespace Invoicing_System.Reports {
                 this.columnhasInterest = base.Columns["hasInterest"];
                 this.columnotherBillAmt = base.Columns["otherBillAmt"];
                 this.columncompID = base.Columns["compID"];
+                this.columnclientName = base.Columns["clientName"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -519,6 +531,8 @@ namespace Invoicing_System.Reports {
                 base.Columns.Add(this.columnotherBillAmt);
                 this.columncompID = new global::System.Data.DataColumn("compID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncompID);
+                this.columnclientName = new global::System.Data.DataColumn("clientName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnclientName);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -821,6 +835,22 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string clientName {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtCustomers.clientNameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'clientName\' in table \'dtCustomers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtCustomers.clientNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IscustIDNull() {
                 return this.IsNull(this.tabledtCustomers.custIDColumn);
             }
@@ -937,6 +967,18 @@ namespace Invoicing_System.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetcompIDNull() {
                 this[this.tabledtCustomers.compIDColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsclientNameNull() {
+                return this.IsNull(this.tabledtCustomers.clientNameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetclientNameNull() {
+                this[this.tabledtCustomers.clientNameColumn] = global::System.Convert.DBNull;
             }
         }
         

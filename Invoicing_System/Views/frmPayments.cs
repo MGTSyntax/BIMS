@@ -217,15 +217,15 @@ namespace Invoicing_System.Views
 
         private void bntExport_Click(object sender, EventArgs e)
         {
-            List<string> paymentHID = new List<string>();
-            foreach (DataGridViewRow phidrow in dgvInterest.Rows)
-            {
-                if (phidrow.Cells[0].Value != null)
-                {
-                    string value = phidrow.Cells[0].Value.ToString();
-                    paymentHID.Add(value);
-                }
-            }
+            //List<string> paymentHID = new List<string>();
+            //foreach (DataGridViewRow phidrow in dgvInterest.Rows)
+            //{
+            //    if (phidrow.Cells[0].Value != null)
+            //    {
+            //        string value = phidrow.Cells[0].Value.ToString();
+            //        paymentHID.Add(value);
+            //    }
+            //}
             string paymentHistory = "SELECT " +
                 "a.interestID," +
                 "a.invoiceNum," +
@@ -241,7 +241,8 @@ namespace Invoicing_System.Views
                 "c.p_bank AS bank," +
                 "c.p_checkNum AS checkno," +
                 "a.compID," +
-                "a.isPaid " +
+                "a.isPaid, " +
+                "c.p_datePaid AS datepaid " +
                 "FROM interest_monitoring a " +
                 "LEFT JOIN customerstable b ON a.customerID = b.custID " +
                 "LEFT JOIN tblpayment c ON a.invoiceNum = c.p_invoiceNum";

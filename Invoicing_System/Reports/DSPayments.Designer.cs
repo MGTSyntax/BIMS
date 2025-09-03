@@ -307,6 +307,8 @@ namespace Invoicing_System.Reports {
             
             private global::System.Data.DataColumn columncheckno;
             
+            private global::System.Data.DataColumn columndatepaid;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public dtPaymentsDataTable() {
@@ -454,6 +456,14 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn datepaidColumn {
+                get {
+                    return this.columndatepaid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -489,7 +499,7 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public dtPaymentsRow AdddtPaymentsRow(string interestID, string invoiceNum, string custName, System.DateTime shippingDate, System.DateTime dueDate, double balance, string aging, double interest, string compID, string isVoid, double payment, string orno, string arno, string checkno) {
+            public dtPaymentsRow AdddtPaymentsRow(string interestID, string invoiceNum, string custName, System.DateTime shippingDate, System.DateTime dueDate, double balance, string aging, double interest, string compID, string isVoid, double payment, string orno, string arno, string checkno, System.DateTime datepaid) {
                 dtPaymentsRow rowdtPaymentsRow = ((dtPaymentsRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         interestID,
@@ -505,7 +515,8 @@ namespace Invoicing_System.Reports {
                         payment,
                         orno,
                         arno,
-                        checkno};
+                        checkno,
+                        datepaid};
                 rowdtPaymentsRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtPaymentsRow);
                 return rowdtPaymentsRow;
@@ -542,6 +553,7 @@ namespace Invoicing_System.Reports {
                 this.columnorno = base.Columns["orno"];
                 this.columnarno = base.Columns["arno"];
                 this.columncheckno = base.Columns["checkno"];
+                this.columndatepaid = base.Columns["datepaid"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -575,6 +587,8 @@ namespace Invoicing_System.Reports {
                 base.Columns.Add(this.columnarno);
                 this.columncheckno = new global::System.Data.DataColumn("checkno", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncheckno);
+                this.columndatepaid = new global::System.Data.DataColumn("datepaid", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndatepaid);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -941,6 +955,22 @@ namespace Invoicing_System.Reports {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime datepaid {
+                get {
+                    try {
+                        return ((global::System.DateTime)(this[this.tabledtPayments.datepaidColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'datepaid\' in table \'dtPayments\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtPayments.datepaidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsinterestIDNull() {
                 return this.IsNull(this.tabledtPayments.interestIDColumn);
             }
@@ -1105,6 +1135,18 @@ namespace Invoicing_System.Reports {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetchecknoNull() {
                 this[this.tabledtPayments.checknoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsdatepaidNull() {
+                return this.IsNull(this.tabledtPayments.datepaidColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetdatepaidNull() {
+                this[this.tabledtPayments.datepaidColumn] = global::System.Convert.DBNull;
             }
         }
         

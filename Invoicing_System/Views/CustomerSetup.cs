@@ -44,14 +44,14 @@ namespace Invoicing_System.Views
 
         public void PopTotal()
         {
-            int visibleCustCount = dgvCustomers.Rows.Cast<DataGridViewRow>().Count(row => !row.IsNewRow && row.Cells[1].Visible);
+            int visibleCustCount = dgvCustomers.Rows.Cast<DataGridViewRow>().Count(row => !row.IsNewRow && row.Cells[2].Visible);
             lblnoofcust.Text = visibleCustCount.ToString();
         }
 
         public void PopulateCustomers()
         {
-            qryCustomers = "SELECT custID,clientName,custName,contactPerson,cpPosition,emailAddress,custagencyFee, " +
-                "isvatable,hasInterest,otherBillAmt,UPPER(compID) as compID,tin,telno FROM customerstable";
+            qryCustomers = "SELECT custID, clientName, custName, contactPerson, cpPosition, emailAddress, custagencyFee, " +
+                "isvatable, hasInterest, otherBillAmt, UPPER(compID) as compID, tin, telno FROM customerstable";
 
             string qryFilter = "WHERE isDeleted = 0 AND compID IN (" + useraccess + ") ORDER BY custName";
             PopCustDGV(qryCustomers, qryFilter);

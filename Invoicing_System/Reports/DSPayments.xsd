@@ -29,6 +29,7 @@
               <xs:element name="orno" msprop:Generator_ColumnPropNameInTable="ornoColumn" msprop:Generator_ColumnPropNameInRow="orno" msprop:Generator_UserColumnName="orno" msprop:Generator_ColumnVarNameInTable="columnorno" type="xs:string" minOccurs="0" />
               <xs:element name="arno" msprop:Generator_ColumnPropNameInTable="arnoColumn" msprop:Generator_ColumnPropNameInRow="arno" msprop:Generator_UserColumnName="arno" msprop:Generator_ColumnVarNameInTable="columnarno" type="xs:string" minOccurs="0" />
               <xs:element name="checkno" msprop:Generator_ColumnPropNameInTable="checknoColumn" msprop:Generator_ColumnPropNameInRow="checkno" msprop:Generator_UserColumnName="checkno" msprop:Generator_ColumnVarNameInTable="columncheckno" type="xs:string" minOccurs="0" />
+              <xs:element name="datepaid" msprop:Generator_UserColumnName="datepaid" msprop:Generator_ColumnPropNameInTable="datepaidColumn" msprop:Generator_ColumnPropNameInRow="datepaid" msprop:Generator_ColumnVarNameInTable="columndatepaid" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
