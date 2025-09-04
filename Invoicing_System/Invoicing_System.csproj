@@ -576,6 +576,8 @@
     <None Include="bin\Images\Icons\view.png" />
     <None Include="bin\Images\Icons\checked.png" />
     <None Include="bin\Images\Icons\voidfile.png" />
+    <None Include="bin\Images\Icons\dashboard-panel.png" />
+    <None Include="bin\Images\Icons\dashboard.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

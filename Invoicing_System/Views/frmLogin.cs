@@ -62,6 +62,7 @@ namespace Invoicing_System.Views
 
                 dashboard = new Dashboard();
                 dashboard.Show();
+
                 this.Hide();
             }
             else lblerrormsg.Text = "Login failed. Invalid username or password.";

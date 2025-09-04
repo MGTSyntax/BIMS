@@ -203,10 +203,16 @@ namespace Invoicing_System.Views
 
         private void btnShipDate_Click(object sender, EventArgs e)
         {
+            if (dgvInvoices.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
-            string invID = selectedRow.Cells[0].Value.ToString();
-            string invNo = selectedRow.Cells[1].Value.ToString();
-            string isPaid = selectedRow.Cells[16].Value.ToString();
+            string invID = selectedRow.Cells[0].Value?.ToString() ?? "";
+            string invNo = selectedRow.Cells[1].Value?.ToString() ?? "";
+            string isPaid = selectedRow.Cells[16].Value?.ToString() ?? "";
 
             if (isPaid == "False")
             {
@@ -226,7 +232,8 @@ namespace Invoicing_System.Views
                     }
                     else MessageBox.Show("Invoice no. cannot be empty.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            } else MessageBox.Show("You cannot ship paid invoice.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else MessageBox.Show("You cannot ship paid invoice.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -243,8 +250,14 @@ namespace Invoicing_System.Views
 
         private void bntExport_Click(object sender, EventArgs e)
         {
+            if (dgvInvoices.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
-            string invID = selectedRow.Cells[0].Value.ToString();
+            string invID = selectedRow.Cells[0].Value?.ToString() ?? "";
 
             frmInvoiceList = new frmInvoiceList();
             frmInvoiceList.PreviewInvoiceList(lastperformedQuery);
@@ -253,24 +266,28 @@ namespace Invoicing_System.Views
 
         private void btnreimbursementDetails_Click(object sender, EventArgs e)
         {
-            DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
-            string company = selectedRow.Cells[14].Value.ToString();
-            int invoiceNumber = int.Parse(selectedRow.Cells[1].Value.ToString());
-            string customerName = selectedRow.Cells[2].Value.ToString();
-            DateTime periodFrom = DateTime.Parse(selectedRow.Cells[3].Value.ToString());
-            DateTime periodTo = DateTime.Parse(selectedRow.Cells[4].Value.ToString());
-            double reimbursementAmount = double.Parse(selectedRow.Cells[5].Value.ToString());
-
-            if (dgvInvoices.Rows.Count > 0)
+            if (dgvInvoices.SelectedRows.Count > 0)
             {
-                insertReimbursementDetails = new ReimbursementDetails(this);
-                insertReimbursementDetails.company = company;
-                insertReimbursementDetails.invoiceNumber = invoiceNumber;
-                insertReimbursementDetails.customerName = customerName;
-                insertReimbursementDetails.periodFrom = periodFrom;
-                insertReimbursementDetails.periodTo = periodTo;
-                insertReimbursementDetails.reimbursementAmount = reimbursementAmount;
-                insertReimbursementDetails.FormCode = "CRT";
+                DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
+
+                string company = selectedRow.Cells[14].Value?.ToString() ?? "";
+                int invoiceNumber = int.Parse(selectedRow.Cells[1].Value.ToString());
+                string customerName = selectedRow.Cells[2].Value?.ToString() ?? "";
+                DateTime periodFrom = DateTime.Parse(selectedRow.Cells[3].Value.ToString());
+                DateTime periodTo = DateTime.Parse(selectedRow.Cells[4].Value.ToString());
+                double reimbursementAmount = double.Parse(selectedRow.Cells[5].Value.ToString());
+
+                insertReimbursementDetails = new ReimbursementDetails(this)
+                {
+                    company = company,
+                    invoiceNumber = invoiceNumber,
+                    customerName = customerName,
+                    periodFrom = periodFrom,
+                    periodTo = periodTo,
+                    reimbursementAmount = reimbursementAmount,
+                    FormCode = "CRT"
+                };
+
                 insertReimbursementDetails.ShowDialog();
             }
             else

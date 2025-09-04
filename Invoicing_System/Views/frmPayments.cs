@@ -217,15 +217,12 @@ namespace Invoicing_System.Views
 
         private void bntExport_Click(object sender, EventArgs e)
         {
-            //List<string> paymentHID = new List<string>();
-            //foreach (DataGridViewRow phidrow in dgvInterest.Rows)
-            //{
-            //    if (phidrow.Cells[0].Value != null)
-            //    {
-            //        string value = phidrow.Cells[0].Value.ToString();
-            //        paymentHID.Add(value);
-            //    }
-            //}
+            if (dgvInterest.SelectedRows.Count < 1)
+            {
+                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             string paymentHistory = "SELECT " +
                 "a.interestID," +
                 "a.invoiceNum," +
@@ -261,8 +258,10 @@ namespace Invoicing_System.Views
 
         private void dgvInterest_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex < 0) return;
+
             DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
-            string invoiceNumber = selectedRow.Cells[1].Value.ToString();
+            string invoiceNumber = selectedRow.Cells[1].Value?.ToString() ?? "";
 
             // View Payment History
             qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +

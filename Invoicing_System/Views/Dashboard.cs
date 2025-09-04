@@ -23,12 +23,25 @@ namespace Invoicing_System
             Height = Screen.PrimaryScreen.WorkingArea.Height;
 
             lblUsername.Text = Variables.user_unameValue;
-            if (Variables.isSupervisorValue) lblRole.Text = "Supervisor";
+            if (Variables.isSupervisorValue)
+            {
+                lblRole.Text = "Supervisor";
+                btnMainCompany.Enabled = true;
+                btnMainCompany.Visible = true;
+                btnMainTitle.Enabled = true;
+                btnMainTitle.Visible = true;
+            }
             else if (Variables.isAdminValue)
             {
                 lblRole.Text = "Administrator";
                 btnMainUsers.Enabled = true;
                 btnMainUsers.Visible = true;
+                btnUploadBillings.Enabled = true;
+                btnUploadBillings.Visible = true;
+                btnMainCompany.Enabled = true;
+                btnMainCompany.Visible = true;
+                btnMainTitle.Enabled = true;
+                btnMainTitle.Visible = true;
             }
             else lblRole.Text = "User";
 
@@ -42,7 +55,8 @@ namespace Invoicing_System
 
         private void btnMainDashboard_Click(object sender, EventArgs e)
         {
-            showAnalytics();
+            resetButtons(btnMainDashboard);
+            showAnalytics(btnMainDashboard);
         }
 
         private void btnMainExit_Click(object sender, EventArgs e)
@@ -52,6 +66,8 @@ namespace Invoicing_System
 
         private void btnMainMonitoring_Click(object sender, EventArgs e)
         {
+            resetButtons(btnMainMonitoring);
+
             pnlMainView.Controls.Clear();
             frmInvoices frmInvoices = new frmInvoices();
             frmInvoices.TopLevel = false;
@@ -59,7 +75,7 @@ namespace Invoicing_System
 
             frmInvoices.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnMainMonitoring);
             };
 
             frmInvoices.BringToFront();
@@ -68,6 +84,8 @@ namespace Invoicing_System
 
         private void btnMainCustomers_Click(object sender, EventArgs e)
         {
+            resetButtons(btnMainCustomers);
+
             pnlMainView.Controls.Clear();
             CustomerSetup Customer = new CustomerSetup();
             Customer.TopLevel = false;
@@ -75,7 +93,7 @@ namespace Invoicing_System
 
             Customer.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnMainCustomers);
             };
 
             Customer.BringToFront();
@@ -84,6 +102,8 @@ namespace Invoicing_System
 
         private void btnMainTitle_Click(object sender, EventArgs e)
         {
+            resetButtons(btnMainTitle);
+
             pnlMainView.Controls.Clear();
             frmOtherSetup frmTitleTemplate = new frmOtherSetup();
             frmTitleTemplate.TopLevel = false;
@@ -91,7 +111,7 @@ namespace Invoicing_System
 
             frmTitleTemplate.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnMainTitle);
             };
 
             frmTitleTemplate.BringToFront();
@@ -100,6 +120,8 @@ namespace Invoicing_System
 
         private void btnMainUsers_Click(object sender, EventArgs e)
         {
+            resetButtons(btnMainUsers);
+
             pnlMainView.Controls.Clear();
             frmUsers frmUsers = new frmUsers();
             frmUsers.TopLevel = false;
@@ -107,7 +129,7 @@ namespace Invoicing_System
 
             frmUsers.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnMainUsers);
             };
 
             frmUsers.BringToFront();
@@ -116,6 +138,8 @@ namespace Invoicing_System
 
         private void btnMainCompany_Click(object sender, EventArgs e)
         {
+            resetButtons(btnMainCompany);
+
             pnlMainView.Controls.Clear();
             frmCompany frmCompany = new frmCompany();
             frmCompany.TopLevel = false;
@@ -123,7 +147,7 @@ namespace Invoicing_System
 
             frmCompany.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnMainCompany);
             };
 
             frmCompany.BringToFront();
@@ -132,6 +156,8 @@ namespace Invoicing_System
 
         private void btnMainPayments_Click(object sender, EventArgs e)
         {
+            resetButtons(btnMainPayments);
+
             pnlMainView.Controls.Clear();
             frmPayments frmPayments = new frmPayments();
             frmPayments.TopLevel = false;
@@ -139,7 +165,7 @@ namespace Invoicing_System
 
             frmPayments.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnMainPayments);
             };
 
             frmPayments.BringToFront();
@@ -155,6 +181,8 @@ namespace Invoicing_System
 
         private void btnUploadBillings_Click(object sender, EventArgs e)
         {
+            resetButtons(btnUploadBillings);
+
             pnlMainView.Controls.Clear();
             frmUploadBillings frmUploadBillings = new frmUploadBillings();
             frmUploadBillings.TopLevel = false;
@@ -162,7 +190,7 @@ namespace Invoicing_System
 
             frmUploadBillings.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnUploadBillings);
             };
 
             frmUploadBillings.BringToFront();
@@ -171,6 +199,8 @@ namespace Invoicing_System
 
         private void btnReimBreakDown_Click(object sender, EventArgs e)
         {
+            resetButtons(btnReimBreakDown);
+
             pnlMainView.Controls.Clear();
             frmReimbursements frmReimbursements = new frmReimbursements();
             frmReimbursements.TopLevel = false;
@@ -178,7 +208,7 @@ namespace Invoicing_System
 
             frmReimbursements.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnReimBreakDown);
             };
 
             frmReimbursements.BringToFront();
@@ -187,6 +217,8 @@ namespace Invoicing_System
 
         private void btnexporting_Click(object sender, EventArgs e)
         {
+            resetButtons(btnexporting);
+
             pnlMainView.Controls.Clear();
             frmExporting frmExporting = new frmExporting();
             frmExporting.TopLevel = false;
@@ -198,14 +230,14 @@ namespace Invoicing_System
 
             frmExporting.FormClosed += (s, args) =>
             {
-                showAnalytics();
+                showAnalytics(btnexporting);
             };
 
             frmExporting.BringToFront();
             frmExporting.Show();
         }
 
-        private void showAnalytics()
+        private void showAnalytics(Button activeButton)
         {
             pnlMainView.Controls.Clear();
             frmAnalytics frmAnalytics = new frmAnalytics();
@@ -213,6 +245,46 @@ namespace Invoicing_System
             pnlMainView.Controls.Add(frmAnalytics);
             frmAnalytics.BringToFront();
             frmAnalytics.Show();
+
+            activeButton.BackColor = Color.Transparent;
+            activeButton.ForeColor = Color.White;
         }
+
+        private void resetButtons(Button resetButton)
+        {
+            btnMainDashboard.BackColor = Color.Transparent;
+            btnMainDashboard.ForeColor = Color.White;
+
+            btnMainMonitoring.BackColor = Color.Transparent;
+            btnMainMonitoring.ForeColor = Color.White;
+
+            btnReimBreakDown.BackColor = Color.Transparent;
+            btnReimBreakDown.ForeColor = Color.White;
+
+            btnMainPayments.BackColor = Color.Transparent;
+            btnMainPayments.ForeColor = Color.White;
+
+            btnMainCustomers.BackColor = Color.Transparent;
+            btnMainCustomers.ForeColor = Color.White;
+            
+            btnexporting.BackColor = Color.Transparent;
+            btnexporting.ForeColor = Color.White;
+
+            btnMainTitle.BackColor = Color.Transparent;
+            btnMainTitle.ForeColor = Color.White;
+
+            btnMainCompany.BackColor = Color.Transparent;
+            btnMainCompany.ForeColor = Color.White;
+
+            btnUploadBillings.BackColor = Color.Transparent;
+            btnUploadBillings.ForeColor = Color.White;
+
+            btnMainUsers.BackColor = Color.Transparent;
+            btnMainUsers.ForeColor = Color.White;
+
+            resetButton.BackColor = SystemColors.Control;
+            resetButton.ForeColor = Color.Black;
+        }
+
     }
 }
