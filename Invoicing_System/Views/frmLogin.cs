@@ -30,42 +30,50 @@ namespace Invoicing_System.Views
 
         private void btnSignIn_Click(object sender, EventArgs e)
         {
-            string enteredUsername = txtUsename.Text.ToUpper();
-            string enteredPassword = txtPassword.Text;
+            try
+            {
+                string enteredUsername = txtUsename.Text.ToUpper();
+                string enteredPassword = txtPassword.Text;
 
-            string qryUser = "SELECT * FROM tblusers WHERE " +
-                "user_username = @Username AND " +
-                "user_password = @Password AND " +
-                "isactive = 1";
+                string qryUser = "SELECT * FROM tblusers WHERE " +
+                    "user_username = @Username AND " +
+                    "user_password = @Password AND " +
+                    "isactive = 1";
 
-            Dictionary<string, object> parameters = new Dictionary<string, object>
+                Dictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "@Username", enteredUsername },
                 { "@Password", enteredPassword }
             };
 
-            var userexists = functions.ParamSelectData(qryUser, "tblusers", parameters);
-            if (userexists.Rows.Count > 0)
-            {
-                //username value
-                Variables.user_unameValue = enteredUsername;
-                //user company value
-                Variables.User_CompAccess = functions.ConvertCompAccess(userexists.Rows[0]["useraccess"].ToString());
-                //user status
-                Variables.isActiveValue = Convert.ToBoolean(userexists.Rows[0]["isactive"].ToString());
-                //supervisory value
-                Variables.isSupervisorValue = Convert.ToBoolean(userexists.Rows[0]["supervisor"].ToString());
-                //admin value
-                Variables.isAdminValue = Convert.ToBoolean(userexists.Rows[0]["admin"].ToString());
-                //viewing only value
-                Variables.isViewingValue = Convert.ToBoolean(userexists.Rows[0]["viewing"].ToString());
+                var userexists = functions.ParamSelectData(qryUser, "tblusers", parameters);
+                if (userexists.Rows.Count > 0)
+                {
+                    //username value
+                    Variables.user_unameValue = enteredUsername;
+                    //user company value
+                    Variables.User_CompAccess = functions.ConvertCompAccess(userexists.Rows[0]["useraccess"].ToString());
+                    //user status
+                    Variables.isActiveValue = Convert.ToBoolean(userexists.Rows[0]["isactive"].ToString());
+                    //supervisory value
+                    Variables.isSupervisorValue = Convert.ToBoolean(userexists.Rows[0]["supervisor"].ToString());
+                    //admin value
+                    Variables.isAdminValue = Convert.ToBoolean(userexists.Rows[0]["admin"].ToString());
+                    //viewing only value
+                    Variables.isViewingValue = Convert.ToBoolean(userexists.Rows[0]["viewing"].ToString());
 
-                dashboard = new Dashboard();
-                dashboard.Show();
+                    dashboard = new Dashboard();
+                    dashboard.Show();
 
-                this.Hide();
+                    this.Hide();
+                }
+                else lblerrormsg.Text = "Login failed. Invalid username or password.";
             }
-            else lblerrormsg.Text = "Login failed. Invalid username or password.";
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmLogin", "btnSignIn_Click");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         //// Helper method to hash the password using SHA256
@@ -117,34 +125,42 @@ namespace Invoicing_System.Views
 
         private void CheckForVersionUpdate()
         {
-            string updatedExePath = functions.GetRecordString("SELECT updateLink FROM systemsettings");
-            if (string.IsNullOrEmpty(updatedExePath))
-                return;
-
-            string applicationPath = Application.ExecutablePath;
-            FileVersionInfo currentAssemblyInfo = FileVersionInfo.GetVersionInfo(applicationPath);
-
-            if (File.Exists(updatedExePath))
+            try
             {
-                FileVersionInfo updatedAssemblyInfo = FileVersionInfo.GetVersionInfo(updatedExePath);
-                if (updatedAssemblyInfo.FileVersion.CompareTo(currentAssemblyInfo.FileVersion) > 0)
-                {
-                    if (MessageBox.Show("New update found. " + Environment.NewLine +
-                        "Do you want to update your system to the latest version?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
-                        == DialogResult.Yes)
-                    {
-                        string currentApplicationPath = applicationPath + "Old";
-                        if (File.Exists(currentApplicationPath))
-                        {
-                            File.Delete(currentApplicationPath);
-                        }
+                string updatedExePath = functions.GetRecordString("SELECT updateLink FROM systemsettings");
+                if (string.IsNullOrEmpty(updatedExePath))
+                    return;
 
-                        File.Move(applicationPath, currentApplicationPath);
-                        File.Copy(updatedExePath, applicationPath, true);
-                        Process.Start(applicationPath);
-                        Application.Exit();
+                string applicationPath = Application.ExecutablePath;
+                FileVersionInfo currentAssemblyInfo = FileVersionInfo.GetVersionInfo(applicationPath);
+
+                if (File.Exists(updatedExePath))
+                {
+                    FileVersionInfo updatedAssemblyInfo = FileVersionInfo.GetVersionInfo(updatedExePath);
+                    if (updatedAssemblyInfo.FileVersion.CompareTo(currentAssemblyInfo.FileVersion) > 0)
+                    {
+                        if (MessageBox.Show("New update found. " + Environment.NewLine +
+                            "Do you want to update your system to the latest version?", "Update", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+                            == DialogResult.Yes)
+                        {
+                            string currentApplicationPath = applicationPath + "Old";
+                            if (File.Exists(currentApplicationPath))
+                            {
+                                File.Delete(currentApplicationPath);
+                            }
+
+                            File.Move(applicationPath, currentApplicationPath);
+                            File.Copy(updatedExePath, applicationPath, true);
+                            Process.Start(applicationPath);
+                            Application.Exit();
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmLogin", "CheckForVersionUpdate");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 

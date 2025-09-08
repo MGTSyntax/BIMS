@@ -30,13 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.lblUsername = new System.Windows.Forms.Label();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.pnlMainView = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnSignout = new System.Windows.Forms.Button();
             this.btnMainUsers = new System.Windows.Forms.Button();
             this.btnUploadBillings = new System.Windows.Forms.Button();
             this.btnMainCompany = new System.Windows.Forms.Button();
@@ -48,7 +41,14 @@
             this.btnMainExit = new System.Windows.Forms.Button();
             this.btnMainMonitoring = new System.Windows.Forms.Button();
             this.btnMainDashboard = new System.Windows.Forms.Button();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lblUsername = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.pbMainLogo = new System.Windows.Forms.PictureBox();
+            this.pnlMainView = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSignout = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbMainLogo)).BeginInit();
@@ -75,99 +75,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(214, 754);
             this.panel1.TabIndex = 0;
-            // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.Transparent;
-            this.panel4.Controls.Add(this.lblUsername);
-            this.panel4.Controls.Add(this.lblRole);
-            this.panel4.Controls.Add(this.panel6);
-            this.panel4.Controls.Add(this.pbMainLogo);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel4.Location = new System.Drawing.Point(0, 0);
-            this.panel4.Margin = new System.Windows.Forms.Padding(4);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(214, 200);
-            this.panel4.TabIndex = 0;
-            // 
-            // lblUsername
-            // 
-            this.lblUsername.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsername.ForeColor = System.Drawing.Color.White;
-            this.lblUsername.Location = new System.Drawing.Point(0, 144);
-            this.lblUsername.Name = "lblUsername";
-            this.lblUsername.Size = new System.Drawing.Size(214, 20);
-            this.lblUsername.TabIndex = 3;
-            this.lblUsername.Text = "MGTORRES";
-            this.lblUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblRole
-            // 
-            this.lblRole.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblRole.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lblRole.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRole.ForeColor = System.Drawing.Color.Silver;
-            this.lblRole.Location = new System.Drawing.Point(0, 164);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(214, 35);
-            this.lblRole.TabIndex = 2;
-            this.lblRole.Text = "Role";
-            this.lblRole.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(0, 199);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(214, 1);
-            this.panel6.TabIndex = 1;
-            // 
-            // pnlMainView
-            // 
-            this.pnlMainView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlMainView.Location = new System.Drawing.Point(219, 41);
-            this.pnlMainView.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlMainView.Name = "pnlMainView";
-            this.pnlMainView.Padding = new System.Windows.Forms.Padding(13, 14, 13, 14);
-            this.pnlMainView.Size = new System.Drawing.Size(1242, 718);
-            this.pnlMainView.TabIndex = 2;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1465, 9);
-            this.panel2.TabIndex = 0;
-            // 
-            // btnSignout
-            // 
-            this.btnSignout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSignout.BackColor = System.Drawing.Color.Brown;
-            this.btnSignout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSignout.FlatAppearance.BorderSize = 0;
-            this.btnSignout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
-            this.btnSignout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSignout.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSignout.ForeColor = System.Drawing.Color.White;
-            this.btnSignout.Image = global::Invoicing_System.Properties.Resources.cross_inverted;
-            this.btnSignout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSignout.Location = new System.Drawing.Point(1381, 11);
-            this.btnSignout.Margin = new System.Windows.Forms.Padding(4);
-            this.btnSignout.Name = "btnSignout";
-            this.btnSignout.Size = new System.Drawing.Size(80, 27);
-            this.btnSignout.TabIndex = 10;
-            this.btnSignout.Text = " Signout";
-            this.btnSignout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSignout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSignout.UseVisualStyleBackColor = false;
-            this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
             // 
             // btnMainUsers
             // 
@@ -438,6 +345,55 @@
             this.btnMainDashboard.UseVisualStyleBackColor = false;
             this.btnMainDashboard.Click += new System.EventHandler(this.btnMainDashboard_Click);
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.Transparent;
+            this.panel4.Controls.Add(this.lblUsername);
+            this.panel4.Controls.Add(this.lblRole);
+            this.panel4.Controls.Add(this.panel6);
+            this.panel4.Controls.Add(this.pbMainLogo);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Margin = new System.Windows.Forms.Padding(4);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(214, 200);
+            this.panel4.TabIndex = 0;
+            // 
+            // lblUsername
+            // 
+            this.lblUsername.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblUsername.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsername.ForeColor = System.Drawing.Color.White;
+            this.lblUsername.Location = new System.Drawing.Point(0, 144);
+            this.lblUsername.Name = "lblUsername";
+            this.lblUsername.Size = new System.Drawing.Size(214, 20);
+            this.lblUsername.TabIndex = 3;
+            this.lblUsername.Text = "MGTORRES";
+            this.lblUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblRole
+            // 
+            this.lblRole.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblRole.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lblRole.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.ForeColor = System.Drawing.Color.Silver;
+            this.lblRole.Location = new System.Drawing.Point(0, 164);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(214, 35);
+            this.lblRole.TabIndex = 2;
+            this.lblRole.Text = "Role";
+            this.lblRole.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel6.Location = new System.Drawing.Point(0, 199);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(214, 1);
+            this.panel6.TabIndex = 1;
+            // 
             // pbMainLogo
             // 
             this.pbMainLogo.Image = global::Invoicing_System.Properties.Resources.mib_logo;
@@ -448,6 +404,50 @@
             this.pbMainLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMainLogo.TabIndex = 0;
             this.pbMainLogo.TabStop = false;
+            // 
+            // pnlMainView
+            // 
+            this.pnlMainView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlMainView.Location = new System.Drawing.Point(219, 41);
+            this.pnlMainView.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlMainView.Name = "pnlMainView";
+            this.pnlMainView.Padding = new System.Windows.Forms.Padding(13, 14, 13, 14);
+            this.pnlMainView.Size = new System.Drawing.Size(1242, 718);
+            this.pnlMainView.TabIndex = 2;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1465, 9);
+            this.panel2.TabIndex = 0;
+            // 
+            // btnSignout
+            // 
+            this.btnSignout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSignout.BackColor = System.Drawing.Color.Brown;
+            this.btnSignout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSignout.FlatAppearance.BorderSize = 0;
+            this.btnSignout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnSignout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSignout.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSignout.ForeColor = System.Drawing.Color.White;
+            this.btnSignout.Image = global::Invoicing_System.Properties.Resources.cross_inverted;
+            this.btnSignout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSignout.Location = new System.Drawing.Point(1381, 11);
+            this.btnSignout.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSignout.Name = "btnSignout";
+            this.btnSignout.Size = new System.Drawing.Size(80, 27);
+            this.btnSignout.TabIndex = 10;
+            this.btnSignout.Text = " Signout";
+            this.btnSignout.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnSignout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnSignout.UseVisualStyleBackColor = false;
+            this.btnSignout.Click += new System.EventHandler(this.btnSignout_Click);
             // 
             // Dashboard
             // 

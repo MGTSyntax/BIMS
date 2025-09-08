@@ -48,25 +48,60 @@ namespace Invoicing_System.Views
 
         public void PopulateTitleTemplates()
         {
-            qryTitleTemplates = "SELECT titleid,titleDescription,titleStatus FROM titletemplate";
-            functions.PopulateDataGridView(dgvTitleTemplate, qryTitleTemplates);
+            try
+            {
+                qryTitleTemplates = "SELECT titleid,titleDescription,titleStatus FROM titletemplate";
+                functions.PopulateDataGridView(dgvTitleTemplate, qryTitleTemplates);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmOtherSetup", "PopulateTitleTemplates");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void PopulateVATRate()
         {
-            qryVATRate = "SELECT rateID,vat_rate FROM tblvat";
-            functions.PopulateDataGridView(dgvVATRate, qryVATRate);
+            try
+            {
+                qryVATRate = "SELECT rateID,vat_rate FROM tblvat";
+                functions.PopulateDataGridView(dgvVATRate, qryVATRate);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmOtherSetup", "PopulateVATRate");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
+
         public void PopulateInterestRate()
         {
-            qryInterestRate = "SELECT interestID,interest_rate FROM tblinterest";
-            functions.PopulateDataGridView(dgvInterestRate, qryInterestRate);
+            try
+            {
+                qryInterestRate = "SELECT interestID,interest_rate FROM tblinterest";
+                functions.PopulateDataGridView(dgvInterestRate, qryInterestRate);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmOtherSetup", "PopulateInterestRate");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
+
         public void PopulateWTaxRate()
         {
-            qryWTaxRate = "SELECT wtaxID,wtax_rate FROM tblwtax";
-            functions.PopulateDataGridView(dgvWTaxRate, qryWTaxRate);
+            try
+            {
+                qryWTaxRate = "SELECT wtaxID,wtax_rate FROM tblwtax";
+                functions.PopulateDataGridView(dgvWTaxRate, qryWTaxRate);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmOtherSetup", "PopulateWTaxRate");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
+
         private void btnNewTitle_Click(object sender, EventArgs e)
         {
             titleTemplateDetails = new TitleTemplateDetails(this);
@@ -104,10 +139,10 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                functions.LogErrorToDb(ex, "frmOtherSetup", "dgvTitleTemplate_CellContentClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 
@@ -125,10 +160,10 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                functions.LogErrorToDb(ex, "frmOtherSetup", "PopulateTitleTemplates");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 
@@ -146,10 +181,10 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                functions.LogErrorToDb(ex, "frmOtherSetup", "dgvInterestRate_CellContentClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 
@@ -167,10 +202,10 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                functions.LogErrorToDb(ex, "frmOtherSetup", "dgvWTaxRate_CellContentClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
     }

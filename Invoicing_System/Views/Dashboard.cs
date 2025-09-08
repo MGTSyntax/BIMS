@@ -174,9 +174,17 @@ namespace Invoicing_System
 
         private void btnSignout_Click(object sender, EventArgs e)
         {
+            foreach (Control ctrl in pnlMainView.Controls)
+            {
+                if (ctrl is Form f)
+                {
+                    f.Dispose();
+                }
+            }
+
             frmLogin frmLogin = new frmLogin();
             frmLogin.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void btnUploadBillings_Click(object sender, EventArgs e)

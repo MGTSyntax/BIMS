@@ -58,14 +58,24 @@ namespace Invoicing_System.Views
 
         public void PopulateInvoices()
         {
-            string qryInvoicesFilters = "WHERE a.isPaid=0 AND a.isVoid=0 AND a.compID IN (" + Variables.User_CompAccess + ") " +
+            try
+            {
+                string qryInvoicesFilters = "WHERE a.isPaid=0 AND a.isVoid=0 AND a.compID IN (" + Variables.User_CompAccess + ") " +
                 "ORDER BY b.custName LIMIT 100";
-            PopInvDGV(qryInvoicesFilters);
+                PopInvDGV(qryInvoicesFilters);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmInvoices", "PopulateInvoices");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void PopInvDGV(string queryFilters)
         {
-            string qryInvoices = "SELECT a.invoicesid,a.invoiceNumber,b.custName,a.billingPeriod_from," +
+            try
+            {
+                string qryInvoices = "SELECT a.invoicesid,a.invoiceNumber,b.custName,a.billingPeriod_from," +
                 "a.billingPeriod_to,a.reimbursement,a.nonDeductible,a.agencyFee,a.vat,a.otherBillable,a.discount," +
                 "(a.reimbursement+a.nonDeductible+a.agencyFee+a.vat+a.otherBillable) as totalamt," +
                 "ROUND(a.agencyFee * wt.wtax_rate) as wht," +
@@ -73,8 +83,14 @@ namespace Invoicing_System.Views
                 "UPPER(a.compID) as company,a.isPaid,a.printStatus FROM invoice_monitoring a " +
                 "LEFT JOIN customerstable b ON a.customerID = b.custID " +
                 "LEFT JOIN (SELECT wtax_rate FROM tblwtax WHERE wtaxID = '1') wt ON 1 = 1";
-            functions.PopulateDataGridView(dgvInvoices, qryInvoices + " " + queryFilters);
-            lastperformedQuery = qryInvoices + " " + queryFilters;
+                functions.PopulateDataGridView(dgvInvoices, qryInvoices + " " + queryFilters);
+                lastperformedQuery = qryInvoices + " " + queryFilters;
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmInvoices", "PopInvDGV");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void PopTotals()
@@ -195,45 +211,54 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                functions.LogErrorToDb(ex, "frmInvoices", "dgvInvoices_CellContentClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 
         private void btnShipDate_Click(object sender, EventArgs e)
         {
-            if (dgvInvoices.SelectedRows.Count < 1)
+            try
             {
-                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
-            string invID = selectedRow.Cells[0].Value?.ToString() ?? "";
-            string invNo = selectedRow.Cells[1].Value?.ToString() ?? "";
-            string isPaid = selectedRow.Cells[16].Value?.ToString() ?? "";
-
-            if (isPaid == "False")
-            {
-                string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + invNo.ToString() + "'";
-                var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
-                if (dtqryinvoiceNum.Rows.Count > 0)
+                if (dgvInvoices.SelectedRows.Count < 1)
                 {
-                    MessageBox.Show("Invoice no. " + invNo.ToString() + " already tagged.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
                 }
-                else
+
+                DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
+                string invID = selectedRow.Cells[0].Value?.ToString() ?? "";
+                string invNo = selectedRow.Cells[1].Value?.ToString() ?? "";
+                string isPaid = selectedRow.Cells[16].Value?.ToString() ?? "";
+
+                if (isPaid == "False")
                 {
-                    if (!string.IsNullOrEmpty(invNo))
+                    string qryinvoiceNum = "SELECT * FROM interest_monitoring WHERE invoiceNum = '" + invNo.ToString() + "'";
+                    var dtqryinvoiceNum = functions.SelectData(qryinvoiceNum, "qryinvoiceNum");
+                    if (dtqryinvoiceNum.Rows.Count > 0)
                     {
-                        shippingDetails = new ShippingDetails(this);
-                        shippingDetails.InvID = invID;
-                        shippingDetails.ShowDialog();
+                        MessageBox.Show("Invoice no. " + invNo.ToString() + " already tagged.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
-                    else MessageBox.Show("Invoice no. cannot be empty.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                    {
+                        if (!string.IsNullOrEmpty(invNo))
+                        {
+                            shippingDetails = new ShippingDetails(this);
+                            shippingDetails.InvID = invID;
+                            shippingDetails.ShowDialog();
+                        }
+                        else MessageBox.Show("Invoice no. cannot be empty.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
+                else MessageBox.Show("You cannot ship paid invoice.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else MessageBox.Show("You cannot ship paid invoice.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmInvoices", "btnShipDate_Click");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -250,49 +275,65 @@ namespace Invoicing_System.Views
 
         private void bntExport_Click(object sender, EventArgs e)
         {
-            if (dgvInvoices.SelectedRows.Count < 1)
+            try
             {
-                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                if (dgvInvoices.SelectedRows.Count < 1)
+                {
+                    MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
+                string invID = selectedRow.Cells[0].Value?.ToString() ?? "";
+
+                frmInvoiceList = new frmInvoiceList();
+                frmInvoiceList.PreviewInvoiceList(lastperformedQuery);
+                frmInvoiceList.ShowDialog();
             }
-
-            DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
-            string invID = selectedRow.Cells[0].Value?.ToString() ?? "";
-
-            frmInvoiceList = new frmInvoiceList();
-            frmInvoiceList.PreviewInvoiceList(lastperformedQuery);
-            frmInvoiceList.ShowDialog();
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmInvoices", "bntExport_Click");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void btnreimbursementDetails_Click(object sender, EventArgs e)
         {
-            if (dgvInvoices.SelectedRows.Count > 0)
+            try
             {
-                DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
-
-                string company = selectedRow.Cells[14].Value?.ToString() ?? "";
-                int invoiceNumber = int.Parse(selectedRow.Cells[1].Value.ToString());
-                string customerName = selectedRow.Cells[2].Value?.ToString() ?? "";
-                DateTime periodFrom = DateTime.Parse(selectedRow.Cells[3].Value.ToString());
-                DateTime periodTo = DateTime.Parse(selectedRow.Cells[4].Value.ToString());
-                double reimbursementAmount = double.Parse(selectedRow.Cells[5].Value.ToString());
-
-                insertReimbursementDetails = new ReimbursementDetails(this)
+                if (dgvInvoices.SelectedRows.Count > 0)
                 {
-                    company = company,
-                    invoiceNumber = invoiceNumber,
-                    customerName = customerName,
-                    periodFrom = periodFrom,
-                    periodTo = periodTo,
-                    reimbursementAmount = reimbursementAmount,
-                    FormCode = "CRT"
-                };
+                    DataGridViewRow selectedRow = dgvInvoices.SelectedRows[0];
 
-                insertReimbursementDetails.ShowDialog();
+                    string company = selectedRow.Cells[14].Value?.ToString() ?? "";
+                    int invoiceNumber = int.Parse(selectedRow.Cells[1].Value.ToString());
+                    string customerName = selectedRow.Cells[2].Value?.ToString() ?? "";
+                    DateTime periodFrom = DateTime.Parse(selectedRow.Cells[3].Value.ToString());
+                    DateTime periodTo = DateTime.Parse(selectedRow.Cells[4].Value.ToString());
+                    double reimbursementAmount = double.Parse(selectedRow.Cells[5].Value.ToString());
+
+                    insertReimbursementDetails = new ReimbursementDetails(this)
+                    {
+                        company = company,
+                        invoiceNumber = invoiceNumber,
+                        customerName = customerName,
+                        periodFrom = periodFrom,
+                        periodTo = periodTo,
+                        reimbursementAmount = reimbursementAmount,
+                        FormCode = "CRT"
+                    };
+
+                    insertReimbursementDetails.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                functions.LogErrorToDb(ex, "frmInvoices", "btnreimbursementDetails_Click");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
     }

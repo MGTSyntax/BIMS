@@ -46,14 +46,24 @@ namespace Invoicing_System.Views
 
         public void PopulateInterest()
         {
-            string qryFilter = "WHERE isPaid=0 AND isVoid=0 AND a.compID IN (" + useraccess + ") ORDER BY b.custName";
-            PopPaymentDGV(qryFilter);
-            lastfilterreport = qryFilter;
+            try
+            {
+                string qryFilter = "WHERE isPaid=0 AND isVoid=0 AND a.compID IN (" + useraccess + ") ORDER BY b.custName";
+                PopPaymentDGV(qryFilter);
+                lastfilterreport = qryFilter;
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmPayments", "PopulateInterest");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void PopPaymentDGV(string queryFilters)
         {
-            string qryInterest = @"
+            try
+            {
+                string qryInterest = @"
                 SELECT 
                     a.interestID,
                     a.invoiceNum,
@@ -80,13 +90,21 @@ namespace Invoicing_System.Views
                 ) age ON a.invoiceNum = age.invoiceNum
             ";
 
-            functions.PopulateDataGridView(dgvInterest, qryInterest + " " + queryFilters);
-            lastperformedQuery = qryInterest + " " + queryFilters;
+                functions.PopulateDataGridView(dgvInterest, qryInterest + " " + queryFilters);
+                lastperformedQuery = qryInterest + " " + queryFilters;
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmPayments", "PopPaymentDGV");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void PopInterestDGV()
         {
-            string qryInterest = @"
+            try
+            {
+                string qryInterest = @"
                 SELECT 
                     a.invoiceNum,
                     IFNULL(a.balanceAmt - (
@@ -113,90 +131,120 @@ namespace Invoicing_System.Views
                 FROM interest_monitoring a 
                 LEFT JOIN customerstable b ON a.customerID = b.custID 
                 WHERE a.isPaid = 0 AND a.isVoid = 0 AND a.compID IN (" + useraccess + @")
-            ";
+                ";
 
-            var dtqryInterest = functions.SelectData(qryInterest, "interest");
-            decimal rate = functions.GetInterestRate();
+                var dtqryInterest = functions.SelectData(qryInterest, "interest");
+                decimal rate = functions.GetInterestRate();
 
-            foreach (DataRow drInterest in dtqryInterest.Rows)
+                foreach (DataRow drInterest in dtqryInterest.Rows)
+                {
+                    decimal balance = drInterest["balance"] != DBNull.Value ? Convert.ToDecimal(drInterest["balance"]) : 0;
+                    int age = drInterest["age"] != DBNull.Value ? Convert.ToInt32(drInterest["age"]) : 0;
+                    bool hasInterest = drInterest["hasInterest"] != DBNull.Value && Convert.ToInt32(drInterest["hasInterest"]) == 1;
+
+                    decimal newInterest = 0;
+                    if (hasInterest && age > 0)
+                    {
+                        newInterest = Math.Round(balance * (rate / 30) * age, 2);
+                    }
+
+                    string invoiceNum = drInterest["invoiceNum"].ToString();
+                    UpdateInterest(invoiceNum, newInterest, age);
+
+                    if (balance == 0 && newInterest == 0)
+                    {
+                        UpdatePaidStatus(invoiceNum);
+                    }
+                }
+            }
+            catch (Exception ex)
             {
-                decimal balance = drInterest["balance"] != DBNull.Value ? Convert.ToDecimal(drInterest["balance"]) : 0;
-                int age = drInterest["age"] != DBNull.Value ? Convert.ToInt32(drInterest["age"]) : 0;
-                bool hasInterest = drInterest["hasInterest"] != DBNull.Value && Convert.ToInt32(drInterest["hasInterest"]) == 1;
-
-                decimal newInterest = 0;
-                if (hasInterest && age > 0)
-                {
-                    newInterest = Math.Round(balance * (rate / 30) * age, 2);
-                }
-
-                string invoiceNum = drInterest["invoiceNum"].ToString();
-                UpdateInterest(invoiceNum, newInterest, age);
-
-                if (balance == 0 && newInterest == 0)
-                {
-                    UpdatePaidStatus(invoiceNum);
-                }
+                functions.LogErrorToDb(ex, "frmPayments", "PopInterestDGV");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 
         private void UpdateInterest(string invoiceNum, decimal newInterest, int age)
         {
-            string qryUpdateInterest = @"
+            try
+            {
+                string qryUpdateInterest = @"
                 UPDATE interest_monitoring 
                 SET aging = @Age, 
                     interestAmount = @Interest 
                 WHERE invoiceNum = @InvoiceNum";
 
-            functions.ParamSaveData(qryUpdateInterest, new Dictionary<string, object>
+                functions.ParamSaveData(qryUpdateInterest, new Dictionary<string, object>
+                {
+                    {"@Age", age },
+                    {"@Interest", newInterest },
+                    {"@InvoiceNum", invoiceNum }
+                });
+            }
+            catch (Exception ex)
             {
-                {"@Age", age },
-                {"@Interest", newInterest },
-                {"@InvoiceNum", invoiceNum }
-            });
+                functions.LogErrorToDb(ex, "frmPayments", "UpdateInterest");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void UpdatePaidStatus(string invoiceNum)
         {
-            string qryUpdisPaid1 = @"
+            try
+            {
+                string qryUpdisPaid1 = @"
                 UPDATE interest_monitoring 
                 SET isPaid = @paidStats 
                 WHERE invoiceNum = @InvoiceNum";
-            functions.ParamSaveData(qryUpdisPaid1, new Dictionary<string, object>
-            {
-                {"@paidStats", '1' },
-                {"invoiceNum", invoiceNum}
-            });
+                functions.ParamSaveData(qryUpdisPaid1, new Dictionary<string, object>
+                {
+                    {"@paidStats", '1' },
+                    {"invoiceNum", invoiceNum}
+                });
 
-            string qryUpdisPaid2 = @"
+                string qryUpdisPaid2 = @"
                 UPDATE invoice_monitoring 
                 SET isPaid = @paidStats 
                 WHERE invoiceNum = @InvoiceNum";
-            functions.ParamSaveData(qryUpdisPaid2, new Dictionary<string, object>
+                functions.ParamSaveData(qryUpdisPaid2, new Dictionary<string, object>
+                {
+                    {"@paidStats", '1' },
+                    {"invoiceNum", invoiceNum}
+                });
+            }
+            catch (Exception ex)
             {
-                {"@paidStats", '1' },
-                {"invoiceNum", invoiceNum}
-            });
+                functions.LogErrorToDb(ex, "frmPayments", "UpdatePaidStatus");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void btnEnterPayment_Click(object sender, EventArgs e)
         {
-            if (dgvInterest.SelectedRows.Count > 0)
+            try
             {
-                DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
-                dgvPaymentHistory.Rows.Clear();
+                if (dgvInterest.SelectedRows.Count > 0)
+                {
+                    DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
+                    dgvPaymentHistory.Rows.Clear();
 
-                string interestNo = selectedRow.Cells[0].Value.ToString();
-                decimal invBal = Convert.ToDecimal(selectedRow.Cells[5].Value.ToString());
-                decimal interestAmount = Convert.ToDecimal(selectedRow.Cells[7].Value.ToString());
-                
-                PayAmountDetails = new PayAmountDetails(this);
-                PayAmountDetails.InterestNo = interestNo;
-                PayAmountDetails.InvBal = invBal;
-                PayAmountDetails.InterestAmt = interestAmount;
-                PayAmountDetails.ShowDialog();
+                    string interestNo = selectedRow.Cells[0].Value.ToString();
+                    decimal invBal = Convert.ToDecimal(selectedRow.Cells[5].Value.ToString());
+                    decimal interestAmount = Convert.ToDecimal(selectedRow.Cells[7].Value.ToString());
+
+                    PayAmountDetails = new PayAmountDetails(this);
+                    PayAmountDetails.InterestNo = interestNo;
+                    PayAmountDetails.InvBal = invBal;
+                    PayAmountDetails.InterestAmt = interestAmount;
+                    PayAmountDetails.ShowDialog();
+                }
+                else MessageBox.Show("No payment selected", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else MessageBox.Show("No payment selected", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmPayments", "btnEnterPayment_Click");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void pbClose_Click(object sender, EventArgs e)
@@ -217,58 +265,82 @@ namespace Invoicing_System.Views
 
         private void bntExport_Click(object sender, EventArgs e)
         {
-            if (dgvInterest.SelectedRows.Count < 1)
+            try
             {
-                MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
+                if (dgvInterest.SelectedRows.Count < 1)
+                {
+                    MessageBox.Show("No item selected.", var._title, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                string paymentHistory = "SELECT " +
+                    "a.interestID," +
+                    "a.invoiceNum," +
+                    "b.custName," +
+                    "a.shippingDate," +
+                    "a.dueDate," +
+                    "a.balanceAmt AS balance," +
+                    "DATEDIFF(CURDATE(), a.shippingDate) AS aging," +
+                    "a.interestAmount as interest," +
+                    "IFNULL(c.p_invoiceBalPay,0) AS payment," +
+                    "c.p_orNum AS orno," +
+                    "c.p_arNum AS arno," +
+                    "c.p_bank AS bank," +
+                    "c.p_checkNum AS checkno," +
+                    "a.compID," +
+                    "a.isPaid, " +
+                    "c.p_datePaid AS datepaid " +
+                    "FROM interest_monitoring a " +
+                    "LEFT JOIN customerstable b ON a.customerID = b.custID " +
+                    "LEFT JOIN tblpayment c ON a.invoiceNum = c.p_invoiceNum";
+
+                PopPaymentHistoryReport(paymentHistory);
+
+                frmPaymentList = new frmPaymentList();
+                frmPaymentList.PreviewPaymentList(lastperformedQueryreport);
+                frmPaymentList.ShowDialog();
             }
-
-            string paymentHistory = "SELECT " +
-                "a.interestID," +
-                "a.invoiceNum," +
-                "b.custName," +
-                "a.shippingDate," +
-                "a.dueDate," +
-                "a.balanceAmt AS balance," +
-                "DATEDIFF(CURDATE(), a.shippingDate) AS aging," +
-                "a.interestAmount as interest," +
-                "IFNULL(c.p_invoiceBalPay,0) AS payment," +
-                "c.p_orNum AS orno," +
-                "c.p_arNum AS arno," +
-                "c.p_bank AS bank," +
-                "c.p_checkNum AS checkno," +
-                "a.compID," +
-                "a.isPaid, " +
-                "c.p_datePaid AS datepaid " +
-                "FROM interest_monitoring a " +
-                "LEFT JOIN customerstable b ON a.customerID = b.custID " +
-                "LEFT JOIN tblpayment c ON a.invoiceNum = c.p_invoiceNum";
-
-            PopPaymentHistoryReport(paymentHistory);
-
-            frmPaymentList = new frmPaymentList();
-            frmPaymentList.PreviewPaymentList(lastperformedQueryreport);
-            frmPaymentList.ShowDialog();
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmPayments", "bntExport_Click");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void PopPaymentHistoryReport(string queryFilters)
         {
-            lastperformedQueryreport = queryFilters + " " + lastfilterreport;
+            try
+            {
+                lastperformedQueryreport = queryFilters + " " + lastfilterreport;
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmPayments", "PopPaymentHistoryReport");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void dgvInterest_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.RowIndex < 0) return;
+            try
+            {
+                if (e.RowIndex < 0) return;
 
-            DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
-            string invoiceNumber = selectedRow.Cells[1].Value?.ToString() ?? "";
+                DataGridViewRow selectedRow = dgvInterest.SelectedRows[0];
+                string invoiceNumber = selectedRow.Cells[1].Value?.ToString() ?? "";
 
-            // View Payment History
-            qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
-                "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
-                "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
-                "ORDER BY p_datePaid";
-            functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
+                // View Payment History
+                qryPaymentHistory = "SELECT p_id, p_invoiceBalPay, p_datePaid, " +
+                    "p_orNum, p_arNum, p_bank, p_checkNum FROM tblpayment " +
+                    "WHERE p_invoiceNum = '" + invoiceNumber + "' " +
+                    "ORDER BY p_datePaid";
+                functions.PopulateDataGridView(dgvPaymentHistory, qryPaymentHistory);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmPayments", "dgvInterest_CellClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
     }
 }

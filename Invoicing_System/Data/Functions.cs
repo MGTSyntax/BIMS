@@ -28,7 +28,15 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in Saving data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "SaveData");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
+
                 throw;
             }
         } // End of SaveData
@@ -63,7 +71,15 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in Saving data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "ParamSaveData");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
+                
                 throw;
             }
         }
@@ -82,7 +98,15 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in Getting Data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "SelectData");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
+                
                 throw;
             }
         } // End of SelectData
@@ -109,7 +133,15 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in getting data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "ParamSelectData");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
+                
                 throw;
             }
         }
@@ -142,7 +174,15 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in Loading data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "PopulateComboboxFromDb");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
+                
                 throw;
             }
         } // End of PopulateComboboxFromDb
@@ -159,76 +199,96 @@ namespace Invoicing_System.Data
             try
             {
                 dgv.Rows.Clear();
-                con.Open();
-                cmd = new MySqlCommand(query, con);
-                dr = cmd.ExecuteReader();
 
-                while (dr.Read())
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                using (cmd = new MySqlCommand(query, localCon))
                 {
-                    // Create Array to Store Column Values
-                    object[] drValues = new object[dr.FieldCount];
+                    localCon.Open();
 
-                    // Iterate over readers columns
-                    for (int i = 0; i < dr.FieldCount; i++)
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
                     {
-                        // Check if the Column is of type DateTime
-                        if (dr.GetFieldType(i) == typeof(DateTime))
+                        while (dr.Read())
                         {
-                            // Format the DateTime value to display only the date portion
-                            drValues[i] = ((DateTime)dr.GetValue(i)).ToShortDateString();
-                        }
-                        // Check if the Column is of Boolean
-                        else if (dr.GetFieldType(i) == typeof(bool))
-                        {
-                            // Get the Boolean value
-                            drValues[i] = (dr.GetBoolean(i)) ? true : false;
-                        }
-                        else drValues[i] = dr.GetValue(i); // Retrieve the value for others
-                    }
+                            // Create Array to Store Column Values
+                            object[] drValues = new object[dr.FieldCount];
 
-                    // Add New Row to DataGridView
-                    dgv.Rows.Add(drValues);
+                            // Iterate over readers columns
+                            for (int i = 0; i < dr.FieldCount; i++)
+                            {
+                                if (dr.GetFieldType(i) == typeof(DateTime))
+                                {
+                                    drValues[i] = ((DateTime)dr.GetValue(i)).ToShortDateString();
+                                }
+                                else if (dr.GetFieldType(i) == typeof(bool))
+                                {
+                                    drValues[i] = dr.GetBoolean(i);
+                                }
+                                else
+                                {
+                                    drValues[i] = dr.GetValue(i);
+                                }
+                            }
+
+                            dgv.Rows.Add(drValues);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                con.Close();
-                MessageBox.Show("Problem in Loading data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "PopulateDataGridView");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title, 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Warning
+                );
+                
                 throw;
-            }
-            finally
-            {
-                dr.Close();
-                con.Close();
             }
         } // End of PopulateDataGridView
 
         public void PopulateListBox(ListView listview, string query)
         {
-            listview.Items.Clear();
-            con.Open();
-            cmd = new MySqlCommand(query, con);
-            using (dr = cmd.ExecuteReader())
+            try
             {
-                while (dr.Read())
+                listview.Items.Clear();
+
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                using (MySqlCommand cmd = new MySqlCommand(query, localCon))
                 {
-                    ListViewItem item = new ListViewItem();
+                    localCon.Open();
 
-                    // Create Array to Store Column Values
-                    //object[] drValues = new object[dr.FieldCount];
-
-                    // Iterate over readers columns
-                    for (int i = 0; i < dr.FieldCount; i++)
+                    using (MySqlDataReader dr = cmd.ExecuteReader())
                     {
-                        //object value = dr.GetValue(i);
-                        item.SubItems.Add(dr[i].ToString());
-                    }
+                        while (dr.Read())
+                        {
+                            ListViewItem item = new ListViewItem(dr[0].ToString());
 
-                    // Add the ListViewItem to the ListView
-                    listview.Items.Add(item);
+                            for (int i = 1; i < dr.FieldCount; i++)
+                            {
+                                item.SubItems.Add(dr[i].ToString());
+                            }
+
+                            listview.Items.Add(item);
+                        }
+                    }
                 }
             }
-            con.Close();
+            catch (Exception ex)
+            {
+                LogErrorToDb(ex, "Functions", "PopulateListBox");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                throw;
+            }
         }
 
         public string ConvertCurrencyToWords(decimal amount)
@@ -259,7 +319,6 @@ namespace Invoicing_System.Data
                     {
                         string groupWords = "";
 
-                        //int hundreds = (int)Math.Floor((decimal)threeDigits / 100);
                         int hundreds = threeDigits / 100;
                         int tensAndUnits = threeDigits % 100;
 
@@ -268,15 +327,9 @@ namespace Invoicing_System.Data
 
                         if (tensAndUnits >= 20)
                         {
-                            //groupWords += tens[(int)Math.Floor((decimal)tensAndUnits / 10)] + " ";
                             groupWords += tens[tensAndUnits / 10] + " ";
 
-                            //if (tensAndUnits % 10 != 0)
-                            //{
-                            //    groupWords += " " + units[tensAndUnits % 10];
-                            //}
                             groupWords += units[tensAndUnits % 10] + " ";
-                            //groupWords += " " + units[tensAndUnits % 10];
                         }
                         else if (tensAndUnits >= 10)
                         {
@@ -293,13 +346,11 @@ namespace Invoicing_System.Data
                         {
                             // Add a space between groups if the current group is not empty
                             groupWords += " ";
-                            //groupWords = " " + groupWords;
                         }
 
                         pesosInWords = groupWords + pesosInWords;
                     }
 
-                    //pesos = (int)Math.Floor((decimal)pesos / 1000);
                     pesos /= 1000;
                     groupCount++;
                 }
@@ -312,7 +363,6 @@ namespace Invoicing_System.Data
             // Convert cents to words
             if (cents > 0)
             {
-                //centsInWords = " and " + cents.ToString("D2") + "/100";
                 centsInWords = " and " + ConvertToWords(cents) + " Centavos";
             }
 
@@ -363,15 +413,28 @@ namespace Invoicing_System.Data
 
         public string ConvertCompAccess(string str)
         {
-            string[] values = str.Split(new char[] { ',' });
-
-            for (int i = 0; i < values.Length; i++)
+            try
             {
-                values[i] = "'" + values[i] + "'";
-            }
+                string[] values = str.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
 
-            string result = string.Join(",", values);
-            return result;
+                for (int i = 0; i < values.Length; i++)
+                {
+                    values[i] = "'" + values[i].Trim() + "'";
+                }
+
+                string result = string.Join(",", values);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                LogErrorToDb(ex, "frmCompany", "ConvertCompAccess");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. The error has been logged. Please contact your administrator."
+                );
+
+                return string.Empty;
+            }
         }
 
         public void TogglePassswordVisibility(PictureBox pbobj, TextBox txtobj, string tagval)
@@ -392,66 +455,73 @@ namespace Invoicing_System.Data
 
         public string GetRecordString(string sqlCommandTxt)
         {
-            string retVal = "";
-
-            try
-            {
-                con.Open();
-                using (MySqlCommand scalarCommand = new MySqlCommand(sqlCommandTxt, con))
-                {
-                    object result = scalarCommand.ExecuteScalar();
-                    retVal = (result == null || DBNull.Value.Equals(result)) ? "" : result.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+            string retVal = ""; 
+            try { 
+                con.Open(); 
+                using (MySqlCommand scalarCommand = new MySqlCommand(sqlCommandTxt, con)) 
+                { 
+                    object result = scalarCommand.ExecuteScalar(); 
+                    retVal = (result == null || DBNull.Value.Equals(result)) ? "" : result.ToString(); 
+                } 
+            } 
+            catch (Exception ex) 
+            { 
+                MessageBox.Show(ex.Message); 
+                con.Close(); 
+            } 
+            finally 
+            { 
                 con.Close();
             }
-            finally { con.Close(); }
-
             return retVal;
         }
 
         public void ReadExcelFile(string filePath, DataGridView dgv)
         {
-            using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
+            try
             {
-                ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
-
-                // Validate worksheet dimensions
-                if (worksheet.Dimension == null) throw new Exception("The Excel file is empty or has no readable data.");
-
-                // Start reading from row 2 (A2) 
-                for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
+                using (ExcelPackage package = new ExcelPackage(new FileInfo(filePath)))
                 {
-                    DataGridViewRow dgvRow = new DataGridViewRow();
-                    dgvRow.CreateCells(dgv);
+                    ExcelWorksheet worksheet = package.Workbook.Worksheets[0];
 
-                    for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+                    // Validate worksheet dimensions
+                    if (worksheet.Dimension == null) throw new Exception("The Excel file is empty or has no readable data.");
+
+                    // Start reading from row 2 (A2) 
+                    for (int row = 2; row <= worksheet.Dimension.End.Row; row++)
                     {
-                        var cellValue = worksheet.Cells[row, col].Text.Trim();
+                        DataGridViewRow dgvRow = new DataGridViewRow();
+                        dgvRow.CreateCells(dgv);
 
-                        if (string.Equals(cellValue, "Yes", StringComparison.OrdinalIgnoreCase)) cellValue = "True";
-                        else if (string.Equals(cellValue, "No", StringComparison.OrdinalIgnoreCase)) cellValue = "False";
+                        for (int col = 1; col <= worksheet.Dimension.End.Column; col++)
+                        {
+                            var cellValue = worksheet.Cells[row, col].Text.Trim();
 
-                        dgvRow.Cells[col - 1].Value = cellValue;
+                            if (string.Equals(cellValue, "Yes", StringComparison.OrdinalIgnoreCase)) cellValue = "True";
+                            else if (string.Equals(cellValue, "No", StringComparison.OrdinalIgnoreCase)) cellValue = "False";
+
+                            dgvRow.Cells[col - 1].Value = cellValue;
+                        }
+
+                        dgv.Rows.Add(dgvRow);
                     }
-
-                    dgv.Rows.Add(dgvRow);
                 }
+            }
+            catch (Exception ex)
+            {
+                LogErrorToDb(ex, "Functions", "ReadExcelFile");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                throw;
             }
         }
 
-        // Populate MIB Companies
-        //public void PopulateMIBCompanies(ComboBox cbox, TextBox tbox)
-        //{
-        //    string TTquery = "SELECT companyID,companyName FROM tblcompanies WHERE isActive=1 ORDER by companyID";
-        //    string TTdisplayMember = "companyName";
-        //    string TTvalueMember = "companyID";
-        //    PopulateComboboxFromDb(cbox, TTquery, TTdisplayMember, TTvalueMember, "Select an option", "0");
-        //    tbox.Text = cbox.SelectedValue.ToString();
-        //}
         public void PopulateMIBCompanies(ComboBox cbox, TextBox companyIdBox, TextBox invoiceSeriesBox, bool isUpdateMode = false)
         {
             try
@@ -500,11 +570,18 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in Loading data! Please ask your administrator.\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "PopulateMIBCompanies");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
                 throw;
             }
         }
-        // End of Populate Title Template
 
         private void UpdateCompanyTextBoxes(ComboBox cbox, TextBox companyIdBox, TextBox invoiceSeriesBox)
         {
@@ -630,7 +707,16 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error exporting data: " + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogErrorToDb(ex, "Functions", "createExcelReport");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                throw;
             }
         }
 
@@ -755,7 +841,16 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error exporting data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LogErrorToDb(ex, "Functions", "createIIFReport");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
+                throw;
             }
         }
 
@@ -776,7 +871,15 @@ namespace Invoicing_System.Data
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Problem in getting interest rate!\n" + ex.Message, _title, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LogErrorToDb(ex, "Functions", "GetInterestRate");
+
+                MessageBox.Show(
+                    "An unexpected error occurred. Please contact your administrator.",
+                    _title,
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+
                 return 0;
             }
         }
@@ -805,6 +908,35 @@ namespace Invoicing_System.Data
                 };
 
                 loadingForm.ShowDialog();
+            }
+        }
+
+        public void LogErrorToDb(Exception ex, string formName = "", string extraInfo= "")
+        {
+            try
+            {
+                using (MySqlConnection localCon = new MySqlConnection(AppDbCon))
+                {
+                    string query = @"INSERT INTO tblerrorlog
+                                    (logDate, username, formName, errorMessage, stackTrace, extraInfo)
+                                    VALUES (@logDate, @username, @formName, @errorMessage, @stackTrace, @extraInfo)";
+                    using (MySqlCommand cmd = new MySqlCommand(query, localCon))
+                    {
+                        cmd.Parameters.AddWithValue("@logDate", DateTime.Now);
+                        cmd.Parameters.AddWithValue("@username", Variables.user_unameValue ?? "UNKNOWN");
+                        cmd.Parameters.AddWithValue("@formName", formName);
+                        cmd.Parameters.AddWithValue("@errorMessage", ex.Message);
+                        cmd.Parameters.AddWithValue("@stackTrace", ex.StackTrace ?? "");
+                        cmd.Parameters.AddWithValue("@extraInfo", extraInfo);
+
+                        localCon.Open();
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch
+            {
+
             }
         }
     }

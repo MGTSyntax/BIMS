@@ -34,11 +34,18 @@ namespace Invoicing_System.Views
             PopulateCompanies();
         }
 
-
         public void PopulateCompanies()
         {
-            qryCompanies = "SELECT * FROM tblcompanies ORDER BY companyID";
-            functions.PopulateDataGridView(dgvCompanies, qryCompanies);
+            try
+            {
+                qryCompanies = "SELECT * FROM tblcompanies ORDER BY companyID";
+                functions.PopulateDataGridView(dgvCompanies, qryCompanies);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmCompany", "PopulateCompanies");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void btnNewCompany_Click(object sender, EventArgs e)
@@ -63,10 +70,10 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                functions.LogErrorToDb(ex, "frmCompany", "dgvCompanies_CellContentClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
     }

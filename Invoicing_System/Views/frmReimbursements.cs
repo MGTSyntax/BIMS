@@ -40,21 +40,37 @@ namespace Invoicing_System.Views
 
         public void populateReimbursements()
         {
-            string query = "WHERE b.isVoid=0 AND b.compID IN (" + Variables.User_CompAccess + ") " +
+            try
+            {
+                string query = "WHERE b.isVoid=0 AND b.compID IN (" + Variables.User_CompAccess + ") " +
                 "ORDER BY c.custName LIMIT 100";
-            queryData(query);
+                queryData(query);
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmReimbursements", "populateReimbursements");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         public void queryData(string whereQuery)
         {
-            string query = "SELECT a.id, UPPER(b.compID) as company, a.invoice_number, c.custName, b.billingPeriod_from, " +
+            try
+            {
+                string query = "SELECT a.id, UPPER(b.compID) as company, a.invoice_number, c.custName, b.billingPeriod_from, " +
                 "b.billingPeriod_to, b.reimbursement, a.total_payroll, a.thirteenth_mp, a.sil, a.uniform_allowance, " +
                 "a.total_mandatories, a.retirement, a.insurance, a.radio_n_firearms " +
                 "FROM reimbursement_details a " +
                 "LEFT JOIN invoice_monitoring b ON a.invoice_number = b.invoiceNumber " +
                 "INNER JOIN customerstable c ON b.customerID = c.custID";
-            functions.PopulateDataGridView(dgvreimbursements, query + " " + whereQuery);
-            lastperformedQuery = query + " " + whereQuery;
+                functions.PopulateDataGridView(dgvreimbursements, query + " " + whereQuery);
+                lastperformedQuery = query + " " + whereQuery;
+            }
+            catch (Exception ex)
+            {
+                functions.LogErrorToDb(ex, "frmReimbursements", "queryData");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
+            }
         }
 
         private void dgvreimbursements_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -110,9 +126,10 @@ namespace Invoicing_System.Views
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                functions.LogErrorToDb(ex, "frmReimbursements", "dgvreimbursements_CellContentClick");
+                MessageBox.Show("An unexpected error occurred. The error has been logged. Please contact your administrator.");
             }
         }
 
